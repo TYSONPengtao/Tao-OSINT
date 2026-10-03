@@ -1,17 +1,28 @@
-# Frontend
+# TAO OSINT Frontend
 
-The primary TAO OSINT product surface is a searchable OSINT tool launchpad.
+The primary frontend is a bilingual, responsive **OSINT collection / showcase / bookmark interface**.
 
-Planned UI:
+## Current MVP
 
-- landing page
-- category browser
-- full-text/fuzzy tool search
-- tags and filters
-- tool cards
-- tool details
-- workflow collections
-- External / TAO Built / TAO Optimized badges
+Open:
+
+```text
+frontend/index.html
+```
+
+Features:
+
+- Chinese / English live switch
+- language preference persistence
+- category navigation
+- search
+- interaction filters
+- cost filters
+- responsive tool cards
+- favorites stored locally in the browser
+- External / Integrated / TAO Optimized badges
+- direct launch to official tools
+- direct launch to selected integrated TAO tools
 - mobile layout
 
-The first frontend should be able to build directly from the versioned catalog without requiring a database.
+The frontend is intentionally static and local-first for the first milestone. A backend is not required for browsing or favorites.
