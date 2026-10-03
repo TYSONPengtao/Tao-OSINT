@@ -5,16 +5,24 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="color-scheme" content="dark" />
   <meta name="description" content="TAO OSINT — curated OSINT tool collection, showcase and bookmark platform." />
-  <title>TAO OSINT — Tool Collection</title>
+  <title>TAO OSINT — Curated OSINT Tools</title>
   <link rel="stylesheet" href="./styles.css" />
 </head>
 <body>
+  <div id="scrim" class="scrim" hidden></div>
+
   <main class="page-shell">
     <header class="topbar">
-      <a class="brand" href="../" aria-label="TAO OSINT">
+      <a class="brand" href="#top" aria-label="TAO OSINT">
         <span class="brand-mark">TAO</span>
         <span class="brand-name">OSINT</span>
       </a>
+
+      <nav class="primary-nav" aria-label="Primary">
+        <a href="#catalog" data-i18n="nav.tools">工具</a>
+        <button type="button" id="nav-favorites" data-i18n="nav.favorites">收藏</button>
+        <a href="#principles" data-i18n="nav.about">关于</a>
+      </nav>
 
       <div class="top-actions">
         <nav class="language-switch" aria-label="Language">
@@ -26,7 +34,7 @@
       </div>
     </header>
 
-    <section class="topic-hero">
+    <section id="top" class="topic-hero">
       <div class="topic-copy">
         <div class="topic-chip"># osint-tools</div>
         <p class="eyebrow" data-i18n="hero.eyebrow">OSINT 工具聚合 · 陈列 · 收藏</p>
@@ -37,9 +45,18 @@
         <p class="hero-description" data-i18n="hero.description">
           以收藏、分类、搜索和快速跳转为主。大多数工具链接到官方入口，只有少量 TAO 精选项目可直接使用。
         </p>
+
+        <div class="hero-actions">
+          <a class="button primary" href="#catalog" data-i18n="hero.browse">浏览工具库</a>
+          <button id="hero-favorites" class="button ghost" type="button">
+            <span>☆</span>
+            <span data-i18n="favorites.title">收藏</span>
+            <strong id="hero-favorite-count">0</strong>
+          </button>
+        </div>
       </div>
 
-      <div class="topic-summary">
+      <div class="topic-summary" aria-label="Catalog summary">
         <div class="summary-row">
           <span data-i18n="stats.collected">已收录</span>
           <strong><span id="stat-tools">0</span> <small data-i18n="stats.tools">工具</small></strong>
@@ -52,11 +69,31 @@
           <span data-i18n="stats.integrated">可直接使用</span>
           <strong><span id="stat-integrated">0</span> <small data-i18n="stats.taoTools">TAO 工具</small></strong>
         </div>
+        <div class="summary-row">
+          <span data-i18n="stats.favorites">本地收藏</span>
+          <strong><span id="favorite-count">0</span> <small data-i18n="stats.saved">已保存</small></strong>
+        </div>
       </div>
     </section>
 
-    <section class="catalog-shell">
-      <aside class="sidebar">
+    <section id="recent-section" class="recent-section" hidden>
+      <div class="section-heading compact">
+        <div>
+          <p class="section-kicker" data-i18n="recent.kicker">RECENT</p>
+          <h2 data-i18n="recent.title">最近访问</h2>
+        </div>
+        <button id="clear-recent" class="text-button" type="button" data-i18n="recent.clear">清空</button>
+      </div>
+      <div id="recent-list" class="recent-list"></div>
+    </section>
+
+    <section id="catalog" class="catalog-shell">
+      <aside id="sidebar" class="sidebar" aria-label="Filters">
+        <div class="sidebar-mobile-head">
+          <strong data-i18n="filters.title">筛选</strong>
+          <button id="sidebar-close" class="icon-button" type="button" aria-label="Close">×</button>
+        </div>
+
         <div class="sidebar-block">
           <span class="sidebar-label" data-i18n="filters.category">分类</span>
           <div id="category-list" class="category-list"></div>
@@ -83,16 +120,24 @@
           <span class="sidebar-label" data-i18n="filters.platform">平台</span>
           <div id="platform-list" class="platform-list"></div>
         </div>
+
+        <button id="sidebar-reset" class="sidebar-reset" type="button" data-i18n="filters.reset">重置全部筛选</button>
       </aside>
 
       <section class="catalog-main">
         <div class="catalog-toolbar">
           <div class="search-box">
-            <span>⌕</span>
+            <span aria-hidden="true">⌕</span>
             <input id="search-input" type="search" autocomplete="off" data-i18n-placeholder="search.placeholder" placeholder="搜索工具、用途、标签…" />
+            <kbd>/</kbd>
           </div>
 
           <div class="toolbar-meta">
+            <button id="mobile-filter-open" class="toolbar-button filter-button" type="button">
+              <span>☰</span>
+              <span data-i18n="filters.title">筛选</span>
+            </button>
+
             <label class="sort-control">
               <span data-i18n="sort.label">排序</span>
               <select id="sort-select">
@@ -103,13 +148,18 @@
               </select>
             </label>
 
+            <div class="view-switch" role="group" aria-label="View">
+              <button id="view-list" type="button" data-view="list" title="List">☷</button>
+              <button id="view-grid" type="button" data-view="grid" title="Grid">⊞</button>
+            </div>
+
             <button id="favorites-toggle" class="toolbar-button" type="button">
               <span>☆</span>
               <span data-i18n="favorites.title">收藏</span>
-              <strong id="favorite-count">0</strong>
+              <strong id="toolbar-favorite-count">0</strong>
             </button>
 
-            <button id="clear-filters" class="toolbar-button subtle" type="button" data-i18n="filters.reset">重置</button>
+            <button id="clear-filters" class="toolbar-button subtle" type="button" data-i18n="filters.resetShort">重置</button>
           </div>
         </div>
 
@@ -123,17 +173,21 @@
           <p id="result-count" class="result-count"></p>
         </div>
 
-        <div id="tool-grid" class="tool-list"></div>
+        <div id="tool-grid" class="tool-list" data-view="list"></div>
 
         <div id="empty-state" class="empty-state" hidden>
           <span>⌕</span>
           <h3 data-i18n="empty.title">没有找到匹配工具</h3>
           <p data-i18n="empty.text">尝试更换关键词、分类或筛选条件。</p>
         </div>
+
+        <div class="load-more-wrap">
+          <button id="load-more" class="button load-more" type="button" hidden></button>
+        </div>
       </section>
     </section>
 
-    <section class="principle-strip">
+    <section id="principles" class="principle-strip">
       <article>
         <span>01</span>
         <strong data-i18n="principles.collect.title">收藏优先</strong>
@@ -163,6 +217,28 @@
       </div>
     </footer>
   </main>
+
+  <dialog id="tool-dialog" class="tool-dialog">
+    <div class="dialog-head">
+      <div>
+        <p id="dialog-category" class="tool-category"></p>
+        <h2 id="dialog-title"></h2>
+      </div>
+      <button id="dialog-close" class="icon-button" type="button" aria-label="Close">×</button>
+    </div>
+    <p id="dialog-description" class="dialog-description"></p>
+    <div id="dialog-badges" class="tool-badges dialog-badges"></div>
+    <div id="dialog-tags" class="tool-tags"></div>
+    <dl class="dialog-meta">
+      <div><dt data-i18n="detail.platform">平台</dt><dd id="dialog-platform"></dd></div>
+      <div><dt data-i18n="detail.account">账号</dt><dd id="dialog-account"></dd></div>
+      <div><dt data-i18n="detail.reviewed">最近审阅</dt><dd id="dialog-reviewed"></dd></div>
+    </dl>
+    <div class="dialog-actions">
+      <button id="dialog-favorite" class="button ghost" type="button"></button>
+      <a id="dialog-launch" class="button primary" href="#"></a>
+    </div>
+  </dialog>
 
   <script src="./app.js"></script>
 </body>
