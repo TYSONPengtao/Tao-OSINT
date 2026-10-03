@@ -1,85 +1,106 @@
-# Photo Stargazing Positioning
+# TAO Photo Stargazing Positioning — Optimized Prototype
 
-## Status
+This folder contains a safe refactor of the original learning prototype.
 
-Existing local prototype identified for migration into TAO OSINT.
+The original files are preserved unchanged.
 
-The source code has not yet been imported into this repository.
+## What was fixed
 
-## Intended Role
+- Observation values are no longer hard-coded in the algorithm.
+- The output path is no longer hard-coded to a Desktop folder.
+- The older source typo for 天津四 (`13h10m23.38s`) is corrected in the sample to the v0.2 value (`12h10m23.38s`).
+- Focal-length pair failures are reported instead of hidden in console noise.
+- Numerical edge cases are checked.
+- Candidate coordinates are exported as JSON and CSV.
+- Candidate points are clustered geographically instead of naively averaging every root.
+- The selected cluster is explicitly described as a heuristic, not a guaranteed geolocation.
+- The implementation uses only the Python standard library.
 
-A focused image/geolocation utility that uses visible stars, constellations and sky geometry as evidence for estimating or checking:
+## Run
 
-- viewing direction
-- candidate location
-- candidate date/time
-- consistency between a photo and an asserted context
+From this directory:
 
-It should be presented as an **analysis aid**, not as a guaranteed one-click geolocation system.
-
-## Planned Optimization
-
-### 1. Audit the existing prototype
-
-- inventory files and dependencies
-- identify current calculations
-- separate working code from experiments
-- document current inputs/outputs
-- identify hard-coded assumptions
-
-### 2. Separate the core
-
-Suggested layers:
-
-```text
-UI
- ↓
-Photo / observation input
- ↓
-Astronomy core
- ↓
-Candidate comparison
- ↓
-Confidence / uncertainty
- ↓
-Map + sky visualization
- ↓
-Report
+```powershell
+python .\tao_star_positioning.py .\sample_observation.json --output .\output\sample
 ```
 
-### 3. Improve astronomy handling
+Expected sample characteristics:
 
-Potential components:
+- focal length ≈ **554.485 px**
+- 6 mathematical location candidates
+- 3 candidates form the strongest geographic cluster
+- the coherent sample cluster is around **33.6° N, 115.3° E**
 
-- star/constellation reference data
-- altitude/azimuth calculations
-- time and timezone handling
-- observer latitude/longitude
-- camera orientation assumptions
-- horizon/reference-line handling
+The sample reproduces the v0.2 packaged project's stored focal-length value (about 554.485 px).
 
-### 4. Improve result quality
+## Input
 
-The tool should show:
+Edit a copy of `sample_observation.json`.
 
-- candidate result
-- assumptions
-- evidence used
-- uncertainty
-- alternative candidates
-- calculation parameters
+For each star provide:
 
-### 5. Improve interface
+- name
+- hour angle (hours / minutes / seconds)
+- declination (degrees / minutes / seconds)
+- measured image x/y coordinate
 
-Target:
+Also provide the measured image coordinate of the zenith.
 
-- simple photo-first workflow
-- desktop + mobile
-- map panel
-- sky/constellation panel
-- step-by-step guidance
-- exportable analysis summary
+### Coordinate convention
 
-## Integration
+The historical project uses image-plane coordinates where the image/grid convention must stay consistent with the measured zenith and star points.
 
-When ready, this project should be accessible directly from the TAO OSINT tool catalog with a **TAO Optimized** badge.
+Do not mix coordinate systems between tools without transforming them.
+
+## Output
+
+`result.json`
+
+Contains:
+
+- computed ground points
+- per-pair focal diagnostics
+- focal mean / median / spread
+- all mathematical location candidates
+- selected geographic cluster
+- warnings and interpretation notes
+
+`candidates.csv`
+
+Contains raw pair/branch latitude/longitude candidates for mapping or further analysis.
+
+## Important limitation
+
+This method can produce multiple mathematical roots and is sensitive to:
+
+- star identification errors
+- hour-angle/time errors
+- pixel-coordinate errors
+- zenith estimation
+- lens distortion
+- camera projection assumptions
+- horizon/reference-frame assumptions
+
+Use the result as one OSINT clue. Validate it independently with terrain, landmarks, timestamp, weather, maps, shadow/sun information, and astronomical software.
+
+## TAO OSINT integration direction
+
+This tool can later become a guided web workflow:
+
+```text
+Upload photo
+   ↓
+Mark stars + zenith
+   ↓
+Enter/select astronomical references
+   ↓
+Calculate focal consistency
+   ↓
+Generate location candidates
+   ↓
+Cluster candidates
+   ↓
+Map + sky visualization
+   ↓
+Export reproducible report
+```
