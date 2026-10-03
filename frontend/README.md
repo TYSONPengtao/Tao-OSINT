@@ -1,5 +1,7 @@
 # TAO OSINT Frontend
 
+**English** · [简体中文](README.zh-CN.md)
+
 The primary frontend is a bilingual, responsive **OSINT collection / showcase / bookmark interface**.
 
 ## Current MVP
