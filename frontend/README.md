@@ -1,16 +1,17 @@
 # Frontend
 
-Future TAO OSINT web research workbench.
+The primary TAO OSINT product surface is a searchable OSINT tool launchpad.
 
-Planned surfaces:
+Planned UI:
 
-- case dashboard
-- source ledger
-- claims and evidence
-- entities
-- timeline
-- graph
-- map
-- reports
+- landing page
+- category browser
+- full-text/fuzzy tool search
+- tags and filters
+- tool cards
+- tool details
+- workflow collections
+- External / TAO Built / TAO Optimized badges
+- mobile layout
 
-Framework selection and implementation will follow the canonical data-model milestone.
+The first frontend should be able to build directly from the versioned catalog without requiring a database.
