@@ -1260,6 +1260,32 @@ const TOOLS = [
       "zh-CN": "学术研究与引文分析平台，可查看论文被后续研究支持、质疑或讨论的上下文。",
       "en": "Research and citation-analysis platform for seeing how later literature supports, challenges or discusses scholarly work."
     }
+  },
+  {
+    "id": "libphonenumber",
+    "name": "Google libphonenumber",
+    "category": "contact-public-info",
+    "type": "external",
+    "interaction": "external",
+    "url": "https://github.com/google/libphonenumber",
+    "cost": "free",
+    "accountRequired": false,
+    "platform": [
+      "java",
+      "javascript",
+      "cpp"
+    ],
+    "tags": [
+      "phone",
+      "validation",
+      "metadata",
+      "open-source"
+    ],
+    "lastReviewed": "2026-10-04",
+    "description": {
+      "zh-CN": "Google 开源电话号码库，用于解析、格式化和验证国际号码，并提供号码类型、地区、原始运营商等有限离线元数据。",
+      "en": "Open-source library for parsing, formatting and validating international phone numbers, including number type and limited offline metadata."
+    }
   }
 ];
 
