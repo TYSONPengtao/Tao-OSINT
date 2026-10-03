@@ -1,0 +1,153 @@
+tools:
+  - id: bellingcat-toolkit
+    name: Bellingcat Online Investigations Toolkit
+    category: research-resources
+    type: external
+    url: https://bellingcat.gitbook.io/toolkit/
+    description: Curated open-source research toolkit with categories, requirements, limitations and guides.
+    use_cases:
+      - Discover tools for a specific OSINT task
+      - Compare investigation resources
+    cost: free
+    account_required: false
+    platform: [web]
+    tags: [tool-directory, research, learning]
+    status: active
+    last_reviewed: 2026-10-04
+
+  - id: tineye
+    name: TinEye
+    category: image-video
+    type: external
+    url: https://tineye.com/
+    description: Reverse image search service for finding matching and modified images.
+    use_cases:
+      - Find earlier or alternative appearances of an image
+      - Compare visually similar versions
+    cost: partially-free
+    account_required: false
+    platform: [web]
+    input_types: [image, image-url]
+    tags: [reverse-image, verification]
+    status: active
+    last_reviewed: 2026-10-04
+
+  - id: exiftool
+    name: ExifTool
+    category: metadata-files
+    type: external
+    url: https://exiftool.org/
+    official_docs: https://exiftool.org/exiftool_pod.html
+    description: Command-line and library tooling for reading and writing metadata across many file formats.
+    use_cases:
+      - Inspect image and document metadata
+      - Export metadata for analysis
+    cost: free
+    account_required: false
+    platform: [windows, macos, linux]
+    input_types: [files]
+    tags: [metadata, exif, files]
+    status: active
+    last_reviewed: 2026-10-04
+
+  - id: openstreetmap
+    name: OpenStreetMap
+    category: geolocation-maps
+    type: external
+    url: https://www.openstreetmap.org/
+    description: Openly licensed collaborative map of the world.
+    use_cases:
+      - Geographic context
+      - Road and place comparison
+      - Map reference
+    cost: free
+    account_required: false
+    platform: [web]
+    tags: [maps, geolocation, open-data]
+    status: active
+    last_reviewed: 2026-10-04
+
+  - id: suncalc
+    name: SunCalc
+    category: geolocation-maps
+    type: external
+    url: https://www.suncalc.org/
+    description: Sun position, altitude, azimuth and shadow calculations for a selected place and time.
+    use_cases:
+      - Shadow and sunlight reasoning
+      - Time/location consistency checks
+    cost: free
+    account_required: false
+    platform: [web]
+    tags: [sun, shadow, geolocation, astronomy]
+    status: active
+    last_reviewed: 2026-10-04
+
+  - id: wayback-machine
+    name: Internet Archive Wayback Machine
+    category: archives
+    type: external
+    url: https://web.archive.org/
+    description: Public web archive for viewing historical captures of web pages.
+    use_cases:
+      - Review earlier versions of a website
+      - Check historical public content
+    cost: free
+    account_required: false
+    platform: [web]
+    tags: [archive, history, websites]
+    status: active
+    last_reviewed: 2026-10-04
+
+  - id: urlscan
+    name: urlscan.io
+    category: cyber-url-analysis
+    type: external
+    url: https://urlscan.io/
+    official_docs: https://docs.urlscan.io/
+    description: Public service for scanning and analyzing website behavior, resources and screenshots.
+    use_cases:
+      - Inspect suspicious or unknown websites
+      - Review page resources and public scan context
+    cost: partially-free
+    account_required: false
+    platform: [web, api]
+    input_types: [url]
+    privacy_notes:
+      - Scan visibility settings matter; do not submit confidential URLs to a public scan.
+    tags: [url, website, screenshot, infrastructure]
+    status: active
+    last_reviewed: 2026-10-04
+
+  - id: virustotal
+    name: VirusTotal
+    category: cyber-url-analysis
+    type: external
+    url: https://www.virustotal.com/
+    official_docs: https://docs.virustotal.com/
+    description: Service for analyzing files, URLs, domains and related threat-intelligence context.
+    use_cases:
+      - Review public reputation/context for a URL or file
+      - Correlate public threat indicators
+    cost: partially-free
+    account_required: false
+    platform: [web, api]
+    tags: [url, files, domains, security]
+    status: active
+    last_reviewed: 2026-10-04
+
+  - id: photo-stargazing-positioning
+    name: Photo Stargazing Positioning
+    category: tao-projects
+    type: tao-optimized
+    url: ./projects/photo-stargazing-positioning/
+    description: TAO project for using stars and sky geometry as clues for photo positioning and contextual verification.
+    use_cases:
+      - Analyze night-sky imagery
+      - Compare star/constellation geometry with candidate location/time
+    cost: free
+    account_required: false
+    platform: [planned-web]
+    tags: [astronomy, image, geolocation, stars, tao]
+    status: review-needed
+    last_reviewed: 2026-10-04
