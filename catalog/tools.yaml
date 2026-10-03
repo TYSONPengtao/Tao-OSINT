@@ -872,7 +872,7 @@ tools:
     status: active
     last_reviewed: 2026-10-04
 
-- id: libphonenumber
+  - id: libphonenumber
     name: "Google libphonenumber"
     category: contact-public-info
     type: external
