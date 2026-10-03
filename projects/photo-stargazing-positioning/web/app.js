@@ -1,5 +1,71 @@
 const EPS = 1e-12;
 const EARTH_RADIUS_KM = 6371.0088;
+const LANGUAGE_KEY = "tao-stargazing-language";
+const TRANSLATIONS = {
+  "zh-CN": {
+    "hero.kicker": "夜空照片定位辅助工具", "hero.line1": "用恒星几何关系", "hero.line2": "缩小位置候选范围。",
+    "hero.description": "输入已识别恒星的时角、赤纬、图像坐标与天顶坐标。工具会复现旧项目的几何公式，计算焦距一致性、位置候选与主聚类。结果仅作为 OSINT 线索，需要独立证据交叉验证。",
+    "input.title": "观测数据", "input.loadSample": "载入示例", "input.run": "开始计算", "input.coordinateTitle": "坐标约定",
+    "input.coordinateText": "恒星与天顶必须使用同一个图像坐标系。旧项目的 y 方向约定与 GeoGebra 默认坐标方向不同。",
+    "result.title": "计算结果", "status.idle": "载入示例或输入观测数据后开始计算。", "status.sampleLoaded": "示例数据已载入。",
+    "status.successCluster": "计算完成：已找到由多个恒星对共同支持的主聚类。", "status.successNoCluster": "计算完成，但没有找到多点主聚类。", "status.failed": "计算失败：",
+    "metric.candidates": "数学候选", "metric.cluster": "候选数", "cluster.notCalculated": "尚未计算", "cluster.none": "未找到多点主聚类",
+    "map.title": "全球候选分布", "map.projection": "经纬度等距投影", "table.pair": "星对", "table.branch": "分支", "table.latitude": "纬度", "table.longitude": "经度", "table.cluster": "聚类", "table.empty": "暂无候选点", "table.primary": "主聚类",
+    "export.json": "导出 JSON", "export.csv": "导出 CSV", "method.title": "方法与限制", "method.a.title": "恒星参考", "method.a.text": "使用已识别恒星的时角与赤纬建立天球方向向量。",
+    "method.b.title": "焦距一致性", "method.b.text": "根据恒星对的天球夹角与图像平面距离反推等效焦距。", "method.c.title": "候选求解", "method.c.text": "由恒星仰角约束求得多个数学经纬度根，不假定单根就是答案。",
+    "method.d.title": "候选聚类", "method.d.text": "寻找多个星对共同支持的地理聚类，并展示离散程度。", "warning.label": "重要：",
+    "warning.text": "该方法对星体识别、时角、图像坐标、天顶估计、镜头畸变与相机投影都敏感。聚类中心不是“精确定位真值”，应与地形、地标、时间、天气、Stellarium/星图等证据交叉验证。",
+    "error.hourAngle": "时角的分/秒必须位于 0–60 之间。", "error.declination": "赤纬的分/秒必须位于 0–60 之间。", "error.starFields": "每颗恒星都必须包含 name / hour_angle / declination / image。",
+    "error.minStars": "至少需要 3 颗恒星。", "error.zenith": "天顶坐标或聚类半径不是有效数字。", "error.noFocal": "没有恒星对能够得到有效焦距。"
+  },
+  en: {
+    "hero.kicker": "Night-sky photo geolocation aid", "hero.line1": "Use stellar geometry to", "hero.line2": "narrow location candidates.",
+    "hero.description": "Enter the hour angle, declination, image coordinates and zenith coordinates for identified stars. The tool reproduces the legacy geometric method to evaluate focal-length consistency, generate location candidates and identify the strongest cluster. Treat the output as an OSINT clue that still requires independent verification.",
+    "input.title": "Observation data", "input.loadSample": "Load sample", "input.run": "Run analysis", "input.coordinateTitle": "Coordinate convention",
+    "input.coordinateText": "Stars and the zenith must use the same image coordinate system. The historical project used a y-axis convention that differs from GeoGebra's default coordinates.",
+    "result.title": "Analysis result", "status.idle": "Load the sample or enter observation data, then run the analysis.", "status.sampleLoaded": "Sample data loaded.",
+    "status.successCluster": "Analysis complete: a primary cluster supported by multiple star pairs was found.", "status.successNoCluster": "Analysis complete, but no multi-point primary cluster was found.", "status.failed": "Analysis failed: ",
+    "metric.candidates": "mathematical roots", "metric.cluster": "candidates", "cluster.notCalculated": "Not calculated", "cluster.none": "No multi-point primary cluster",
+    "map.title": "Global candidate distribution", "map.projection": "Equirectangular projection", "table.pair": "Pair", "table.branch": "Branch", "table.latitude": "Latitude", "table.longitude": "Longitude", "table.cluster": "Cluster", "table.empty": "No candidates yet", "table.primary": "PRIMARY",
+    "export.json": "Export JSON", "export.csv": "Export CSV", "method.title": "Method & limitations", "method.a.title": "Stellar references", "method.a.text": "Use the hour angle and declination of identified stars to construct celestial direction vectors.",
+    "method.b.title": "Focal consistency", "method.b.text": "Estimate an effective focal length from the celestial separation of star pairs and their image-plane geometry.", "method.c.title": "Candidate solving", "method.c.text": "Solve multiple mathematical latitude/longitude roots from elevation constraints instead of assuming a single root is correct.",
+    "method.d.title": "Candidate clustering", "method.d.text": "Find a geographic cluster supported by multiple star pairs and expose its spread.", "warning.label": "Important:",
+    "warning.text": "The method is sensitive to star identification, hour angle, image coordinates, zenith estimation, lens distortion and camera projection. The cluster center is not an exact ground truth location; cross-check it with terrain, landmarks, time, weather, Stellarium/sky charts and other independent evidence.",
+    "error.hourAngle": "Hour-angle minutes and seconds must be between 0 and 60.", "error.declination": "Declination minutes and seconds must be between 0 and 60.", "error.starFields": "Each star must include name / hour_angle / declination / image.",
+    "error.minStars": "At least 3 stars are required.", "error.zenith": "Zenith coordinates or cluster radius are not valid numbers.", "error.noFocal": "No star pair produced a valid focal-length estimate."
+  }
+};
+function getSavedLanguage() {
+  try { return localStorage.getItem(LANGUAGE_KEY); } catch { return null; }
+}
+function saveLanguage(language) {
+  try { localStorage.setItem(LANGUAGE_KEY, language); } catch {}
+}
+let currentLanguage = getSavedLanguage() || "zh-CN";
+function t(key) { return TRANSLATIONS[currentLanguage]?.[key] ?? TRANSLATIONS["zh-CN"][key] ?? key; }
+function renderEmptyTable() {
+  const tbody = $("candidate-table"); tbody.innerHTML = "";
+  const tr = document.createElement("tr"), td = document.createElement("td");
+  td.colSpan = 5; td.className = "empty"; td.textContent = t("table.empty"); tr.appendChild(td); tbody.appendChild(tr);
+}
+function applyLanguage(language) {
+  currentLanguage = TRANSLATIONS[language] ? language : "zh-CN";
+  saveLanguage(currentLanguage);
+  document.documentElement.lang = currentLanguage;
+  document.querySelectorAll("[data-i18n]").forEach((element) => { element.textContent = t(element.dataset.i18n); });
+  document.querySelectorAll("[data-lang]").forEach((button) => {
+    const active = button.dataset.lang === currentLanguage;
+    button.classList.toggle("active", active);
+    button.setAttribute("aria-pressed", active ? "true" : "false");
+  });
+  if (lastResult) render(lastResult);
+  else {
+    $("status").textContent = t("status.idle");
+    $("cluster-coordinate").textContent = t("cluster.notCalculated");
+    renderEmptyTable();
+  }
+}
+
 
 const SAMPLE = {
   description: "Reconstructed from the newer v0.2 packaged project data.",
@@ -7,19 +73,19 @@ const SAMPLE = {
   zenith: { x: -51.747903865207434, y: -462.93870580032103 },
   stars: [
     {
-      name: "天津四",
+      name: "天津四 / Deneb",
       hour_angle: { hours: 12, minutes: 10, seconds: 23.38 },
       declination: { degrees: 45, minutes: 21, seconds: 1.2 },
       image: { x: -159.5, y: 74.0 }
     },
     {
-      name: "织女",
+      name: "织女 / Vega",
       hour_angle: { hours: 14, minutes: 14, seconds: 53.74 },
       declination: { degrees: 38, minutes: 48, seconds: 20.2 },
       image: { x: -59.5, y: -142.0 }
     },
     {
-      name: "牛郎",
+      name: "牛郎 / Altair",
       hour_angle: { hours: 13, minutes: 0, seconds: 45.96 },
       declination: { degrees: 8, minutes: 55, seconds: 19.9 },
       image: { x: 227.5, y: 53.0 }
@@ -35,7 +101,7 @@ function hmsToHours(value) {
   const m = Number(value.minutes);
   const s = Number(value.seconds);
   if (![h, m, s].every(Number.isFinite) || m < 0 || s < 0 || m >= 60 || s >= 60) {
-    throw new Error("时角的分/秒必须位于 0–60 之间。");
+    throw new Error(t("error.hourAngle"));
   }
   return h + m / 60 + s / 3600;
 }
@@ -45,7 +111,7 @@ function dmsToDegrees(value) {
   const m = Number(value.minutes);
   const s = Number(value.seconds);
   if (![d, m, s].every(Number.isFinite) || m < 0 || s < 0 || m >= 60 || s >= 60) {
-    throw new Error("赤纬的分/秒必须位于 0–60 之间。");
+    throw new Error(t("error.declination"));
   }
   const sign = d < 0 ? -1 : 1;
   return sign * (Math.abs(d) + m / 60 + s / 3600);
@@ -58,7 +124,7 @@ function normalizeLongitude(value) {
 
 function parseStar(raw) {
   if (!raw.name || !raw.hour_angle || !raw.declination || !raw.image) {
-    throw new Error("每颗恒星都必须包含 name / hour_angle / declination / image。");
+    throw new Error(t("error.starFields"));
   }
   return {
     name: String(raw.name),
@@ -241,12 +307,12 @@ function clusterCandidates(candidates, radiusKm) {
 
 function analyze(raw) {
   const stars = raw.stars.map(parseStar);
-  if (stars.length < 3) throw new Error("至少需要 3 颗恒星。");
+  if (stars.length < 3) throw new Error(t("error.minStars"));
 
   const zenith = { x: Number(raw.zenith.x), y: Number(raw.zenith.y) };
   const clusterRadiusKm = Number(raw.cluster_radius_km ?? 150);
   if (![zenith.x, zenith.y, clusterRadiusKm].every(Number.isFinite)) {
-    throw new Error("天顶坐标或聚类半径不是有效数字。");
+    throw new Error(t("error.zenith"));
   }
 
   const groundPoints = stars.map(groundPoint);
@@ -262,7 +328,7 @@ function analyze(raw) {
     }
   }
 
-  if (!focalValues.length) throw new Error("没有恒星对能够得到有效焦距。");
+  if (!focalValues.length) throw new Error(t("error.noFocal"));
   const focal = focalValues.reduce((sum, value) => sum + value, 0) / focalValues.length;
   const sines = elevationSines(stars, zenith, focal);
   const candidates = [];
@@ -374,7 +440,7 @@ function renderTable(result) {
       candidate.branch,
       candidate.latitude.toFixed(6),
       candidate.longitude.toFixed(6),
-      member ? "PRIMARY" : ""
+      member ? t("table.primary") : ""
     ];
     for (const value of values) {
       const td = document.createElement("td");
@@ -395,7 +461,7 @@ function render(result) {
   $("metric-radius").textContent = cluster ? cluster.max_distance_km.toFixed(1) : "—";
   $("cluster-coordinate").textContent = cluster
     ? `${cluster.latitude.toFixed(6)}° N, ${cluster.longitude.toFixed(6)}° E`
-    : "未找到多点主聚类";
+    : t("cluster.none");
 
   const mapLink = $("map-link");
   if (cluster) {
@@ -410,9 +476,7 @@ function render(result) {
   renderTable(result);
   $("export-json").disabled = false;
   $("export-csv").disabled = false;
-  $("status").textContent = cluster
-    ? "计算完成：已找到由多个恒星对共同支持的主聚类。"
-    : "计算完成，但没有找到多点主聚类。";
+  $("status").textContent = cluster ? t("status.successCluster") : t("status.successNoCluster");
   $("status").className = "status ok";
 }
 
@@ -427,9 +491,11 @@ function toCsv(result) {
   }).join(",")).join("\n");
 }
 
+document.querySelectorAll("[data-lang]").forEach((button) => button.addEventListener("click", () => applyLanguage(button.dataset.lang)));
+
 $("load-sample").addEventListener("click", () => {
   $("observation-json").value = JSON.stringify(SAMPLE, null, 2);
-  $("status").textContent = "示例数据已载入。";
+  $("status").textContent = t("status.sampleLoaded");
   $("status").className = "status idle";
 });
 
@@ -439,7 +505,7 @@ $("run-analysis").addEventListener("click", () => {
     render(analyze(raw));
   } catch (error) {
     lastResult = null;
-    $("status").textContent = `计算失败：${error.message}`;
+    $("status").textContent = t("status.failed") + error.message;
     $("status").className = "status error";
   }
 });
@@ -456,3 +522,4 @@ $("export-csv").addEventListener("click", () => {
 
 renderGrid();
 $("observation-json").value = JSON.stringify(SAMPLE, null, 2);
+applyLanguage(currentLanguage);
