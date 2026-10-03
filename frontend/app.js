@@ -212,6 +212,7 @@ const I18N = {
 
 const $ = (id) => document.getElementById(id);
 let language = loadSetting(LANGUAGE_KEY, "zh-CN");
+if (!I18N[language]) language = "zh-CN";
 let selectedCategory = "all";
 let favoritesOnly = false;
 let favorites = new Set(loadJSON(FAVORITES_KEY, []));
