@@ -150,13 +150,15 @@ tools:
     type: tao-optimized
     interaction: integrated
     url: ./projects/photo-stargazing-positioning/
-    description: TAO project for using stars and sky geometry as clues for photo positioning and contextual verification.
+    description: TAO-optimized night-sky photo positioning aid using stellar geometry and candidate clustering.
     use_cases:
       - Analyze night-sky imagery
       - Compare star/constellation geometry with candidate location/time
+      - Generate and cluster geometric location candidates
     cost: free
     account_required: false
-    platform: [planned-web]
+    platform: [web, python]
+    tao_project_path: projects/photo-stargazing-positioning/
     tags: [astronomy, image, geolocation, stars, tao]
-    status: review-needed
+    status: active
     last_reviewed: 2026-10-04
