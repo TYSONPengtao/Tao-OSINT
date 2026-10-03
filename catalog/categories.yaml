@@ -1,40 +1,105 @@
 categories:
   - id: search-discovery
-    name: Search & Discovery
-    description: General discovery and research starting points.
+    name: "Search & Discovery"
+    name_zh: "搜索与高级搜索"
+    description: "Search engines, advanced search and discovery starting points."
+
+  - id: username-social
+    name: "Username & Social"
+    name_zh: "用户名与社交平台"
+    description: "Public username and social-profile discovery tools."
 
   - id: image-video
-    name: Image & Video
-    description: Reverse search, media verification and visual analysis.
+    name: "Image & Video"
+    name_zh: "图片与视频"
+    description: "Reverse search, media verification and visual analysis."
+
+  - id: video-verification
+    name: "Video Verification"
+    name_zh: "视频验证"
+    description: "Video metadata, keyframes and verification workflows."
 
   - id: geolocation-maps
-    name: Geolocation & Maps
-    description: Maps, terrain, sun position and geographic context.
+    name: "Geolocation & Maps"
+    name_zh: "地理定位与地图"
+    description: "Maps, terrain, sun position and geographic context."
+
+  - id: satellite-imagery
+    name: "Satellite Imagery"
+    name_zh: "卫星影像"
+    description: "Public Earth-observation imagery and satellite data browsers."
 
   - id: metadata-files
-    name: Metadata & Files
-    description: Metadata extraction and file inspection.
+    name: "Metadata & Files"
+    name_zh: "元数据与文件"
+    description: "Metadata extraction and file inspection."
+
+  - id: ocr-translation
+    name: "OCR & Translation"
+    name_zh: "OCR 与翻译"
+    description: "Text extraction, visual text recognition and translation."
 
   - id: archives
-    name: Archives
-    description: Historical web content and archived public material.
+    name: "Archives"
+    name_zh: "网页存档"
+    description: "Historical web content and archived public material."
 
   - id: web-domains
-    name: Web & Domains
-    description: Public website, domain and infrastructure context.
+    name: "Domains / DNS / WHOIS"
+    name_zh: "域名 / DNS / WHOIS"
+    description: "Public domain registration, DNS and certificate context."
 
   - id: cyber-url-analysis
-    name: Cyber / URL Analysis
-    description: Public URL and website analysis services.
+    name: "Cyber / URL Analysis"
+    name_zh: "URL / 安全分析"
+    description: "Public URL and website analysis services."
+
+  - id: companies-organizations
+    name: "Companies & Organizations"
+    name_zh: "企业与组织"
+    description: "Public corporate registries and legal-entity data."
+
+  - id: public-datasets
+    name: "Public Datasets"
+    name_zh: "公开数据集"
+    description: "Government, research and public dataset discovery."
+
+  - id: transport-tracking
+    name: "Flights & Vessels"
+    name_zh: "航班与船舶"
+    description: "Public aviation and vessel tracking services."
+
+  - id: code-search
+    name: "Code Search"
+    name_zh: "GitHub / 代码搜索"
+    description: "Public source-code and repository search tools."
+
+  - id: dark-web-indexes
+    name: "Public Dark-Web Indexes"
+    name_zh: "暗网公开索引"
+    description: "Public indexes of Tor/onion services for research."
+
+  - id: contact-public-info
+    name: "Public Contact Info"
+    name_zh: "电话 / 邮箱公开信息"
+    description: "Publicly sourced professional email and breach-awareness tools."
+
+  - id: ai-research
+    name: "AI-Assisted Research"
+    name_zh: "AI 辅助研究"
+    description: "AI research assistants and evidence-grounded scholarly search."
 
   - id: verification
-    name: Verification
-    description: Tools used to cross-check or validate public material.
+    name: "Verification"
+    name_zh: "验证"
+    description: "Tools used to cross-check or validate public material."
 
   - id: research-resources
-    name: Research Resources
-    description: Tool directories, guides and learning resources.
+    name: "Research Resources"
+    name_zh: "研究资源"
+    description: "Tool directories, guides and learning resources."
 
   - id: tao-projects
-    name: TAO Projects
-    description: TAO-built or TAO-optimized utilities.
+    name: "TAO Projects"
+    name_zh: "TAO 项目"
+    description: "TAO-built or TAO-optimized utilities."
