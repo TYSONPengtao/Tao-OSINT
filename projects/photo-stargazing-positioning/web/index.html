@@ -14,15 +14,22 @@
         <p class="eyebrow">TAO OSINT / TAO OPTIMIZED</p>
         <h1>Photo Stargazing Positioning</h1>
       </div>
-      <span class="version">v0.1 web</span>
+      <div class="topbar-actions">
+        <div class="language-switch" role="group" aria-label="Language">
+          <button type="button" class="language-button" data-lang="zh-CN">中文</button>
+          <span>/</span>
+          <button type="button" class="language-button" data-lang="en">English</button>
+        </div>
+        <span class="version">v0.1 web</span>
+      </div>
     </header>
 
     <section class="hero">
       <div>
-        <p class="kicker">夜空照片定位辅助工具</p>
+        <p class="kicker" data-i18n="hero.kicker">夜空照片定位辅助工具</p>
         <h2>用恒星几何关系<br><span>缩小位置候选范围。</span></h2>
       </div>
-      <p class="lede">
+      <p class="lede" data-i18n="hero.description">
         输入已识别恒星的时角、赤纬、图像坐标与天顶坐标。
         工具会复现旧项目的几何公式，计算焦距一致性、位置候选与主聚类。
         结果仅作为 OSINT 线索，需要独立证据交叉验证。
@@ -35,21 +42,21 @@
           <span>01</span>
           <div>
             <p>OBSERVATION</p>
-            <h3>观测数据</h3>
+            <h3 data-i18n="input.title">观测数据</h3>
           </div>
         </div>
 
         <div class="actions">
-          <button id="load-sample" class="secondary">载入示例</button>
-          <button id="run-analysis" class="primary">开始计算</button>
+          <button id="load-sample" class="secondary" data-i18n="input.loadSample">载入示例</button>
+          <button id="run-analysis" class="primary" data-i18n="input.run">开始计算</button>
         </div>
 
         <label for="observation-json">Observation JSON</label>
         <textarea id="observation-json" spellcheck="false" aria-label="Observation JSON"></textarea>
 
         <div class="hint">
-          <strong>坐标约定</strong>
-          <p>恒星与天顶必须使用同一个图像坐标系。旧项目的 y 方向约定与 GeoGebra 默认坐标方向不同。</p>
+          <strong data-i18n="input.coordinateTitle">坐标约定</strong>
+          <p data-i18n="input.coordinateText">恒星与天顶必须使用同一个图像坐标系。旧项目的 y 方向约定与 GeoGebra 默认坐标方向不同。</p>
         </div>
       </aside>
 
@@ -58,11 +65,11 @@
           <span>02</span>
           <div>
             <p>RESULT</p>
-            <h3>计算结果</h3>
+            <h3 data-i18n="result.title">计算结果</h3>
           </div>
         </div>
 
-        <div id="status" class="status idle">载入示例或输入观测数据后开始计算。</div>
+        <div id="status" class="status idle" data-i18n="status.idle">载入示例或输入观测数据后开始计算。</div>
 
         <div class="metrics">
           <article>
@@ -73,12 +80,12 @@
           <article>
             <span>CANDIDATES</span>
             <strong id="metric-candidates">—</strong>
-            <small>数学候选</small>
+            <small data-i18n="metric.candidates">数学候选</small>
           </article>
           <article>
             <span>CLUSTER</span>
             <strong id="metric-cluster">—</strong>
-            <small>候选数</small>
+            <small data-i18n="metric.cluster">候选数</small>
           </article>
           <article>
             <span>MAX RADIUS</span>
@@ -90,7 +97,7 @@
         <div class="cluster-card">
           <div>
             <p>PRIMARY CLUSTER</p>
-            <h4 id="cluster-coordinate">尚未计算</h4>
+            <h4 id="cluster-coordinate" data-i18n="cluster.notCalculated">尚未计算</h4>
           </div>
           <a id="map-link" class="map-link disabled" href="#" target="_blank" rel="noreferrer">OpenStreetMap ↗</a>
         </div>
@@ -99,9 +106,9 @@
           <div class="map-head">
             <div>
               <p>CANDIDATE OVERVIEW</p>
-              <h4>全球候选分布</h4>
+              <h4 data-i18n="map.title">全球候选分布</h4>
             </div>
-            <span>经纬度等距投影</span>
+            <span data-i18n="map.projection">经纬度等距投影</span>
           </div>
           <svg id="candidate-map" viewBox="0 0 1000 500" role="img" aria-label="Candidate location overview">
             <rect width="1000" height="500" class="map-bg"></rect>
@@ -114,22 +121,22 @@
           <table>
             <thead>
               <tr>
-                <th>Pair</th>
-                <th>Branch</th>
-                <th>Latitude</th>
-                <th>Longitude</th>
-                <th>Cluster</th>
+                <th data-i18n="table.pair">星对</th>
+                <th data-i18n="table.branch">分支</th>
+                <th data-i18n="table.latitude">纬度</th>
+                <th data-i18n="table.longitude">经度</th>
+                <th data-i18n="table.cluster">聚类</th>
               </tr>
             </thead>
             <tbody id="candidate-table">
-              <tr><td colspan="5" class="empty">暂无候选点</td></tr>
+              <tr><td colspan="5" class="empty" data-i18n="table.empty">暂无候选点</td></tr>
             </tbody>
           </table>
         </div>
 
         <div class="export-actions">
-          <button id="export-json" class="secondary" disabled>导出 JSON</button>
-          <button id="export-csv" class="secondary" disabled>导出 CSV</button>
+          <button id="export-json" class="secondary" disabled data-i18n="export.json">导出 JSON</button>
+          <button id="export-csv" class="secondary" disabled data-i18n="export.csv">导出 CSV</button>
         </div>
       </section>
     </section>
@@ -139,21 +146,20 @@
         <span>03</span>
         <div>
           <p>METHOD</p>
-          <h3>方法与限制</h3>
+          <h3 data-i18n="method.title">方法与限制</h3>
         </div>
       </div>
 
       <div class="method-grid">
-        <article><span>A</span><h4>恒星参考</h4><p>使用已识别恒星的时角与赤纬建立天球方向向量。</p></article>
-        <article><span>B</span><h4>焦距一致性</h4><p>根据恒星对的天球夹角与图像平面距离反推等效焦距。</p></article>
-        <article><span>C</span><h4>候选求解</h4><p>由恒星仰角约束求得多个数学经纬度根，不假定单根就是答案。</p></article>
-        <article><span>D</span><h4>候选聚类</h4><p>寻找多个星对共同支持的地理聚类，并展示离散程度。</p></article>
+        <article><span>A</span><h4 data-i18n="method.a.title">恒星参考</h4><p data-i18n="method.a.text">使用已识别恒星的时角与赤纬建立天球方向向量。</p></article>
+        <article><span>B</span><h4 data-i18n="method.b.title">焦距一致性</h4><p data-i18n="method.b.text">根据恒星对的天球夹角与图像平面距离反推等效焦距。</p></article>
+        <article><span>C</span><h4 data-i18n="method.c.title">候选求解</h4><p data-i18n="method.c.text">由恒星仰角约束求得多个数学经纬度根，不假定单根就是答案。</p></article>
+        <article><span>D</span><h4 data-i18n="method.d.title">候选聚类</h4><p data-i18n="method.d.text">寻找多个星对共同支持的地理聚类，并展示离散程度。</p></article>
       </div>
 
       <div class="warning">
-        <strong>重要：</strong>
-        该方法对星体识别、时角、图像坐标、天顶估计、镜头畸变与相机投影都敏感。
-        聚类中心不是“精确定位真值”，应与地形、地标、时间、天气、Stellarium/星图等证据交叉验证。
+        <strong data-i18n="warning.label">重要：</strong>
+        <span data-i18n="warning.text">该方法对星体识别、时角、图像坐标、天顶估计、镜头畸变与相机投影都敏感。聚类中心不是“精确定位真值”，应与地形、地标、时间、天气、Stellarium/星图等证据交叉验证。</span>
       </div>
     </section>
 
