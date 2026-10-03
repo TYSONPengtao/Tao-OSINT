@@ -2,156 +2,165 @@
 
 ## Purpose
 
-TAO OSINT is primarily a curated OSINT tool aggregation platform with a small number of integrated TAO-built utilities.
+TAO OSINT is primarily a **curated OSINT collection, showcase and bookmark platform**.
 
-The architecture should therefore optimize for:
+The architecture should optimize for:
 
 - easy catalog maintenance
-- fast filtering and search
-- clear tool metadata
-- stable external links
-- workflow collections
-- simple integration of selected internal projects
+- fast search and filtering
+- clear presentation
+- favorites and collections
+- stable official links
+- lightweight metadata
+- a very small number of integrated TAO tools
 
-It should **not** begin as a heavy investigation database.
+The platform should stay simple unless a real requirement justifies more infrastructure.
 
 ## Top-Level Architecture
 
 ```text
-                 TAO OSINT
-                     |
-       +-------------+-------------+
-       |             |             |
-       v             v             v
- Tool Catalog    Workflows     TAO Projects
-       |             |             |
-       +-------------+-------------+
-                     |
-                     v
-               Web Launchpad
-                     |
-          +----------+----------+
-          |                     |
-          v                     v
-   External Tools        Internal Utilities
-   official links        hosted/integrated
+                     TAO OSINT
+                         |
+        +----------------+----------------+
+        |                |                |
+        v                v                v
+   Tool Catalog      Bookmarks         TAO Tools
+        |                |                |
+        +----------------+----------------+
+                         |
+                         v
+                  Web Collection UI
+                         |
+             +-----------+-----------+
+             |                       |
+             v                       v
+      External Tools           Integrated Tools
+      official links           directly usable
 ```
 
-## Data Flow
+## Product Split
 
-```text
-catalog/tools.yaml
-catalog/categories.yaml
-        |
-        v
-Catalog loader / validation
-        |
-        v
-Search + filters + collections
-        |
-        v
-Frontend cards / detail pages
-        |
-        +--> Official external tool
-        |
-        +--> TAO internal project
-```
+### 1. External tools — the majority
 
-## Catalog-First Design
+Most catalog items are external.
 
-The catalog is the source of truth for external tools.
+TAO OSINT stores only useful metadata and links users to the official source.
 
-A tool entry should be portable and human-editable. YAML is suitable for the first version because:
+### 2. Bookmarks / collections — core user value
 
-- changes are easy to review in Git
-- contributors can edit without database access
-- version history is built in
-- static-site generation remains possible
+Users should be able to organize useful tools without copying or re-hosting them.
 
-A database should only be introduced when catalog scale or user features require it.
+Potential features:
 
-## Frontend
+- favorites
+- custom collections
+- recently opened
+- recently reviewed
+- tags
+- personal notes later
 
-The frontend should provide:
+Early versions can store these locally in the browser.
 
-- global search
-- category navigation
-- tool cards
-- filters
-- favorites/collections later
-- workflow pages
-- detail pages
-- external launch buttons
-- badges for free/paid/account required
-- badges for External / TAO Built / TAO Optimized
+### 3. Integrated TAO tools — the minority
 
-## Backend
-
-A backend is optional in the early versions.
-
-Use one only when needed for:
-
-- catalog API
-- full-text/fuzzy search beyond static capabilities
-- user collections
-- automated health checks
-- contribution moderation
-- internal TAO tools that require server-side computation
-
-## Internal TAO Projects
-
-Selected internal projects live under `projects/`.
-
-They should remain independently understandable and ideally runnable on their own.
+Only selected projects are directly runnable inside TAO OSINT.
 
 Example:
 
 ```text
 projects/
 └── photo-stargazing-positioning/
-    ├── README.md
-    ├── app/
     ├── core/
+    ├── samples/
     ├── tests/
-    └── docs/
+    ├── docs/
+    └── web/
 ```
 
-Shared reusable logic may move into `modules/` only after at least two projects need it.
+## Catalog-First Design
 
-## External Tools
+`catalog/tools.yaml` and `catalog/categories.yaml` remain the source of truth.
+
+This gives the project:
+
+- Git version history
+- easy review
+- simple contributions
+- static-site compatibility
+- no required database
+
+A database should only be introduced when real user features require it.
+
+## Frontend
+
+The frontend should prioritize:
+
+- category navigation
+- full-text / fuzzy search
+- tool cards
+- tags
+- filters
+- favorite button
+- collections
+- official link button
+- External / TAO Optimized / TAO Built badge
+- Integrated / External interaction badge
+- mobile usability
+
+The homepage should feel like a curated personal toolbox rather than a dashboard full of investigation features.
+
+## Backend
+
+A backend is **not required** for the core product.
+
+Introduce one only when necessary for:
+
+- optional account sync
+- shared collections
+- contribution moderation
+- catalog health checks
+- integrated tools that need server-side computation
+
+Local browser storage is sufficient for early favorites and collections.
+
+## External Tool Rule
 
 External tools are referenced, not vendored.
 
-For each external tool, TAO OSINT should track:
+For each entry, track:
 
 - official URL
 - category
+- purpose
 - status
 - cost
-- login requirement
-- purpose
+- account requirement
+- platform
+- inputs
 - limitations
-- privacy considerations
+- privacy notes
 - last reviewed date
 
-## Health Checking
+## Integrated Tool Rule
 
-A future maintenance job may periodically check:
+A direct-use tool must justify its maintenance cost.
 
-- HTTP availability
-- redirects
-- obvious domain changes
+Before integration, ask:
 
-It should not automatically assume that a reachable page means the tool still works correctly.
+1. Is the workflow genuinely useful?
+2. Does an existing mature external tool already solve it?
+3. Does integration add meaningful value?
+4. Can it run safely and predictably?
+5. Can its limitations be explained?
 
 ## Security & Privacy
 
-- never collect user credentials for external tools
-- clearly indicate when a user leaves TAO OSINT
+- never collect external-tool credentials
+- clearly indicate when users leave TAO OSINT
 - do not proxy sensitive queries by default
-- avoid storing user search terms unless a feature truly requires it
-- treat internal tool uploads as sensitive local data
-- provide clear deletion controls for hosted uploads
+- keep favorites local-first initially
+- treat uploads to internal tools as potentially sensitive
+- avoid unnecessary retention
 - do not build features centered on private-person targeting
 
 See [ethics.md](ethics.md).
