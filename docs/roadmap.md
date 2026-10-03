@@ -2,29 +2,30 @@
 
 ## v0.1 — Catalog Foundation
 
-Goal: establish TAO OSINT as a maintained tool directory.
+Goal: establish a maintained OSINT collection.
 
 Planned:
 
 - category taxonomy
-- tool metadata schema
+- consistent tool metadata
 - seed catalog
 - YAML validation
 - curation guidelines
-- responsible-use guidelines
-- external / TAO-built / TAO-optimized classification
-- initial Photo Stargazing Positioning project placeholder
+- responsible-use guidance
+- External / TAO Optimized / TAO Built classification
+- Integrated / External interaction classification
 
 Exit criteria:
 
-- tools can be added through one consistent schema
-- categories are stable enough for the first UI
-- every tool has an official URL and purpose
-- limitations and cost/account requirements are visible
+- tools use one consistent schema
+- each entry has an official URL
+- purpose is immediately understandable
+- cost/account/platform information is visible
+- limitations are documented
 
-## v0.2 — Searchable Web Launchpad
+## v0.2 — Search & Showcase
 
-Goal: make the catalog pleasant to use.
+Goal: make the collection easy and pleasant to browse.
 
 Planned:
 
@@ -33,85 +34,88 @@ Planned:
 - global search
 - tags
 - free / paid filters
-- login-required filter
-- tool detail drawer/page
-- launch external tool action
-- recently reviewed status
+- account-required filter
+- platform filters
+- tool cards
+- tool detail view
+- clear official-site launch action
+- last-reviewed status
 
-## v0.3 — Workflow Collections
+## v0.3 — Favorites & Collections
 
-Goal: organize tools by task, not only category.
-
-Initial workflows:
-
-- reverse image verification
-- photo metadata inspection
-- basic geolocation
-- sun/shadow analysis
-- web archive research
-- website / URL inspection
-
-A workflow should explain which tool to use at each stage without pretending that one tool produces definitive truth.
-
-## v0.4 — Photo Stargazing Positioning
-
-Goal: import and optimize the existing local prototype.
+Goal: make TAO OSINT useful as a personal OSINT bookmark library.
 
 Planned:
 
-- inspect and clean existing code
-- define inputs and outputs
-- isolate astronomical calculations
-- improve star/constellation matching workflow
-- integrate map and sky references
-- add confidence/uncertainty presentation
-- mobile-friendly interface
-- reproducible result export
-- add to catalog as a TAO-built/optimized tool
+- favorites
+- custom collections
+- local browser persistence
+- recently opened tools
+- pinned tools
+- collection export/import
+- optional personal notes
 
-## v0.5 — Selected TAO Utilities
+Account sync is not required for the first implementation.
 
-Only add tools that solve a real gap.
+## v0.4 — Selected Integrated TAO Tools
 
-Potential directions:
+Goal: directly host only a small number of useful tools.
 
-- metadata viewer
-- source comparison helper
-- coordinate/time conversion helpers
-- image-analysis utilities
-- map/astronomy utilities
+Current:
 
-Avoid duplicating mature external tools without a clear benefit.
+- Photo Stargazing Positioning
 
-## v0.6 — Maintenance & Contributions
+Future tools should only be added when they solve a clear gap.
+
+Avoid rebuilding mature external tools just to increase project size.
+
+## v0.5 — Maintenance & Contributions
 
 Planned:
 
 - contribution template
-- tool review dates
+- last-reviewed dates
 - broken-link checks
 - catalog validation CI
-- change log
-- tool deprecation status
+- deprecation status
+- update log
 - community suggestions
 
-## v1.0 — Stable OSINT Toolbox Platform
+## v0.6 — Optional Workflows
+
+Goal: provide lightweight guides that connect existing tools.
+
+Possible examples:
+
+- reverse-image verification
+- metadata inspection
+- basic geolocation
+- sun/shadow reasoning
+- archive lookup
+- URL/site inspection
+
+Workflows are secondary to the core collection/bookmark experience.
+
+## v1.0 — Stable OSINT Collection Platform
 
 A stable release should provide:
 
-- maintained tool catalog
+- maintained tool collection
+- clear categories
 - fast search/filtering
-- task-oriented workflows
-- clear limitations
-- selected integrated TAO projects
+- favorites and collections
+- concise tool descriptions
+- cost/account/platform information
+- direct official links
+- selected integrated TAO tools
 - mobile usability
 - documented contribution process
-- responsible-use boundaries
 
 ## Not a Current Priority
 
+- giant investigation databases
 - mass scraping infrastructure
-- giant intelligence databases
-- storing large amounts of personal data
-- replacing every external tool with a TAO clone
-- complex accounts/cloud infrastructure before it is needed
+- replacing mature external tools
+- storing large quantities of personal data
+- complex cloud accounts before they are needed
+- adding many internal tools just for feature count
