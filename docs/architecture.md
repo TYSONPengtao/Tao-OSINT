@@ -2,146 +2,156 @@
 
 ## Purpose
 
-TAO OSINT is an evidence-centric research platform for lawfully accessible public information.
+TAO OSINT is primarily a curated OSINT tool aggregation platform with a small number of integrated TAO-built utilities.
 
-The architecture separates:
+The architecture should therefore optimize for:
 
-- user interface
-- research domain logic
-- analysis modules
-- external source connectors
-- persistence and search
-- reporting/export
+- easy catalog maintenance
+- fast filtering and search
+- clear tool metadata
+- stable external links
+- workflow collections
+- simple integration of selected internal projects
+
+It should **not** begin as a heavy investigation database.
 
 ## Top-Level Architecture
 
 ```text
-+-------------------------------+
-|        Web Workbench          |
-| Cases / Sources / Claims      |
-| Timeline / Graph / Map        |
-+---------------+---------------+
-                |
-                v
-+-------------------------------+
-|          TAO OSINT API        |
-+---------------+---------------+
-                |
-        +-------+-------+
-        |               |
-        v               v
-+---------------+  +---------------+
-| Research Core |  | Analysis      |
-|---------------|  |---------------|
-| Case          |  | Timeline      |
-| Source        |  | Graph         |
-| Capture       |  | Geospatial    |
-| Claim         |  | Comparison    |
-| Evidence      |  | Reporting     |
-| Entity        |  +---------------+
-| Event         |
-| Relationship  |
-| Assessment    |
-+-------+-------+
-        |
-        v
-+-------------------------------+
-| Connectors / Import / Export  |
-| Public APIs / archives / files|
-+---------------+---------------+
-                |
-                v
-+-------------------------------+
-| Persistence / Search / Index  |
-+-------------------------------+
+                 TAO OSINT
+                     |
+       +-------------+-------------+
+       |             |             |
+       v             v             v
+ Tool Catalog    Workflows     TAO Projects
+       |             |             |
+       +-------------+-------------+
+                     |
+                     v
+               Web Launchpad
+                     |
+          +----------+----------+
+          |                     |
+          v                     v
+   External Tools        Internal Utilities
+   official links        hosted/integrated
 ```
 
-## Design Rules
-
-### 1. Research Core stays protocol-independent
-
-The canonical research model must not depend on a particular search engine, archive, social platform or file format.
-
-### 2. Connectors are adapters
-
-External sources should enter through adapters that normalize data into canonical objects.
-
-### 3. Raw and normalized data remain distinguishable
-
-A captured observation is not the same object as an analyst claim or assessment.
-
-### 4. Provenance is never optional
-
-Important derived objects must be traceable back to one or more sources or analyst actions.
-
-### 5. Analysis views are projections
-
-Timeline, graph and map views should derive from canonical research objects instead of maintaining separate truth.
-
-## Initial Components
-
-### Frontend
-
-Future web workbench responsibilities:
-
-- case navigation
-- source ledger
-- claim/evidence review
-- entity and event editing
-- timeline
-- graph
-- map
-- report preview
-
-### Backend
-
-Future service responsibilities:
-
-- validation
-- persistence
-- import/export
-- canonical IDs
-- relationship integrity
-- search
-- analysis orchestration
-
-### Modules
+## Data Flow
 
 ```text
-modules/
-├── collection/
-├── verification/
-├── entities/
-├── timeline/
-├── graph/
-├── geospatial/
-└── reporting/
+catalog/tools.yaml
+catalog/categories.yaml
+        |
+        v
+Catalog loader / validation
+        |
+        v
+Search + filters + collections
+        |
+        v
+Frontend cards / detail pages
+        |
+        +--> Official external tool
+        |
+        +--> TAO internal project
 ```
 
-Each module should expose a narrow interface and operate on canonical research objects.
+## Catalog-First Design
 
-## Local-First Direction
+The catalog is the source of truth for external tools.
 
-Where practical, TAO OSINT should support local research projects without requiring a cloud account.
+A tool entry should be portable and human-editable. YAML is suitable for the first version because:
 
-Potential future persistence:
+- changes are easy to review in Git
+- contributors can edit without database access
+- version history is built in
+- static-site generation remains possible
 
-- SQLite for local cases
-- PostgreSQL for larger deployments
-- full-text search index when needed
-- optional graph storage only if canonical relational storage becomes insufficient
+A database should only be introduced when catalog scale or user features require it.
 
-The project should avoid introducing infrastructure before a demonstrated need exists.
+## Frontend
 
-## Security Direction
+The frontend should provide:
 
-- treat imported content as untrusted
-- sanitize rendered HTML
-- do not execute source-provided scripts
-- validate URLs and file types
-- isolate connector credentials
-- log automated collection activity
-- rate-limit public-source connectors
-- preserve user control over exports and deletion
+- global search
+- category navigation
+- tool cards
+- filters
+- favorites/collections later
+- workflow pages
+- detail pages
+- external launch buttons
+- badges for free/paid/account required
+- badges for External / TAO Built / TAO Optimized
+
+## Backend
+
+A backend is optional in the early versions.
+
+Use one only when needed for:
+
+- catalog API
+- full-text/fuzzy search beyond static capabilities
+- user collections
+- automated health checks
+- contribution moderation
+- internal TAO tools that require server-side computation
+
+## Internal TAO Projects
+
+Selected internal projects live under `projects/`.
+
+They should remain independently understandable and ideally runnable on their own.
+
+Example:
+
+```text
+projects/
+└── photo-stargazing-positioning/
+    ├── README.md
+    ├── app/
+    ├── core/
+    ├── tests/
+    └── docs/
+```
+
+Shared reusable logic may move into `modules/` only after at least two projects need it.
+
+## External Tools
+
+External tools are referenced, not vendored.
+
+For each external tool, TAO OSINT should track:
+
+- official URL
+- category
+- status
+- cost
+- login requirement
+- purpose
+- limitations
+- privacy considerations
+- last reviewed date
+
+## Health Checking
+
+A future maintenance job may periodically check:
+
+- HTTP availability
+- redirects
+- obvious domain changes
+
+It should not automatically assume that a reachable page means the tool still works correctly.
+
+## Security & Privacy
+
+- never collect user credentials for external tools
+- clearly indicate when a user leaves TAO OSINT
+- do not proxy sensitive queries by default
+- avoid storing user search terms unless a feature truly requires it
+- treat internal tool uploads as sensitive local data
+- provide clear deletion controls for hosted uploads
+- do not build features centered on private-person targeting
 
 See [ethics.md](ethics.md).
