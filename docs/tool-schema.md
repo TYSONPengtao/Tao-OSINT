@@ -2,6 +2,8 @@
 
 Each external or internal tool should use a consistent catalog record.
 
+The schema is optimized for TAO OSINT's primary role as a **collection / showcase / bookmark platform**.
+
 ## Required Fields
 
 ```yaml
@@ -9,6 +11,7 @@ id:
 name:
 category:
 type:
+interaction:
 url:
 description:
 use_cases:
@@ -35,11 +38,27 @@ tao_project_path:
 
 ## Type
 
+Describes where the tool comes from.
+
 Allowed initial values:
 
 - `external`
 - `tao-built`
 - `tao-optimized`
+
+## Interaction
+
+Describes how TAO OSINT presents the tool.
+
+Allowed initial values:
+
+- `external` — TAO OSINT collects and displays the tool, then opens its official site/repository
+- `bookmark` — primarily intended to be saved into favorites/collections and revisited
+- `integrated` — directly usable inside TAO OSINT
+
+Most tools should be `external` or `bookmark`.
+
+Only a small number of selected TAO tools should be `integrated`.
 
 ## Cost
 
@@ -60,13 +79,14 @@ Allowed initial values:
 - `offline`
 - `review-needed`
 
-## Example
+## External Tool Example
 
 ```yaml
 - id: tineye
   name: TinEye
   category: image-video
   type: external
+  interaction: external
   url: https://tineye.com/
   description: Reverse image search service.
   use_cases:
@@ -89,6 +109,32 @@ Allowed initial values:
   last_reviewed: 2026-10-04
 ```
 
+## Integrated Tool Example
+
+```yaml
+- id: photo-stargazing-positioning
+  name: Photo Stargazing Positioning
+  category: tao-projects
+  type: tao-optimized
+  interaction: integrated
+  url: ./projects/photo-stargazing-positioning/
+  description: Analyze star geometry as one clue for night-sky photo positioning.
+  cost: free
+  account_required: false
+  platform:
+    - web
+    - python
+  tags:
+    - astronomy
+    - geolocation
+    - image
+    - tao
+  status: active
+  last_reviewed: 2026-10-04
+```
+
 ## Curation Rule
 
 The catalog should describe what a tool is useful for without overstating what its output proves.
+
+Collection is the default. Direct integration is the exception.
