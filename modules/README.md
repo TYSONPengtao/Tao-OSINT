@@ -1,16 +1,15 @@
-# Modules
+# Shared Modules
 
-Planned analysis and ingestion modules.
+This directory is reserved for reusable components needed by multiple TAO-built OSINT projects.
 
-```text
-modules/
-├── collection/
-├── verification/
-├── entities/
-├── timeline/
-├── graph/
-├── geospatial/
-└── reporting/
-```
+Do not turn every idea into a shared module.
 
-Modules operate on canonical TAO OSINT objects and should not create competing data models.
+A component should move here only when at least two internal projects actually need it.
+
+Possible future shared modules:
+
+- astronomy calculations
+- coordinate conversion
+- image metadata parsing
+- map helpers
+- export/report helpers
