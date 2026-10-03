@@ -54,6 +54,11 @@
             <strong id="hero-favorite-count">0</strong>
           </button>
         </div>
+
+        <div class="hero-explore">
+          <span class="hero-explore-label" data-i18n="hero.explore">热门分类</span>
+          <div id="hero-category-cloud" class="hero-category-cloud"></div>
+        </div>
       </div>
 
       <div class="topic-summary" aria-label="Catalog summary">
@@ -220,9 +225,12 @@
 
   <dialog id="tool-dialog" class="tool-dialog">
     <div class="dialog-head">
-      <div>
-        <p id="dialog-category" class="tool-category"></p>
-        <h2 id="dialog-title"></h2>
+      <div class="dialog-title-wrap">
+        <div id="dialog-icon" class="dialog-icon"></div>
+        <div>
+          <p id="dialog-category" class="tool-category"></p>
+          <h2 id="dialog-title"></h2>
+        </div>
       </div>
       <button id="dialog-close" class="icon-button" type="button" aria-label="Close">×</button>
     </div>
