@@ -1344,15 +1344,71 @@ const I18N = {
   }
 };
 
+
+
+Object.assign(I18N["zh-CN"], {
+  "nav.tools": "工具",
+  "nav.favorites": "收藏",
+  "nav.about": "关于",
+  "hero.browse": "浏览工具库",
+  "stats.favorites": "本地收藏",
+  "stats.saved": "已保存",
+  "recent.kicker": "最近使用",
+  "recent.title": "最近访问",
+  "recent.clear": "清空",
+  "filters.title": "筛选",
+  "filters.resetShort": "重置",
+  "detail.button": "详情",
+  "detail.platform": "平台",
+  "detail.account": "账号",
+  "detail.reviewed": "最近审阅",
+  "detail.favorite": "加入收藏",
+  "detail.unfavorite": "取消收藏",
+  "loadMore": "加载更多（{shown} / {total}）",
+  "view.list": "列表视图",
+  "view.grid": "网格视图"
+});
+Object.assign(I18N.en, {
+  "nav.tools": "Tools",
+  "nav.favorites": "Favorites",
+  "nav.about": "About",
+  "hero.browse": "Browse tools",
+  "stats.favorites": "Local favorites",
+  "stats.saved": "saved",
+  "recent.kicker": "RECENT",
+  "recent.title": "Recently opened",
+  "recent.clear": "Clear",
+  "filters.title": "Filters",
+  "filters.resetShort": "Reset",
+  "detail.button": "Details",
+  "detail.platform": "Platform",
+  "detail.account": "Account",
+  "detail.reviewed": "Last reviewed",
+  "detail.favorite": "Add favorite",
+  "detail.unfavorite": "Remove favorite",
+  "loadMore": "Load more ({shown} / {total})",
+  "view.list": "List view",
+  "view.grid": "Grid view"
+});
+
+const RECENT_KEY = "tao-osint-recent";
+const VIEW_KEY = "tao-osint-view";
+const PAGE_SIZE = 18;
 const $ = (id) => document.getElementById(id);
+
 let language = loadSetting(LANGUAGE_KEY, "zh-CN");
 if (!I18N[language]) language = "zh-CN";
 let selectedCategory = "all";
 let selectedPlatform = "all";
 let favoritesOnly = false;
 let favorites = new Set(loadJSON(FAVORITES_KEY, []));
+let recent = loadJSON(RECENT_KEY, []).filter((id) => TOOLS.some((tool) => tool.id === id)).slice(0, 8);
 let searchTerm = "";
 let sortMode = "featured";
+let viewMode = loadSetting(VIEW_KEY, "list");
+if (!["list","grid"].includes(viewMode)) viewMode = "list";
+let visibleCount = PAGE_SIZE;
+let activeDialogTool = null;
 
 function loadSetting(key, fallback) {
   try { return localStorage.getItem(key) || fallback; } catch { return fallback; }
@@ -1363,9 +1419,11 @@ function loadJSON(key, fallback) {
 function saveSetting(key, value) {
   try { localStorage.setItem(key, value); } catch {}
 }
-function saveFavorites() {
-  try { localStorage.setItem(FAVORITES_KEY, JSON.stringify([...favorites])); } catch {}
+function saveJSON(key, value) {
+  try { localStorage.setItem(key, JSON.stringify(value)); } catch {}
 }
+function saveFavorites() { saveJSON(FAVORITES_KEY, [...favorites]); }
+function saveRecent() { saveJSON(RECENT_KEY, recent); }
 function t(key) { return I18N[language]?.[key] ?? I18N["zh-CN"][key] ?? key; }
 function categoryLabel(id) {
   const item = CATEGORIES.find(([key]) => key === id);
@@ -1378,7 +1436,22 @@ function activeFilterValues(type) {
   return [...document.querySelectorAll(`[data-filter="${type}"]:checked`)].map((node) => node.value);
 }
 function allPlatforms() {
-  return ["all", ...new Set(TOOLS.flatMap((tool) => tool.platform))];
+  return ["all", ...new Set(TOOLS.flatMap((tool) => tool.platform))].sort((a,b) => a === "all" ? -1 : b === "all" ? 1 : a.localeCompare(b));
+}
+function resetPagination() { visibleCount = PAGE_SIZE; }
+function recordRecent(tool) {
+  recent = [tool.id, ...recent.filter((id) => id !== tool.id)].slice(0, 8);
+  saveRecent();
+  renderRecent();
+}
+function toggleFavorite(id) {
+  if (favorites.has(id)) favorites.delete(id);
+  else favorites.add(id);
+  saveFavorites();
+  render();
+}
+function openOfficial(tool) {
+  recordRecent(tool);
 }
 
 function filteredTools() {
@@ -1392,26 +1465,20 @@ function filteredTools() {
     if (!interaction.includes(tool.interaction)) return false;
     if (!costs.includes(tool.cost)) return false;
     if (favoritesOnly && !favorites.has(tool.id)) return false;
-
     if (!query) return true;
     const haystack = [
-      tool.name,
-      tool.description["zh-CN"],
-      tool.description.en,
-      tool.category,
-      ...tool.tags,
-      ...tool.platform
+      tool.name, tool.description["zh-CN"], tool.description.en, tool.category,
+      ...tool.tags, ...tool.platform
     ].join(" ").toLowerCase();
     return haystack.includes(query);
   });
 
-  return items.sort((a, b) => {
+  return items.sort((a,b) => {
     if (sortMode === "name") return a.name.localeCompare(b.name);
     if (sortMode === "category") return categoryLabel(a.category).localeCompare(categoryLabel(b.category), language);
     if (sortMode === "reviewed") return b.lastReviewed.localeCompare(a.lastReviewed) || a.name.localeCompare(b.name);
-    const featuredA = a.interaction === "integrated" ? 0 : a.type === "tao-optimized" ? 1 : 2;
-    const featuredB = b.interaction === "integrated" ? 0 : b.type === "tao-optimized" ? 1 : 2;
-    return featuredA - featuredB || a.name.localeCompare(b.name);
+    const score = (x) => x.interaction === "integrated" ? 0 : x.type === "tao-optimized" ? 1 : 2;
+    return score(a) - score(b) || a.name.localeCompare(b.name);
   });
 }
 
@@ -1426,6 +1493,8 @@ function renderCategories() {
     button.innerHTML = `<span>${categoryLabel(id)}</span><small>${count}</small>`;
     button.addEventListener("click", () => {
       selectedCategory = id;
+      resetPagination();
+      closeSidebar();
       render();
     });
     target.appendChild(button);
@@ -1443,43 +1512,44 @@ function renderPlatforms() {
     button.innerHTML = `<span>${platform === "all" ? t("platform.all") : platform}</span><small>${count}</small>`;
     button.addEventListener("click", () => {
       selectedPlatform = platform;
+      resetPagination();
       render();
     });
     target.appendChild(button);
   }
 }
 
+function badgeHTML(tool) {
+  return `
+    <span class="tool-badge ${tool.interaction === "integrated" ? "integrated" : ""}">${tool.interaction === "integrated" ? t("badge.integrated") : t("badge.external")}</span>
+    ${tool.type === "tao-optimized" ? `<span class="tool-badge integrated">${t("badge.taoOptimized")}</span>` : ""}
+    <span class="tool-badge">${costLabel(tool.cost)}</span>
+  `;
+}
+
 function toolCard(tool) {
   const card = document.createElement("article");
   card.className = "tool-card";
-
   const favorite = favorites.has(tool.id);
   const launchText = tool.interaction === "integrated" ? t("launch.integrated") : t("launch.external");
 
   card.innerHTML = `
     <div class="tool-main">
-      <div class="tool-card-top">
-        <span class="tool-category">${categoryLabel(tool.category)}</span>
-      </div>
-      <h3 class="tool-name">${tool.name}</h3>
+      <div class="tool-card-top"><span class="tool-category">${categoryLabel(tool.category)}</span></div>
+      <button class="tool-name" type="button">${tool.name}</button>
       <p class="tool-description">${tool.description[language]}</p>
       <div class="tool-tags">
-        ${tool.tags.slice(0, 6).map((tag) => `<button type="button" class="tag-button" data-tag="${tag}">#${tag}</button>`).join("")}
+        ${tool.tags.slice(0,6).map((tag) => `<button type="button" class="tag-button" data-tag="${tag}">#${tag}</button>`).join("")}
       </div>
     </div>
-
     <div class="tool-side">
       <div class="tool-actions">
         <button class="favorite-button ${favorite ? "active" : ""}" type="button" aria-label="${t("favorites.title")}">${favorite ? "★" : "☆"}</button>
+        <button class="details-button" type="button">${t("detail.button")}</button>
         <a class="launch-link" href="${tool.url}" ${tool.interaction === "external" ? 'target="_blank" rel="noreferrer"' : ""}>${launchText}</a>
       </div>
-      <div class="tool-badges">
-        <span class="tool-badge ${tool.interaction === "integrated" ? "integrated" : ""}">${tool.interaction === "integrated" ? t("badge.integrated") : t("badge.external")}</span>
-        ${tool.type === "tao-optimized" ? `<span class="tool-badge integrated">${t("badge.taoOptimized")}</span>` : ""}
-        <span class="tool-badge">${costLabel(tool.cost)}</span>
-      </div>
+      <div class="tool-badges">${badgeHTML(tool)}</div>
     </div>
-
     <div class="tool-footer">
       <span>${tool.platform.join(" · ")}</span>
       <span class="meta-dot">${tool.accountRequired ? t("account.yes") : t("account.no")}</span>
@@ -1487,71 +1557,113 @@ function toolCard(tool) {
     </div>
   `;
 
-  card.querySelector(".favorite-button").addEventListener("click", () => {
-    if (favorites.has(tool.id)) favorites.delete(tool.id);
-    else favorites.add(tool.id);
-    saveFavorites();
-    render();
-  });
-
+  card.querySelector(".favorite-button").addEventListener("click", () => toggleFavorite(tool.id));
+  card.querySelector(".details-button").addEventListener("click", () => openDialog(tool));
+  card.querySelector(".tool-name").addEventListener("click", () => openDialog(tool));
+  card.querySelector(".launch-link").addEventListener("click", () => openOfficial(tool));
   card.querySelectorAll(".tag-button").forEach((button) => {
     button.addEventListener("click", () => {
       searchTerm = button.dataset.tag;
       $("search-input").value = searchTerm;
+      resetPagination();
       render();
     });
   });
-
   return card;
 }
 
 function renderTools() {
   const target = $("tool-grid");
-  const items = filteredTools();
+  const all = filteredTools();
+  const shown = all.slice(0, visibleCount);
+  target.dataset.view = viewMode;
   target.innerHTML = "";
-  items.forEach((tool) => target.appendChild(toolCard(tool)));
+  shown.forEach((tool) => target.appendChild(toolCard(tool)));
 
-  $("empty-state").hidden = items.length !== 0;
-  $("result-count").textContent = t("count.one")
-    .replace("{shown}", items.length)
-    .replace("{total}", TOOLS.length);
+  $("empty-state").hidden = all.length !== 0;
+  $("result-count").textContent = t("count.one").replace("{shown}", shown.length).replace("{total}", all.length);
+
+  const load = $("load-more");
+  if (shown.length < all.length) {
+    load.hidden = false;
+    load.textContent = t("loadMore").replace("{shown}", shown.length).replace("{total}", all.length);
+  } else {
+    load.hidden = true;
+  }
+}
+
+function filterChip(label, onClear) {
+  const span = document.createElement("span");
+  span.className = "active-filter-chip";
+  const text = document.createTextNode(label);
+  const button = document.createElement("button");
+  button.type = "button";
+  button.textContent = "×";
+  button.addEventListener("click", onClear);
+  span.append(text, button);
+  return span;
 }
 
 function renderActiveFilters() {
-  const chips = [];
-  if (selectedCategory !== "all") chips.push(t("filter.category") + " " + categoryLabel(selectedCategory));
-  if (selectedPlatform !== "all") chips.push(t("filter.platform") + " " + selectedPlatform);
-  if (favoritesOnly) chips.push(t("filter.favorites"));
-  if (searchTerm.trim()) chips.push(t("filter.search") + " " + searchTerm.trim());
-
-  $("active-filter-bar").innerHTML = chips.map((chip) => `<span class="active-filter-chip">${chip}</span>`).join("");
+  const bar = $("active-filter-bar");
+  bar.innerHTML = "";
+  if (selectedCategory !== "all") bar.appendChild(filterChip(t("filter.category")+" "+categoryLabel(selectedCategory), () => { selectedCategory="all"; resetPagination(); render(); }));
+  if (selectedPlatform !== "all") bar.appendChild(filterChip(t("filter.platform")+" "+selectedPlatform, () => { selectedPlatform="all"; resetPagination(); render(); }));
+  if (favoritesOnly) bar.appendChild(filterChip(t("filter.favorites"), () => { favoritesOnly=false; resetPagination(); render(); }));
+  if (searchTerm.trim()) bar.appendChild(filterChip(t("filter.search")+" "+searchTerm.trim(), () => { searchTerm=""; $("search-input").value=""; resetPagination(); render(); }));
 }
 
 function renderStats() {
   $("stat-tools").textContent = TOOLS.length;
   $("stat-categories").textContent = new Set(TOOLS.map((tool) => tool.category)).size;
   $("stat-integrated").textContent = TOOLS.filter((tool) => tool.interaction === "integrated").length;
-  $("favorite-count").textContent = favorites.size;
+  for (const id of ["favorite-count","toolbar-favorite-count","hero-favorite-count"]) $(id).textContent = favorites.size;
+}
+
+function renderRecent() {
+  const section = $("recent-section");
+  const list = $("recent-list");
+  const tools = recent.map((id) => TOOLS.find((tool) => tool.id === id)).filter(Boolean);
+  section.hidden = tools.length === 0;
+  list.innerHTML = "";
+  for (const tool of tools) {
+    const button = document.createElement("button");
+    button.type = "button";
+    button.className = "recent-item";
+    button.innerHTML = `<span>${categoryLabel(tool.category)}</span><strong>${tool.name}</strong>`;
+    button.addEventListener("click", () => openDialog(tool));
+    list.appendChild(button);
+  }
 }
 
 function applyLanguage() {
   document.documentElement.lang = language;
-  document.querySelectorAll("[data-i18n]").forEach((element) => {
-    element.textContent = t(element.dataset.i18n);
-  });
-  document.querySelectorAll("[data-i18n-placeholder]").forEach((element) => {
-    element.placeholder = t(element.dataset.i18nPlaceholder);
-  });
+  document.querySelectorAll("[data-i18n]").forEach((element) => { element.textContent = t(element.dataset.i18n); });
+  document.querySelectorAll("[data-i18n-placeholder]").forEach((element) => { element.placeholder = t(element.dataset.i18nPlaceholder); });
   document.querySelectorAll("[data-language]").forEach((button) => {
     const active = button.dataset.language === language;
     button.classList.toggle("active", active);
     button.setAttribute("aria-pressed", active ? "true" : "false");
   });
-
+  $("view-list").title = t("view.list");
+  $("view-grid").title = t("view.grid");
   const readmeLink = $("readme-link");
   const roadmapLink = $("roadmap-link");
-  if (readmeLink) readmeLink.href = language === "zh-CN" ? "../README.zh-CN.md" : "../README.md";
-  if (roadmapLink) roadmapLink.href = language === "zh-CN" ? "../docs/roadmap.zh-CN.md" : "../docs/roadmap.md";
+  if (readmeLink) {
+    readmeLink.href = language === "zh-CN"
+      ? "https://github.com/TYSONPengtao/Tao-OSINT/blob/main/README.zh-CN.md"
+      : "https://github.com/TYSONPengtao/Tao-OSINT#readme";
+  }
+  if (roadmapLink) {
+    roadmapLink.href = language === "zh-CN"
+      ? "https://github.com/TYSONPengtao/Tao-OSINT/blob/main/docs/roadmap.zh-CN.md"
+      : "https://github.com/TYSONPengtao/Tao-OSINT/blob/main/docs/roadmap.md";
+  }
+}
+
+function renderViewSwitch() {
+  $("view-list").classList.toggle("active", viewMode === "list");
+  $("view-grid").classList.toggle("active", viewMode === "grid");
 }
 
 function render() {
@@ -1559,44 +1671,16 @@ function render() {
   renderCategories();
   renderPlatforms();
   renderStats();
+  renderRecent();
   renderActiveFilters();
+  renderViewSwitch();
   renderTools();
   $("favorites-toggle").classList.toggle("active", favoritesOnly);
   $("sort-select").value = sortMode;
+  if (activeDialogTool && $("tool-dialog").open) fillDialog(activeDialogTool);
 }
 
-document.querySelectorAll("[data-language]").forEach((button) => {
-  button.addEventListener("click", () => {
-    language = button.dataset.language;
-    saveSetting(LANGUAGE_KEY, language);
-    render();
-  });
-});
-
-$("search-input").addEventListener("input", (event) => {
-  searchTerm = event.target.value;
-  renderActiveFilters();
-  renderTools();
-});
-
-document.querySelectorAll("[data-filter]").forEach((input) => {
-  input.addEventListener("change", () => {
-    renderActiveFilters();
-    renderTools();
-  });
-});
-
-$("sort-select").addEventListener("change", (event) => {
-  sortMode = event.target.value;
-  renderTools();
-});
-
-$("favorites-toggle").addEventListener("click", () => {
-  favoritesOnly = !favoritesOnly;
-  render();
-});
-
-$("clear-filters").addEventListener("click", () => {
+function resetFilters() {
   selectedCategory = "all";
   selectedPlatform = "all";
   favoritesOnly = false;
@@ -1604,7 +1688,110 @@ $("clear-filters").addEventListener("click", () => {
   sortMode = "featured";
   $("search-input").value = "";
   document.querySelectorAll("[data-filter]").forEach((input) => { input.checked = true; });
+  resetPagination();
   render();
+}
+
+function openSidebar() {
+  $("sidebar").classList.add("open");
+  $("scrim").hidden = false;
+  document.body.classList.add("no-scroll");
+}
+function closeSidebar() {
+  $("sidebar").classList.remove("open");
+  $("scrim").hidden = true;
+  if (!$("tool-dialog").open) document.body.classList.remove("no-scroll");
+}
+
+function fillDialog(tool) {
+  activeDialogTool = tool;
+  $("dialog-category").textContent = categoryLabel(tool.category);
+  $("dialog-title").textContent = tool.name;
+  $("dialog-description").textContent = tool.description[language];
+  $("dialog-badges").innerHTML = badgeHTML(tool);
+  $("dialog-tags").innerHTML = tool.tags.map((tag) => `<button type="button" class="tag-button" data-tag="${tag}">#${tag}</button>`).join("");
+  $("dialog-platform").textContent = tool.platform.join(" · ");
+  $("dialog-account").textContent = tool.accountRequired ? t("account.yes") : t("account.no");
+  $("dialog-reviewed").textContent = tool.lastReviewed;
+  $("dialog-favorite").textContent = favorites.has(tool.id) ? "★ "+t("detail.unfavorite") : "☆ "+t("detail.favorite");
+  const launch = $("dialog-launch");
+  launch.href = tool.url;
+  launch.textContent = tool.interaction === "integrated" ? t("launch.integrated") : t("launch.external");
+  if (tool.interaction === "external") { launch.target="_blank"; launch.rel="noreferrer"; } else { launch.removeAttribute("target"); launch.removeAttribute("rel"); }
+  $("dialog-tags").querySelectorAll(".tag-button").forEach((button) => {
+    button.addEventListener("click", () => {
+      searchTerm = button.dataset.tag;
+      $("search-input").value = searchTerm;
+      closeDialog();
+      resetPagination();
+      render();
+      document.querySelector("#catalog").scrollIntoView({behavior:"smooth"});
+    });
+  });
+}
+function openDialog(tool) {
+  fillDialog(tool);
+  const dialog = $("tool-dialog");
+  if (!dialog.open) dialog.showModal();
+  document.body.classList.add("no-scroll");
+}
+function closeDialog() {
+  if ($("tool-dialog").open) $("tool-dialog").close();
+  activeDialogTool = null;
+  document.body.classList.remove("no-scroll");
+}
+
+document.querySelectorAll("[data-language]").forEach((button) => button.addEventListener("click", () => {
+  language = button.dataset.language;
+  saveSetting(LANGUAGE_KEY, language);
+  render();
+}));
+$("search-input").addEventListener("input", (event) => {
+  searchTerm = event.target.value;
+  resetPagination();
+  renderActiveFilters();
+  renderTools();
+});
+document.querySelectorAll("[data-filter]").forEach((input) => input.addEventListener("change", () => { resetPagination(); render(); }));
+$("sort-select").addEventListener("change", (event) => { sortMode = event.target.value; resetPagination(); renderTools(); });
+$("favorites-toggle").addEventListener("click", () => { favoritesOnly = !favoritesOnly; resetPagination(); render(); });
+$("hero-favorites").addEventListener("click", () => { favoritesOnly = true; resetPagination(); render(); $("catalog").scrollIntoView({behavior:"smooth"}); });
+$("nav-favorites").addEventListener("click", () => { favoritesOnly = true; resetPagination(); render(); $("catalog").scrollIntoView({behavior:"smooth"}); });
+$("clear-filters").addEventListener("click", resetFilters);
+$("sidebar-reset").addEventListener("click", resetFilters);
+$("load-more").addEventListener("click", () => { visibleCount += PAGE_SIZE; renderTools(); });
+$("view-list").addEventListener("click", () => { viewMode="list"; saveSetting(VIEW_KEY,viewMode); render(); });
+$("view-grid").addEventListener("click", () => { viewMode="grid"; saveSetting(VIEW_KEY,viewMode); render(); });
+$("mobile-filter-open").addEventListener("click", openSidebar);
+$("sidebar-close").addEventListener("click", closeSidebar);
+$("scrim").addEventListener("click", closeSidebar);
+$("dialog-close").addEventListener("click", closeDialog);
+$("tool-dialog").addEventListener("close", () => { activeDialogTool=null; document.body.classList.remove("no-scroll"); });
+$("dialog-favorite").addEventListener("click", () => {
+  if (!activeDialogTool) return;
+  toggleFavorite(activeDialogTool.id);
+  fillDialog(activeDialogTool);
+});
+$("dialog-launch").addEventListener("click", () => { if (activeDialogTool) recordRecent(activeDialogTool); });
+$("clear-recent").addEventListener("click", () => { recent=[]; saveRecent(); renderRecent(); });
+
+document.addEventListener("keydown", (event) => {
+  const tag = document.activeElement?.tagName;
+  const typing = tag === "INPUT" || tag === "TEXTAREA" || tag === "SELECT";
+  if (event.key === "/" && !typing && !$("tool-dialog").open) {
+    event.preventDefault();
+    $("search-input").focus();
+  }
+  if (event.key === "Escape") {
+    if ($("tool-dialog").open) { closeDialog(); return; }
+    if ($("sidebar").classList.contains("open")) { closeSidebar(); return; }
+    if ($("search-input").value) {
+      searchTerm="";
+      $("search-input").value="";
+      resetPagination();
+      render();
+    }
+  }
 });
 
 render();

@@ -2,6 +2,8 @@
 
 [English](README.md) · **简体中文**
 
+[**打开 TAO OSINT 在线工具库 →**](https://tysonpengtao.github.io/Tao-OSINT/)
+
 **一个以 OSINT 工具收集、陈列、收藏和快速访问为核心的平台，只有少数 TAO 精选工具直接内置使用。**
 
 TAO OSINT 与 **TAO Digital Twin** 平级，是 TAO 技术体系中的独立主项目。
