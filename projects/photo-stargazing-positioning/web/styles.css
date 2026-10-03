@@ -53,7 +53,7 @@ button { cursor: pointer; }
   letter-spacing: -.065em;
   font-weight: 600;
 }
-.hero h2 span { color: var(--accent); }
+.hero h2 .accent-text { color: var(--accent); }
 .lede { color: var(--muted); font-size: 17px; line-height: 1.8; margin: 0; max-width: 600px; }
 .workspace {
   display: grid;
@@ -155,4 +155,14 @@ footer { min-height: 120px; display: flex; justify-content: space-between; align
   .metrics article { border-right: 0; border-bottom: 1px solid var(--line); }
   .cluster-card, .map-head, footer { align-items: flex-start; flex-direction: column; }
   .hero h2 { font-size: 50px; }
+}
+.topbar-actions { display: flex; align-items: center; gap: 22px; }
+.language-switch { display: flex; align-items: center; gap: 7px; color: var(--muted); font: 11px/1 monospace; letter-spacing: .08em; }
+.language-button { padding: 5px 2px; border: 0; background: transparent; color: var(--muted); font: inherit; }
+.language-button:hover, .language-button.active { color: var(--accent); }
+.language-button.active { text-decoration: underline; text-underline-offset: 4px; }
+.accent-text { color: var(--accent); }
+@media (max-width: 620px) {
+  .topbar { align-items: flex-start; gap: 18px; padding: 22px 0; }
+  .topbar-actions { align-items: flex-end; flex-direction: column; gap: 10px; }
 }
