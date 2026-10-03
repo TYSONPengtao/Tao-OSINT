@@ -1,5 +1,7 @@
 # TAO OSINT
 
+**English** · [简体中文](README.zh-CN.md)
+
 **A curated OSINT tool collection, showcase and bookmark platform — with only a small number of directly usable TAO tools.**
 
 TAO OSINT is a first-class TAO project, parallel to **TAO Digital Twin**.
