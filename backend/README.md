@@ -1,14 +1,14 @@
 # Backend
 
-Future TAO OSINT API and research-domain services.
+A backend is optional for early TAO OSINT releases.
 
-Initial responsibilities:
+Introduce backend services only when needed for:
 
-- canonical object validation
-- case/source/claim/evidence persistence
-- provenance integrity
-- import/export
-- search
-- analysis module orchestration
+- catalog API
+- advanced search
+- user collections
+- tool health checks
+- contribution workflows
+- server-side TAO utilities
 
-The research domain should remain independent from external-source connectors.
+The catalog itself should remain portable and version-controlled.
