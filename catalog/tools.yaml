@@ -162,3 +162,731 @@ tools:
     tags: [astronomy, image, geolocation, stars, tao]
     status: active
     last_reviewed: 2026-10-04
+
+  - id: google-advanced-search
+    name: "Google Advanced Search"
+    category: search-discovery
+    type: external
+    interaction: external
+    url: "https://www.google.com/advanced_search"
+    description: "Google's official advanced search interface for narrowing public web results by exact phrases, exclusions, site, file type, date, language and more."
+    description_zh: "Google 官方高级搜索页面，可按精确短语、排除词、站点、文件类型、时间、语言等条件缩小公开网页搜索范围。"
+    use_cases:
+      - "Google's official advanced search interface for narrowing public web results by exact phrases, exclusions, site, file type, date, language and more."
+    cost: free
+    account_required: false
+    platform: ["web"]
+    tags: ["search", "operators", "advanced-search"]
+    status: active
+    last_reviewed: 2026-10-04
+
+  - id: bing
+    name: "Microsoft Bing"
+    category: search-discovery
+    type: external
+    interaction: external
+    url: "https://www.bing.com/"
+    description: "General web and image search useful as a second index and ranking source alongside Google."
+    description_zh: "通用网页与图片搜索引擎，可作为与 Google 不同索引和排序结果的交叉搜索入口。"
+    use_cases:
+      - "General web and image search useful as a second index and ranking source alongside Google."
+    cost: free
+    account_required: false
+    platform: ["web"]
+    tags: ["search", "web", "images"]
+    status: active
+    last_reviewed: 2026-10-04
+
+  - id: duckduckgo
+    name: "DuckDuckGo"
+    category: search-discovery
+    type: external
+    interaction: external
+    url: "https://duckduckgo.com/"
+    description: "Privacy-focused web search engine useful as an additional discovery index."
+    description_zh: "注重隐私的网页搜索引擎，适合作为额外搜索索引和快速网页发现入口。"
+    use_cases:
+      - "Privacy-focused web search engine useful as an additional discovery index."
+    cost: free
+    account_required: false
+    platform: ["web"]
+    tags: ["search", "privacy", "web"]
+    status: active
+    last_reviewed: 2026-10-04
+
+  - id: whatsmyname
+    name: "WhatsMyName"
+    category: username-social
+    type: external
+    interaction: external
+    url: "https://whatsmyname.app/"
+    description: "Checks whether a username exists across many public sites using a community-maintained dataset; a username match does not confirm identity."
+    description_zh: "基于社区维护数据集，在大量公开网站中检查用户名是否存在；用户名命中不等于身份确认。"
+    use_cases:
+      - "Checks whether a username exists across many public sites using a community-maintained dataset; a username match does not confirm identity."
+    cost: free
+    account_required: false
+    platform: ["web"]
+    privacy_notes:
+      - "Treat username matches as leads only; manually verify public profiles before linking identities."
+    tags: ["username", "social", "profiles"]
+    status: active
+    last_reviewed: 2026-10-04
+
+  - id: sherlock
+    name: "Sherlock"
+    category: username-social
+    type: external
+    interaction: external
+    url: "https://github.com/sherlock-project/sherlock"
+    description: "Open-source username enumeration tool for checking the presence of a public handle across many services."
+    description_zh: "开源用户名枚举工具，可检查同一公开用户名在多个社交与网站服务中的存在情况。"
+    use_cases:
+      - "Open-source username enumeration tool for checking the presence of a public handle across many services."
+    cost: free
+    account_required: false
+    platform: ["windows", "macos", "linux", "python"]
+    privacy_notes:
+      - "Use for public-profile research or self-audit; do not treat matching handles as proof of identity."
+    tags: ["username", "social", "open-source"]
+    status: active
+    last_reviewed: 2026-10-04
+
+  - id: icann-lookup
+    name: "ICANN Lookup"
+    category: web-domains
+    type: external
+    interaction: external
+    url: "https://lookup.icann.org/"
+    description: "ICANN's official lookup interface for publicly available domain, IP network and ASN registration data."
+    description_zh: "ICANN 官方注册数据查询入口，用于查询公开可见的域名、IP 网络或 ASN 注册数据。"
+    use_cases:
+      - "ICANN's official lookup interface for publicly available domain, IP network and ASN registration data."
+    cost: free
+    account_required: false
+    platform: ["web"]
+    tags: ["whois", "rdap", "domain", "asn"]
+    status: active
+    last_reviewed: 2026-10-04
+
+  - id: dnsdumpster
+    name: "DNSDumpster"
+    category: web-domains
+    type: external
+    interaction: external
+    url: "https://dnsdumpster.com/"
+    description: "DNS research tool for exploring publicly visible records and hosts associated with a domain."
+    description_zh: "面向网络研究的 DNS 公开记录查询工具，可帮助理解与域名关联的可见主机和 DNS 结构。"
+    use_cases:
+      - "DNS research tool for exploring publicly visible records and hosts associated with a domain."
+    cost: free
+    account_required: false
+    platform: ["web"]
+    tags: ["dns", "domain", "hosts", "research"]
+    status: active
+    last_reviewed: 2026-10-04
+
+  - id: crt-sh
+    name: "crt.sh"
+    category: web-domains
+    type: external
+    interaction: external
+    url: "https://crt.sh/"
+    description: "Certificate Transparency search for public certificate records by domain, organization, fingerprint and related identifiers."
+    description_zh: "Certificate Transparency 证书搜索工具，可按域名、组织、证书指纹等查询公开证书记录。"
+    use_cases:
+      - "Certificate Transparency search for public certificate records by domain, organization, fingerprint and related identifiers."
+    cost: free
+    account_required: false
+    platform: ["web"]
+    tags: ["certificates", "certificate-transparency", "domains"]
+    status: active
+    last_reviewed: 2026-10-04
+
+  - id: securitytrails
+    name: "SecurityTrails"
+    category: web-domains
+    type: external
+    interaction: external
+    url: "https://securitytrails.com/"
+    description: "Web and API access to DNS, WHOIS, IP and organization-related infrastructure data."
+    description_zh: "提供 DNS、WHOIS、IP 和公司相关公开基础设施数据的查询与 API 服务。"
+    use_cases:
+      - "Web and API access to DNS, WHOIS, IP and organization-related infrastructure data."
+    cost: partially-free
+    account_required: true
+    platform: ["web", "api"]
+    tags: ["dns", "whois", "ip", "domain"]
+    status: active
+    last_reviewed: 2026-10-04
+
+  - id: opencorporates
+    name: "OpenCorporates"
+    category: companies-organizations
+    type: external
+    interaction: external
+    url: "https://opencorporates.com/"
+    description: "Aggregates company and legal-entity records from official sources across many jurisdictions with source provenance."
+    description_zh: "聚合多个司法辖区官方来源的公司和法律实体记录，并保留来源可追溯性。"
+    use_cases:
+      - "Aggregates company and legal-entity records from official sources across many jurisdictions with source provenance."
+    cost: partially-free
+    account_required: false
+    platform: ["web", "api"]
+    tags: ["companies", "registries", "legal-entities"]
+    status: active
+    last_reviewed: 2026-10-04
+
+  - id: sec-edgar
+    name: "SEC EDGAR"
+    category: companies-organizations
+    type: external
+    interaction: external
+    url: "https://www.sec.gov/search-filings"
+    description: "Official U.S. SEC search for company filings and public disclosure documents by name, ticker, CIK and more."
+    description_zh: "美国 SEC 官方公司申报与公开文件搜索，可按公司名、股票代码、CIK 等查询。"
+    use_cases:
+      - "Official U.S. SEC search for company filings and public disclosure documents by name, ticker, CIK and more."
+    cost: free
+    account_required: false
+    platform: ["web"]
+    tags: ["companies", "filings", "sec", "usa"]
+    status: active
+    last_reviewed: 2026-10-04
+
+  - id: companies-house
+    name: "UK Companies House"
+    category: companies-organizations
+    type: external
+    interaction: external
+    url: "https://find-and-update.company-information.service.gov.uk/"
+    description: "Official UK company register for company status, registered address, filings and public officer information."
+    description_zh: "英国官方公司注册信息服务，可查询公司状态、注册地址、文件和公开高管信息。"
+    use_cases:
+      - "Official UK company register for company status, registered address, filings and public officer information."
+    cost: free
+    account_required: false
+    platform: ["web", "api"]
+    tags: ["companies", "uk", "registry", "officers"]
+    status: active
+    last_reviewed: 2026-10-04
+
+  - id: gleif-lei-search
+    name: "GLEIF LEI Search"
+    category: companies-organizations
+    type: external
+    interaction: external
+    url: "https://www.gleif.org/en/lei-search"
+    description: "Official GLEIF search for global Legal Entity Identifier data and related legal-entity relationships."
+    description_zh: "GLEIF 官方 LEI 搜索，可免费查询全球 Legal Entity Identifier 数据和部分企业关系结构。"
+    use_cases:
+      - "Official GLEIF search for global Legal Entity Identifier data and related legal-entity relationships."
+    cost: free
+    account_required: false
+    platform: ["web"]
+    tags: ["lei", "legal-entities", "ownership", "companies"]
+    status: active
+    last_reviewed: 2026-10-04
+
+  - id: google-dataset-search
+    name: "Google Dataset Search"
+    category: public-datasets
+    type: external
+    interaction: external
+    url: "https://datasetsearch.research.google.com/"
+    description: "Google's dedicated search engine for discovering publicly indexed datasets across the web."
+    description_zh: "Google 面向公开数据集的专用搜索入口，可从多个网站发现可检索的数据资源。"
+    use_cases:
+      - "Google's dedicated search engine for discovering publicly indexed datasets across the web."
+    cost: free
+    account_required: false
+    platform: ["web"]
+    tags: ["datasets", "search", "research"]
+    status: active
+    last_reviewed: 2026-10-04
+
+  - id: data-gov
+    name: "Data.gov"
+    category: public-datasets
+    type: external
+    interaction: external
+    url: "https://data.gov/"
+    description: "U.S. government open-data portal for federal datasets, tools and public data resources."
+    description_zh: "美国政府开放数据门户，集中提供联邦机构数据集、工具和公开数据资源。"
+    use_cases:
+      - "U.S. government open-data portal for federal datasets, tools and public data resources."
+    cost: free
+    account_required: false
+    platform: ["web", "api"]
+    tags: ["government", "open-data", "usa"]
+    status: active
+    last_reviewed: 2026-10-04
+
+  - id: world-bank-open-data
+    name: "World Bank Open Data"
+    category: public-datasets
+    type: external
+    interaction: external
+    url: "https://data.worldbank.org/"
+    description: "World Bank open data for global development, economics, population, infrastructure and related indicators."
+    description_zh: "世界银行开放数据平台，提供全球发展、经济、人口、基础设施等指标。"
+    use_cases:
+      - "World Bank open data for global development, economics, population, infrastructure and related indicators."
+    cost: free
+    account_required: false
+    platform: ["web", "api"]
+    tags: ["development", "economics", "global-data"]
+    status: active
+    last_reviewed: 2026-10-04
+
+  - id: kaggle-datasets
+    name: "Kaggle Datasets"
+    category: public-datasets
+    type: external
+    interaction: external
+    url: "https://www.kaggle.com/datasets"
+    description: "Large dataset discovery and sharing platform for public CSV, JSON, image, text and machine-learning datasets."
+    description_zh: "大型数据集社区和检索平台，适合查找公开 CSV、JSON、图像、文本等研究数据。"
+    use_cases:
+      - "Large dataset discovery and sharing platform for public CSV, JSON, image, text and machine-learning datasets."
+    cost: free
+    account_required: true
+    platform: ["web", "api", "python"]
+    tags: ["datasets", "machine-learning", "research"]
+    status: active
+    last_reviewed: 2026-10-04
+
+  - id: flightradar24
+    name: "Flightradar24"
+    category: transport-tracking
+    type: external
+    interaction: external
+    url: "https://www.flightradar24.com/"
+    description: "Global flight and aircraft activity visualization with free basic live tracking and paid advanced history/features."
+    description_zh: "全球航班与飞机活动可视化平台，基础实时跟踪免费，高级历史和分析功能需订阅。"
+    use_cases:
+      - "Global flight and aircraft activity visualization with free basic live tracking and paid advanced history/features."
+    cost: partially-free
+    account_required: false
+    platform: ["web", "mobile"]
+    tags: ["flights", "aircraft", "aviation"]
+    status: active
+    last_reviewed: 2026-10-04
+
+  - id: adsb-exchange
+    name: "ADS-B Exchange"
+    category: transport-tracking
+    type: external
+    interaction: external
+    url: "https://www.adsbexchange.com/"
+    description: "Aircraft activity service built on a global ADS-B receiver network, with live maps and data products."
+    description_zh: "基于全球 ADS-B 接收网络的飞机活动查看服务，提供实时地图和部分历史/开发者数据。"
+    use_cases:
+      - "Aircraft activity service built on a global ADS-B receiver network, with live maps and data products."
+    cost: partially-free
+    account_required: false
+    platform: ["web", "api"]
+    tags: ["ads-b", "flights", "aircraft"]
+    status: active
+    last_reviewed: 2026-10-04
+
+  - id: flightaware
+    name: "FlightAware"
+    category: transport-tracking
+    type: external
+    interaction: external
+    url: "https://www.flightaware.com/live/"
+    description: "Flight, airport and aviation tracking platform with real-time, historical and predictive information."
+    description_zh: "航班、机场和航空活动跟踪平台，提供实时、历史和预测类航空信息。"
+    use_cases:
+      - "Flight, airport and aviation tracking platform with real-time, historical and predictive information."
+    cost: partially-free
+    account_required: false
+    platform: ["web", "mobile", "api"]
+    tags: ["flights", "airports", "aviation"]
+    status: active
+    last_reviewed: 2026-10-04
+
+  - id: marinetraffic
+    name: "MarineTraffic"
+    category: transport-tracking
+    type: external
+    interaction: external
+    url: "https://www.marinetraffic.com/"
+    description: "AIS-based vessel and port tracking for public ship positions, tracks and port activity."
+    description_zh: "基于 AIS 的船舶和港口公开跟踪平台，可查看船舶位置、航迹和港口活动。"
+    use_cases:
+      - "AIS-based vessel and port tracking for public ship positions, tracks and port activity."
+    cost: partially-free
+    account_required: false
+    platform: ["web", "mobile"]
+    tags: ["ships", "ais", "vessels", "ports"]
+    status: active
+    last_reviewed: 2026-10-04
+
+  - id: vesselfinder
+    name: "VesselFinder"
+    category: transport-tracking
+    type: external
+    interaction: external
+    url: "https://www.vesselfinder.com/"
+    description: "Vessel and AIS lookup service searchable by public identifiers such as ship name, IMO and MMSI."
+    description_zh: "船舶位置和 AIS 信息查询平台，可按船名、IMO、MMSI 等公开标识查找船舶。"
+    use_cases:
+      - "Vessel and AIS lookup service searchable by public identifiers such as ship name, IMO and MMSI."
+    cost: partially-free
+    account_required: false
+    platform: ["web", "mobile"]
+    tags: ["ships", "ais", "vessels"]
+    status: active
+    last_reviewed: 2026-10-04
+
+  - id: copernicus-browser
+    name: "Copernicus Browser"
+    category: satellite-imagery
+    type: external
+    interaction: external
+    url: "https://browser.dataspace.copernicus.eu/"
+    description: "Official Copernicus Data Space browser for searching, visualizing, comparing and downloading Sentinel and related Earth-observation data."
+    description_zh: "Copernicus Data Space 官方浏览器，可搜索、可视化、比较和下载 Sentinel 等地球观测数据。"
+    use_cases:
+      - "Official Copernicus Data Space browser for searching, visualizing, comparing and downloading Sentinel and related Earth-observation data."
+    cost: free
+    account_required: true
+    platform: ["web"]
+    tags: ["sentinel", "satellite", "earth-observation"]
+    status: active
+    last_reviewed: 2026-10-04
+
+  - id: nasa-worldview
+    name: "NASA Worldview"
+    category: satellite-imagery
+    type: external
+    interaction: external
+    url: "https://worldview.earthdata.nasa.gov/"
+    description: "NASA Earthdata browser for layered near-real-time and historical global Earth-observation imagery."
+    description_zh: "NASA Earthdata 的全球卫星影像浏览工具，可叠加多种近实时和历史地球观测图层。"
+    use_cases:
+      - "NASA Earthdata browser for layered near-real-time and historical global Earth-observation imagery."
+    cost: free
+    account_required: false
+    platform: ["web"]
+    tags: ["nasa", "satellite", "earth-observation", "imagery"]
+    status: active
+    last_reviewed: 2026-10-04
+
+  - id: google-earth
+    name: "Google Earth"
+    category: satellite-imagery
+    type: external
+    interaction: external
+    url: "https://earth.google.com/web/"
+    description: "Global satellite imagery, 3D terrain and geographic context useful for visual geolocation and scene understanding."
+    description_zh: "全球卫星影像、三维地形和地理环境浏览工具，适合视觉地理对照和场景理解。"
+    use_cases:
+      - "Global satellite imagery, 3D terrain and geographic context useful for visual geolocation and scene understanding."
+    cost: free
+    account_required: false
+    platform: ["web", "desktop", "mobile"]
+    tags: ["satellite", "3d", "maps", "imagery"]
+    status: active
+    last_reviewed: 2026-10-04
+
+  - id: usgs-earthexplorer
+    name: "USGS EarthExplorer"
+    category: satellite-imagery
+    type: external
+    interaction: external
+    url: "https://earthexplorer.usgs.gov/"
+    description: "Official USGS search and download portal for remote-sensing datasets filtered by location, date, collection and cloud cover."
+    description_zh: "USGS 官方遥感数据搜索与下载平台，可按位置、时间、数据集和云量等条件筛选。"
+    use_cases:
+      - "Official USGS search and download portal for remote-sensing datasets filtered by location, date, collection and cloud cover."
+    cost: free
+    account_required: true
+    platform: ["web"]
+    tags: ["landsat", "usgs", "satellite", "download"]
+    status: active
+    last_reviewed: 2026-10-04
+
+  - id: invid-weverify
+    name: "InVID-WeVerify Verification Plugin"
+    category: video-verification
+    type: external
+    interaction: external
+    url: "https://weverify.eu/verification-plugin/"
+    description: "Image and video verification plugin for journalists and fact-checkers, with keyframes, metadata, reverse search and other verification tools."
+    description_zh: "面向记者和事实核查的图片/视频验证插件，支持视频关键帧、元数据、反向搜索和多种验证工具。"
+    use_cases:
+      - "Image and video verification plugin for journalists and fact-checkers, with keyframes, metadata, reverse search and other verification tools."
+    cost: free
+    account_required: false
+    platform: ["browser-extension"]
+    privacy_notes:
+      - "Some advanced tools require professional registration; verify source context before drawing conclusions."
+    tags: ["video", "verification", "keyframes", "metadata"]
+    status: active
+    last_reviewed: 2026-10-04
+
+  - id: google-lens
+    name: "Google Lens"
+    category: ocr-translation
+    type: external
+    interaction: external
+    url: "https://lens.google.com/"
+    description: "Google visual search and text recognition for extracting text, identifying objects/place clues and finding visually similar content."
+    description_zh: "Google 的视觉搜索与文字识别工具，可从图片识别文字、物体、地点线索并进行相似图像搜索。"
+    use_cases:
+      - "Google visual search and text recognition for extracting text, identifying objects/place clues and finding visually similar content."
+    cost: free
+    account_required: false
+    platform: ["web", "mobile"]
+    tags: ["ocr", "visual-search", "image", "text"]
+    status: active
+    last_reviewed: 2026-10-04
+
+  - id: google-translate
+    name: "Google Translate"
+    category: ocr-translation
+    type: external
+    interaction: external
+    url: "https://translate.google.com/"
+    description: "Multilingual text and document translation useful for first-pass understanding of public-source material."
+    description_zh: "多语言文本和文档翻译工具，可辅助跨语言公开信息阅读和初步理解。"
+    use_cases:
+      - "Multilingual text and document translation useful for first-pass understanding of public-source material."
+    cost: free
+    account_required: false
+    platform: ["web", "mobile"]
+    tags: ["translation", "languages", "ocr"]
+    status: active
+    last_reviewed: 2026-10-04
+
+  - id: deepl
+    name: "DeepL Translator"
+    category: ocr-translation
+    type: external
+    interaction: external
+    url: "https://www.deepl.com/translator"
+    description: "High-quality multilingual translation for long-form text, documents and cross-language research."
+    description_zh: "高质量多语言翻译工具，适合长文本、文档和跨语言资料辅助阅读。"
+    use_cases:
+      - "High-quality multilingual translation for long-form text, documents and cross-language research."
+    cost: partially-free
+    account_required: false
+    platform: ["web", "desktop", "mobile"]
+    tags: ["translation", "languages", "documents"]
+    status: active
+    last_reviewed: 2026-10-04
+
+  - id: tesseract-ocr
+    name: "Tesseract OCR"
+    category: ocr-translation
+    type: external
+    interaction: external
+    url: "https://github.com/tesseract-ocr/tesseract"
+    description: "Open-source OCR engine for local text extraction from images, useful for privacy-sensitive or batch recognition workflows."
+    description_zh: "开源 OCR 引擎，可本地从图片中提取文字，适合隐私敏感或批量文字识别场景。"
+    use_cases:
+      - "Open-source OCR engine for local text extraction from images, useful for privacy-sensitive or batch recognition workflows."
+    cost: free
+    account_required: false
+    platform: ["windows", "macos", "linux"]
+    tags: ["ocr", "open-source", "text-recognition"]
+    status: active
+    last_reviewed: 2026-10-04
+
+  - id: github-code-search
+    name: "GitHub Code Search"
+    category: code-search
+    type: external
+    interaction: external
+    url: "https://github.com/search?type=code"
+    description: "GitHub's official code search for public repositories, code, files, paths and related project content."
+    description_zh: "GitHub 官方代码搜索入口，用于在公开仓库中检索代码、文件、路径和相关项目内容。"
+    use_cases:
+      - "GitHub's official code search for public repositories, code, files, paths and related project content."
+    cost: free
+    account_required: true
+    platform: ["web"]
+    tags: ["github", "code", "repositories"]
+    status: active
+    last_reviewed: 2026-10-04
+
+  - id: grep-app
+    name: "grep.app"
+    category: code-search
+    type: external
+    interaction: external
+    url: "https://grep.app/"
+    description: "Public code, file and path search across a large corpus of GitHub repositories."
+    description_zh: "跨大量 GitHub 仓库的公开代码、文件和路径搜索服务，适合快速查找实现和字符串出现位置。"
+    use_cases:
+      - "Public code, file and path search across a large corpus of GitHub repositories."
+    cost: free
+    account_required: false
+    platform: ["web"]
+    tags: ["code", "github", "search"]
+    status: active
+    last_reviewed: 2026-10-04
+
+  - id: sourcegraph-code-search
+    name: "Sourcegraph Code Search"
+    category: code-search
+    type: external
+    interaction: external
+    url: "https://sourcegraph.com/search"
+    description: "Advanced code search and navigation platform with regex, boolean queries and cross-repository search."
+    description_zh: "面向大型代码库的高级代码搜索与导航平台，支持正则、布尔查询和跨仓库检索。"
+    use_cases:
+      - "Advanced code search and navigation platform with regex, boolean queries and cross-repository search."
+    cost: partially-free
+    account_required: true
+    platform: ["web", "ide"]
+    tags: ["code", "search", "regex", "repositories"]
+    status: active
+    last_reviewed: 2026-10-04
+
+  - id: ahmia
+    name: "Ahmia"
+    category: dark-web-indexes
+    type: external
+    interaction: external
+    url: "https://ahmia.fi/"
+    description: "Public search index for discoverable Tor/onion services; results may contain unsafe or illegal material, so use cautiously."
+    description_zh: "公开的 Tor/onion 服务搜索索引，适合研究公开可索引的 onion 服务；结果可能包含不安全或违法内容，应谨慎使用。"
+    use_cases:
+      - "Public search index for discoverable Tor/onion services; results may contain unsafe or illegal material, so use cautiously."
+    cost: free
+    account_required: false
+    platform: ["web", "tor"]
+    privacy_notes:
+      - "Use only for lawful research. Do not access or download illegal material, and treat unknown onion destinations as high-risk."
+    tags: ["tor", "onion", "search", "index"]
+    status: active
+    last_reviewed: 2026-10-04
+
+  - id: hunter-domain-search
+    name: "Hunter Domain Search"
+    category: contact-public-info
+    type: external
+    interaction: external
+    url: "https://hunter.io/domain-search"
+    description: "Finds professional email addresses associated with company domains using public web sources, with source and confidence context."
+    description_zh: "从公开网页来源查找与企业域名关联的专业邮箱，并显示来源、发现日期和置信度等信息。"
+    use_cases:
+      - "Finds professional email addresses associated with company domains using public web sources, with source and confidence context."
+    cost: partially-free
+    account_required: true
+    platform: ["web", "api"]
+    privacy_notes:
+      - "Use for legitimate professional/public-source research; respect removals, privacy requests and applicable anti-spam rules."
+    tags: ["email", "company", "domain", "professional"]
+    status: active
+    last_reviewed: 2026-10-04
+
+  - id: have-i-been-pwned
+    name: "Have I Been Pwned"
+    category: contact-public-info
+    type: external
+    interaction: external
+    url: "https://haveibeenpwned.com/"
+    description: "Checks whether an email address appears in known data breaches, useful for personal or authorized security awareness."
+    description_zh: "检查邮箱地址是否出现在已知数据泄露事件中，适合个人或授权账户的安全自查。"
+    use_cases:
+      - "Checks whether an email address appears in known data breaches, useful for personal or authorized security awareness."
+    cost: free
+    account_required: false
+    platform: ["web", "api"]
+    privacy_notes:
+      - "Prefer self-audit or authorized checks; do not use breach status to target or harass individuals."
+    tags: ["email", "breach", "security", "self-audit"]
+    status: active
+    last_reviewed: 2026-10-04
+
+  - id: perplexity
+    name: "Perplexity"
+    category: ai-research
+    type: external
+    interaction: external
+    url: "https://www.perplexity.ai/"
+    description: "AI-assisted search and research that summarizes public web information with source links; original sources still require manual verification."
+    description_zh: "AI 辅助搜索与研究工具，可汇总公开网页信息并给出来源链接，仍需人工核对原始来源。"
+    use_cases:
+      - "AI-assisted search and research that summarizes public web information with source links; original sources still require manual verification."
+    cost: partially-free
+    account_required: true
+    platform: ["web", "mobile"]
+    tags: ["ai", "research", "search", "citations"]
+    status: active
+    last_reviewed: 2026-10-04
+
+  - id: elicit
+    name: "Elicit"
+    category: ai-research
+    type: external
+    interaction: external
+    url: "https://elicit.com/"
+    description: "AI research assistant for finding papers, extracting study information and organizing literature evidence."
+    description_zh: "面向学术研究的 AI 助手，可帮助检索论文、提取研究信息和整理文献证据。"
+    use_cases:
+      - "AI research assistant for finding papers, extracting study information and organizing literature evidence."
+    cost: partially-free
+    account_required: true
+    platform: ["web"]
+    tags: ["ai", "papers", "literature-review", "research"]
+    status: active
+    last_reviewed: 2026-10-04
+
+  - id: consensus
+    name: "Consensus"
+    category: ai-research
+    type: external
+    interaction: external
+    url: "https://consensus.app/"
+    description: "AI search and evidence summarization over academic papers for quickly exploring research findings and relevant literature."
+    description_zh: "基于学术论文的 AI 搜索与证据摘要工具，适合快速了解研究共识和相关文献。"
+    use_cases:
+      - "AI search and evidence summarization over academic papers for quickly exploring research findings and relevant literature."
+    cost: partially-free
+    account_required: true
+    platform: ["web"]
+    tags: ["ai", "academic", "papers", "evidence"]
+    status: active
+    last_reviewed: 2026-10-04
+
+  - id: scite
+    name: "Scite"
+    category: ai-research
+    type: external
+    interaction: external
+    url: "https://scite.ai/"
+    description: "Research and citation-analysis platform for seeing how later literature supports, challenges or discusses scholarly work."
+    description_zh: "学术研究与引文分析平台，可查看论文被后续研究支持、质疑或讨论的上下文。"
+    use_cases:
+      - "Research and citation-analysis platform for seeing how later literature supports, challenges or discusses scholarly work."
+    cost: partially-free
+    account_required: true
+    platform: ["web", "api"]
+    tags: ["citations", "papers", "ai", "evidence"]
+    status: active
+    last_reviewed: 2026-10-04
+
+  - id: libphonenumber
+    name: "Google libphonenumber"
+    category: contact-public-info
+    type: external
+    interaction: external
+    url: "https://github.com/google/libphonenumber"
+    description: "Open-source library for parsing, formatting and validating international phone numbers, including number type and limited offline metadata."
+    description_zh: "Google 开源电话号码库，用于解析、格式化和验证国际号码，并提供号码类型、地区、原始运营商等有限离线元数据。"
+    use_cases:
+      - "Parse, normalize and validate phone-number formats without reverse-identifying a person."
+    cost: free
+    account_required: false
+    platform: ["java", "javascript", "cpp"]
+    privacy_notes:
+      - "The library does not determine whether a number is currently assigned to a specific person; do not present metadata as identity proof."
+    tags: ["phone", "validation", "metadata", "open-source"]
+    status: active
+    last_reviewed: 2026-10-04

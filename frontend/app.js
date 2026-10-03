@@ -2,14 +2,116 @@ const LANGUAGE_KEY = "tao-osint-language";
 const FAVORITES_KEY = "tao-osint-favorites";
 
 const CATEGORIES = [
-  ["all", "全部", "All"],
-  ["research-resources", "研究资源", "Research Resources"],
-  ["image-video", "图片与视频", "Image & Video"],
-  ["geolocation-maps", "地理定位与地图", "Geolocation & Maps"],
-  ["metadata-files", "元数据与文件", "Metadata & Files"],
-  ["archives", "网页存档", "Archives"],
-  ["cyber-url-analysis", "URL / 安全分析", "Cyber / URL Analysis"],
-  ["tao-projects", "TAO 项目", "TAO Projects"]
+  [
+    "all",
+    "全部",
+    "All"
+  ],
+  [
+    "search-discovery",
+    "搜索与高级搜索",
+    "Search & Discovery"
+  ],
+  [
+    "username-social",
+    "用户名与社交平台",
+    "Username & Social"
+  ],
+  [
+    "image-video",
+    "图片与视频",
+    "Image & Video"
+  ],
+  [
+    "video-verification",
+    "视频验证",
+    "Video Verification"
+  ],
+  [
+    "geolocation-maps",
+    "地理定位与地图",
+    "Geolocation & Maps"
+  ],
+  [
+    "satellite-imagery",
+    "卫星影像",
+    "Satellite Imagery"
+  ],
+  [
+    "metadata-files",
+    "元数据与文件",
+    "Metadata & Files"
+  ],
+  [
+    "ocr-translation",
+    "OCR 与翻译",
+    "OCR & Translation"
+  ],
+  [
+    "archives",
+    "网页存档",
+    "Archives"
+  ],
+  [
+    "web-domains",
+    "域名 / DNS / WHOIS",
+    "Domains / DNS / WHOIS"
+  ],
+  [
+    "cyber-url-analysis",
+    "URL / 安全分析",
+    "Cyber / URL Analysis"
+  ],
+  [
+    "companies-organizations",
+    "企业与组织",
+    "Companies & Organizations"
+  ],
+  [
+    "public-datasets",
+    "公开数据集",
+    "Public Datasets"
+  ],
+  [
+    "transport-tracking",
+    "航班与船舶",
+    "Flights & Vessels"
+  ],
+  [
+    "code-search",
+    "GitHub / 代码搜索",
+    "Code Search"
+  ],
+  [
+    "dark-web-indexes",
+    "暗网公开索引",
+    "Public Dark-Web Indexes"
+  ],
+  [
+    "contact-public-info",
+    "电话 / 邮箱公开信息",
+    "Public Contact Info"
+  ],
+  [
+    "ai-research",
+    "AI 辅助研究",
+    "AI-Assisted Research"
+  ],
+  [
+    "verification",
+    "验证",
+    "Verification"
+  ],
+  [
+    "research-resources",
+    "研究资源",
+    "Research Resources"
+  ],
+  [
+    "tao-projects",
+    "TAO 项目",
+    "TAO Projects"
+  ]
 ];
 
 const TOOLS = [
@@ -164,6 +266,1025 @@ const TOOLS = [
     description: {
       "zh-CN": "TAO 优化的星空照片定位辅助工具，通过恒星几何关系生成候选位置并进行聚类。",
       en: "TAO-optimized night-sky photo positioning aid using stellar geometry and candidate clustering."
+    }
+  },
+  {
+    "id": "google-advanced-search",
+    "name": "Google Advanced Search",
+    "category": "search-discovery",
+    "type": "external",
+    "interaction": "external",
+    "url": "https://www.google.com/advanced_search",
+    "cost": "free",
+    "accountRequired": false,
+    "platform": [
+      "web"
+    ],
+    "tags": [
+      "search",
+      "operators",
+      "advanced-search"
+    ],
+    "lastReviewed": "2026-10-04",
+    "description": {
+      "zh-CN": "Google 官方高级搜索页面，可按精确短语、排除词、站点、文件类型、时间、语言等条件缩小公开网页搜索范围。",
+      "en": "Google's official advanced search interface for narrowing public web results by exact phrases, exclusions, site, file type, date, language and more."
+    }
+  },
+  {
+    "id": "bing",
+    "name": "Microsoft Bing",
+    "category": "search-discovery",
+    "type": "external",
+    "interaction": "external",
+    "url": "https://www.bing.com/",
+    "cost": "free",
+    "accountRequired": false,
+    "platform": [
+      "web"
+    ],
+    "tags": [
+      "search",
+      "web",
+      "images"
+    ],
+    "lastReviewed": "2026-10-04",
+    "description": {
+      "zh-CN": "通用网页与图片搜索引擎，可作为与 Google 不同索引和排序结果的交叉搜索入口。",
+      "en": "General web and image search useful as a second index and ranking source alongside Google."
+    }
+  },
+  {
+    "id": "duckduckgo",
+    "name": "DuckDuckGo",
+    "category": "search-discovery",
+    "type": "external",
+    "interaction": "external",
+    "url": "https://duckduckgo.com/",
+    "cost": "free",
+    "accountRequired": false,
+    "platform": [
+      "web"
+    ],
+    "tags": [
+      "search",
+      "privacy",
+      "web"
+    ],
+    "lastReviewed": "2026-10-04",
+    "description": {
+      "zh-CN": "注重隐私的网页搜索引擎，适合作为额外搜索索引和快速网页发现入口。",
+      "en": "Privacy-focused web search engine useful as an additional discovery index."
+    }
+  },
+  {
+    "id": "whatsmyname",
+    "name": "WhatsMyName",
+    "category": "username-social",
+    "type": "external",
+    "interaction": "external",
+    "url": "https://whatsmyname.app/",
+    "cost": "free",
+    "accountRequired": false,
+    "platform": [
+      "web"
+    ],
+    "tags": [
+      "username",
+      "social",
+      "profiles"
+    ],
+    "lastReviewed": "2026-10-04",
+    "description": {
+      "zh-CN": "基于社区维护数据集，在大量公开网站中检查用户名是否存在；用户名命中不等于身份确认。",
+      "en": "Checks whether a username exists across many public sites using a community-maintained dataset; a username match does not confirm identity."
+    }
+  },
+  {
+    "id": "sherlock",
+    "name": "Sherlock",
+    "category": "username-social",
+    "type": "external",
+    "interaction": "external",
+    "url": "https://github.com/sherlock-project/sherlock",
+    "cost": "free",
+    "accountRequired": false,
+    "platform": [
+      "windows",
+      "macos",
+      "linux",
+      "python"
+    ],
+    "tags": [
+      "username",
+      "social",
+      "open-source"
+    ],
+    "lastReviewed": "2026-10-04",
+    "description": {
+      "zh-CN": "开源用户名枚举工具，可检查同一公开用户名在多个社交与网站服务中的存在情况。",
+      "en": "Open-source username enumeration tool for checking the presence of a public handle across many services."
+    }
+  },
+  {
+    "id": "icann-lookup",
+    "name": "ICANN Lookup",
+    "category": "web-domains",
+    "type": "external",
+    "interaction": "external",
+    "url": "https://lookup.icann.org/",
+    "cost": "free",
+    "accountRequired": false,
+    "platform": [
+      "web"
+    ],
+    "tags": [
+      "whois",
+      "rdap",
+      "domain",
+      "asn"
+    ],
+    "lastReviewed": "2026-10-04",
+    "description": {
+      "zh-CN": "ICANN 官方注册数据查询入口，用于查询公开可见的域名、IP 网络或 ASN 注册数据。",
+      "en": "ICANN's official lookup interface for publicly available domain, IP network and ASN registration data."
+    }
+  },
+  {
+    "id": "dnsdumpster",
+    "name": "DNSDumpster",
+    "category": "web-domains",
+    "type": "external",
+    "interaction": "external",
+    "url": "https://dnsdumpster.com/",
+    "cost": "free",
+    "accountRequired": false,
+    "platform": [
+      "web"
+    ],
+    "tags": [
+      "dns",
+      "domain",
+      "hosts",
+      "research"
+    ],
+    "lastReviewed": "2026-10-04",
+    "description": {
+      "zh-CN": "面向网络研究的 DNS 公开记录查询工具，可帮助理解与域名关联的可见主机和 DNS 结构。",
+      "en": "DNS research tool for exploring publicly visible records and hosts associated with a domain."
+    }
+  },
+  {
+    "id": "crt-sh",
+    "name": "crt.sh",
+    "category": "web-domains",
+    "type": "external",
+    "interaction": "external",
+    "url": "https://crt.sh/",
+    "cost": "free",
+    "accountRequired": false,
+    "platform": [
+      "web"
+    ],
+    "tags": [
+      "certificates",
+      "certificate-transparency",
+      "domains"
+    ],
+    "lastReviewed": "2026-10-04",
+    "description": {
+      "zh-CN": "Certificate Transparency 证书搜索工具，可按域名、组织、证书指纹等查询公开证书记录。",
+      "en": "Certificate Transparency search for public certificate records by domain, organization, fingerprint and related identifiers."
+    }
+  },
+  {
+    "id": "securitytrails",
+    "name": "SecurityTrails",
+    "category": "web-domains",
+    "type": "external",
+    "interaction": "external",
+    "url": "https://securitytrails.com/",
+    "cost": "partially-free",
+    "accountRequired": true,
+    "platform": [
+      "web",
+      "api"
+    ],
+    "tags": [
+      "dns",
+      "whois",
+      "ip",
+      "domain"
+    ],
+    "lastReviewed": "2026-10-04",
+    "description": {
+      "zh-CN": "提供 DNS、WHOIS、IP 和公司相关公开基础设施数据的查询与 API 服务。",
+      "en": "Web and API access to DNS, WHOIS, IP and organization-related infrastructure data."
+    }
+  },
+  {
+    "id": "opencorporates",
+    "name": "OpenCorporates",
+    "category": "companies-organizations",
+    "type": "external",
+    "interaction": "external",
+    "url": "https://opencorporates.com/",
+    "cost": "partially-free",
+    "accountRequired": false,
+    "platform": [
+      "web",
+      "api"
+    ],
+    "tags": [
+      "companies",
+      "registries",
+      "legal-entities"
+    ],
+    "lastReviewed": "2026-10-04",
+    "description": {
+      "zh-CN": "聚合多个司法辖区官方来源的公司和法律实体记录，并保留来源可追溯性。",
+      "en": "Aggregates company and legal-entity records from official sources across many jurisdictions with source provenance."
+    }
+  },
+  {
+    "id": "sec-edgar",
+    "name": "SEC EDGAR",
+    "category": "companies-organizations",
+    "type": "external",
+    "interaction": "external",
+    "url": "https://www.sec.gov/search-filings",
+    "cost": "free",
+    "accountRequired": false,
+    "platform": [
+      "web"
+    ],
+    "tags": [
+      "companies",
+      "filings",
+      "sec",
+      "usa"
+    ],
+    "lastReviewed": "2026-10-04",
+    "description": {
+      "zh-CN": "美国 SEC 官方公司申报与公开文件搜索，可按公司名、股票代码、CIK 等查询。",
+      "en": "Official U.S. SEC search for company filings and public disclosure documents by name, ticker, CIK and more."
+    }
+  },
+  {
+    "id": "companies-house",
+    "name": "UK Companies House",
+    "category": "companies-organizations",
+    "type": "external",
+    "interaction": "external",
+    "url": "https://find-and-update.company-information.service.gov.uk/",
+    "cost": "free",
+    "accountRequired": false,
+    "platform": [
+      "web",
+      "api"
+    ],
+    "tags": [
+      "companies",
+      "uk",
+      "registry",
+      "officers"
+    ],
+    "lastReviewed": "2026-10-04",
+    "description": {
+      "zh-CN": "英国官方公司注册信息服务，可查询公司状态、注册地址、文件和公开高管信息。",
+      "en": "Official UK company register for company status, registered address, filings and public officer information."
+    }
+  },
+  {
+    "id": "gleif-lei-search",
+    "name": "GLEIF LEI Search",
+    "category": "companies-organizations",
+    "type": "external",
+    "interaction": "external",
+    "url": "https://www.gleif.org/en/lei-search",
+    "cost": "free",
+    "accountRequired": false,
+    "platform": [
+      "web"
+    ],
+    "tags": [
+      "lei",
+      "legal-entities",
+      "ownership",
+      "companies"
+    ],
+    "lastReviewed": "2026-10-04",
+    "description": {
+      "zh-CN": "GLEIF 官方 LEI 搜索，可免费查询全球 Legal Entity Identifier 数据和部分企业关系结构。",
+      "en": "Official GLEIF search for global Legal Entity Identifier data and related legal-entity relationships."
+    }
+  },
+  {
+    "id": "google-dataset-search",
+    "name": "Google Dataset Search",
+    "category": "public-datasets",
+    "type": "external",
+    "interaction": "external",
+    "url": "https://datasetsearch.research.google.com/",
+    "cost": "free",
+    "accountRequired": false,
+    "platform": [
+      "web"
+    ],
+    "tags": [
+      "datasets",
+      "search",
+      "research"
+    ],
+    "lastReviewed": "2026-10-04",
+    "description": {
+      "zh-CN": "Google 面向公开数据集的专用搜索入口，可从多个网站发现可检索的数据资源。",
+      "en": "Google's dedicated search engine for discovering publicly indexed datasets across the web."
+    }
+  },
+  {
+    "id": "data-gov",
+    "name": "Data.gov",
+    "category": "public-datasets",
+    "type": "external",
+    "interaction": "external",
+    "url": "https://data.gov/",
+    "cost": "free",
+    "accountRequired": false,
+    "platform": [
+      "web",
+      "api"
+    ],
+    "tags": [
+      "government",
+      "open-data",
+      "usa"
+    ],
+    "lastReviewed": "2026-10-04",
+    "description": {
+      "zh-CN": "美国政府开放数据门户，集中提供联邦机构数据集、工具和公开数据资源。",
+      "en": "U.S. government open-data portal for federal datasets, tools and public data resources."
+    }
+  },
+  {
+    "id": "world-bank-open-data",
+    "name": "World Bank Open Data",
+    "category": "public-datasets",
+    "type": "external",
+    "interaction": "external",
+    "url": "https://data.worldbank.org/",
+    "cost": "free",
+    "accountRequired": false,
+    "platform": [
+      "web",
+      "api"
+    ],
+    "tags": [
+      "development",
+      "economics",
+      "global-data"
+    ],
+    "lastReviewed": "2026-10-04",
+    "description": {
+      "zh-CN": "世界银行开放数据平台，提供全球发展、经济、人口、基础设施等指标。",
+      "en": "World Bank open data for global development, economics, population, infrastructure and related indicators."
+    }
+  },
+  {
+    "id": "kaggle-datasets",
+    "name": "Kaggle Datasets",
+    "category": "public-datasets",
+    "type": "external",
+    "interaction": "external",
+    "url": "https://www.kaggle.com/datasets",
+    "cost": "free",
+    "accountRequired": true,
+    "platform": [
+      "web",
+      "api",
+      "python"
+    ],
+    "tags": [
+      "datasets",
+      "machine-learning",
+      "research"
+    ],
+    "lastReviewed": "2026-10-04",
+    "description": {
+      "zh-CN": "大型数据集社区和检索平台，适合查找公开 CSV、JSON、图像、文本等研究数据。",
+      "en": "Large dataset discovery and sharing platform for public CSV, JSON, image, text and machine-learning datasets."
+    }
+  },
+  {
+    "id": "flightradar24",
+    "name": "Flightradar24",
+    "category": "transport-tracking",
+    "type": "external",
+    "interaction": "external",
+    "url": "https://www.flightradar24.com/",
+    "cost": "partially-free",
+    "accountRequired": false,
+    "platform": [
+      "web",
+      "mobile"
+    ],
+    "tags": [
+      "flights",
+      "aircraft",
+      "aviation"
+    ],
+    "lastReviewed": "2026-10-04",
+    "description": {
+      "zh-CN": "全球航班与飞机活动可视化平台，基础实时跟踪免费，高级历史和分析功能需订阅。",
+      "en": "Global flight and aircraft activity visualization with free basic live tracking and paid advanced history/features."
+    }
+  },
+  {
+    "id": "adsb-exchange",
+    "name": "ADS-B Exchange",
+    "category": "transport-tracking",
+    "type": "external",
+    "interaction": "external",
+    "url": "https://www.adsbexchange.com/",
+    "cost": "partially-free",
+    "accountRequired": false,
+    "platform": [
+      "web",
+      "api"
+    ],
+    "tags": [
+      "ads-b",
+      "flights",
+      "aircraft"
+    ],
+    "lastReviewed": "2026-10-04",
+    "description": {
+      "zh-CN": "基于全球 ADS-B 接收网络的飞机活动查看服务，提供实时地图和部分历史/开发者数据。",
+      "en": "Aircraft activity service built on a global ADS-B receiver network, with live maps and data products."
+    }
+  },
+  {
+    "id": "flightaware",
+    "name": "FlightAware",
+    "category": "transport-tracking",
+    "type": "external",
+    "interaction": "external",
+    "url": "https://www.flightaware.com/live/",
+    "cost": "partially-free",
+    "accountRequired": false,
+    "platform": [
+      "web",
+      "mobile",
+      "api"
+    ],
+    "tags": [
+      "flights",
+      "airports",
+      "aviation"
+    ],
+    "lastReviewed": "2026-10-04",
+    "description": {
+      "zh-CN": "航班、机场和航空活动跟踪平台，提供实时、历史和预测类航空信息。",
+      "en": "Flight, airport and aviation tracking platform with real-time, historical and predictive information."
+    }
+  },
+  {
+    "id": "marinetraffic",
+    "name": "MarineTraffic",
+    "category": "transport-tracking",
+    "type": "external",
+    "interaction": "external",
+    "url": "https://www.marinetraffic.com/",
+    "cost": "partially-free",
+    "accountRequired": false,
+    "platform": [
+      "web",
+      "mobile"
+    ],
+    "tags": [
+      "ships",
+      "ais",
+      "vessels",
+      "ports"
+    ],
+    "lastReviewed": "2026-10-04",
+    "description": {
+      "zh-CN": "基于 AIS 的船舶和港口公开跟踪平台，可查看船舶位置、航迹和港口活动。",
+      "en": "AIS-based vessel and port tracking for public ship positions, tracks and port activity."
+    }
+  },
+  {
+    "id": "vesselfinder",
+    "name": "VesselFinder",
+    "category": "transport-tracking",
+    "type": "external",
+    "interaction": "external",
+    "url": "https://www.vesselfinder.com/",
+    "cost": "partially-free",
+    "accountRequired": false,
+    "platform": [
+      "web",
+      "mobile"
+    ],
+    "tags": [
+      "ships",
+      "ais",
+      "vessels"
+    ],
+    "lastReviewed": "2026-10-04",
+    "description": {
+      "zh-CN": "船舶位置和 AIS 信息查询平台，可按船名、IMO、MMSI 等公开标识查找船舶。",
+      "en": "Vessel and AIS lookup service searchable by public identifiers such as ship name, IMO and MMSI."
+    }
+  },
+  {
+    "id": "copernicus-browser",
+    "name": "Copernicus Browser",
+    "category": "satellite-imagery",
+    "type": "external",
+    "interaction": "external",
+    "url": "https://browser.dataspace.copernicus.eu/",
+    "cost": "free",
+    "accountRequired": true,
+    "platform": [
+      "web"
+    ],
+    "tags": [
+      "sentinel",
+      "satellite",
+      "earth-observation"
+    ],
+    "lastReviewed": "2026-10-04",
+    "description": {
+      "zh-CN": "Copernicus Data Space 官方浏览器，可搜索、可视化、比较和下载 Sentinel 等地球观测数据。",
+      "en": "Official Copernicus Data Space browser for searching, visualizing, comparing and downloading Sentinel and related Earth-observation data."
+    }
+  },
+  {
+    "id": "nasa-worldview",
+    "name": "NASA Worldview",
+    "category": "satellite-imagery",
+    "type": "external",
+    "interaction": "external",
+    "url": "https://worldview.earthdata.nasa.gov/",
+    "cost": "free",
+    "accountRequired": false,
+    "platform": [
+      "web"
+    ],
+    "tags": [
+      "nasa",
+      "satellite",
+      "earth-observation",
+      "imagery"
+    ],
+    "lastReviewed": "2026-10-04",
+    "description": {
+      "zh-CN": "NASA Earthdata 的全球卫星影像浏览工具，可叠加多种近实时和历史地球观测图层。",
+      "en": "NASA Earthdata browser for layered near-real-time and historical global Earth-observation imagery."
+    }
+  },
+  {
+    "id": "google-earth",
+    "name": "Google Earth",
+    "category": "satellite-imagery",
+    "type": "external",
+    "interaction": "external",
+    "url": "https://earth.google.com/web/",
+    "cost": "free",
+    "accountRequired": false,
+    "platform": [
+      "web",
+      "desktop",
+      "mobile"
+    ],
+    "tags": [
+      "satellite",
+      "3d",
+      "maps",
+      "imagery"
+    ],
+    "lastReviewed": "2026-10-04",
+    "description": {
+      "zh-CN": "全球卫星影像、三维地形和地理环境浏览工具，适合视觉地理对照和场景理解。",
+      "en": "Global satellite imagery, 3D terrain and geographic context useful for visual geolocation and scene understanding."
+    }
+  },
+  {
+    "id": "usgs-earthexplorer",
+    "name": "USGS EarthExplorer",
+    "category": "satellite-imagery",
+    "type": "external",
+    "interaction": "external",
+    "url": "https://earthexplorer.usgs.gov/",
+    "cost": "free",
+    "accountRequired": true,
+    "platform": [
+      "web"
+    ],
+    "tags": [
+      "landsat",
+      "usgs",
+      "satellite",
+      "download"
+    ],
+    "lastReviewed": "2026-10-04",
+    "description": {
+      "zh-CN": "USGS 官方遥感数据搜索与下载平台，可按位置、时间、数据集和云量等条件筛选。",
+      "en": "Official USGS search and download portal for remote-sensing datasets filtered by location, date, collection and cloud cover."
+    }
+  },
+  {
+    "id": "invid-weverify",
+    "name": "InVID-WeVerify Verification Plugin",
+    "category": "video-verification",
+    "type": "external",
+    "interaction": "external",
+    "url": "https://weverify.eu/verification-plugin/",
+    "cost": "free",
+    "accountRequired": false,
+    "platform": [
+      "browser-extension"
+    ],
+    "tags": [
+      "video",
+      "verification",
+      "keyframes",
+      "metadata"
+    ],
+    "lastReviewed": "2026-10-04",
+    "description": {
+      "zh-CN": "面向记者和事实核查的图片/视频验证插件，支持视频关键帧、元数据、反向搜索和多种验证工具。",
+      "en": "Image and video verification plugin for journalists and fact-checkers, with keyframes, metadata, reverse search and other verification tools."
+    }
+  },
+  {
+    "id": "google-lens",
+    "name": "Google Lens",
+    "category": "ocr-translation",
+    "type": "external",
+    "interaction": "external",
+    "url": "https://lens.google.com/",
+    "cost": "free",
+    "accountRequired": false,
+    "platform": [
+      "web",
+      "mobile"
+    ],
+    "tags": [
+      "ocr",
+      "visual-search",
+      "image",
+      "text"
+    ],
+    "lastReviewed": "2026-10-04",
+    "description": {
+      "zh-CN": "Google 的视觉搜索与文字识别工具，可从图片识别文字、物体、地点线索并进行相似图像搜索。",
+      "en": "Google visual search and text recognition for extracting text, identifying objects/place clues and finding visually similar content."
+    }
+  },
+  {
+    "id": "google-translate",
+    "name": "Google Translate",
+    "category": "ocr-translation",
+    "type": "external",
+    "interaction": "external",
+    "url": "https://translate.google.com/",
+    "cost": "free",
+    "accountRequired": false,
+    "platform": [
+      "web",
+      "mobile"
+    ],
+    "tags": [
+      "translation",
+      "languages",
+      "ocr"
+    ],
+    "lastReviewed": "2026-10-04",
+    "description": {
+      "zh-CN": "多语言文本和文档翻译工具，可辅助跨语言公开信息阅读和初步理解。",
+      "en": "Multilingual text and document translation useful for first-pass understanding of public-source material."
+    }
+  },
+  {
+    "id": "deepl",
+    "name": "DeepL Translator",
+    "category": "ocr-translation",
+    "type": "external",
+    "interaction": "external",
+    "url": "https://www.deepl.com/translator",
+    "cost": "partially-free",
+    "accountRequired": false,
+    "platform": [
+      "web",
+      "desktop",
+      "mobile"
+    ],
+    "tags": [
+      "translation",
+      "languages",
+      "documents"
+    ],
+    "lastReviewed": "2026-10-04",
+    "description": {
+      "zh-CN": "高质量多语言翻译工具，适合长文本、文档和跨语言资料辅助阅读。",
+      "en": "High-quality multilingual translation for long-form text, documents and cross-language research."
+    }
+  },
+  {
+    "id": "tesseract-ocr",
+    "name": "Tesseract OCR",
+    "category": "ocr-translation",
+    "type": "external",
+    "interaction": "external",
+    "url": "https://github.com/tesseract-ocr/tesseract",
+    "cost": "free",
+    "accountRequired": false,
+    "platform": [
+      "windows",
+      "macos",
+      "linux"
+    ],
+    "tags": [
+      "ocr",
+      "open-source",
+      "text-recognition"
+    ],
+    "lastReviewed": "2026-10-04",
+    "description": {
+      "zh-CN": "开源 OCR 引擎，可本地从图片中提取文字，适合隐私敏感或批量文字识别场景。",
+      "en": "Open-source OCR engine for local text extraction from images, useful for privacy-sensitive or batch recognition workflows."
+    }
+  },
+  {
+    "id": "github-code-search",
+    "name": "GitHub Code Search",
+    "category": "code-search",
+    "type": "external",
+    "interaction": "external",
+    "url": "https://github.com/search?type=code",
+    "cost": "free",
+    "accountRequired": true,
+    "platform": [
+      "web"
+    ],
+    "tags": [
+      "github",
+      "code",
+      "repositories"
+    ],
+    "lastReviewed": "2026-10-04",
+    "description": {
+      "zh-CN": "GitHub 官方代码搜索入口，用于在公开仓库中检索代码、文件、路径和相关项目内容。",
+      "en": "GitHub's official code search for public repositories, code, files, paths and related project content."
+    }
+  },
+  {
+    "id": "grep-app",
+    "name": "grep.app",
+    "category": "code-search",
+    "type": "external",
+    "interaction": "external",
+    "url": "https://grep.app/",
+    "cost": "free",
+    "accountRequired": false,
+    "platform": [
+      "web"
+    ],
+    "tags": [
+      "code",
+      "github",
+      "search"
+    ],
+    "lastReviewed": "2026-10-04",
+    "description": {
+      "zh-CN": "跨大量 GitHub 仓库的公开代码、文件和路径搜索服务，适合快速查找实现和字符串出现位置。",
+      "en": "Public code, file and path search across a large corpus of GitHub repositories."
+    }
+  },
+  {
+    "id": "sourcegraph-code-search",
+    "name": "Sourcegraph Code Search",
+    "category": "code-search",
+    "type": "external",
+    "interaction": "external",
+    "url": "https://sourcegraph.com/search",
+    "cost": "partially-free",
+    "accountRequired": true,
+    "platform": [
+      "web",
+      "ide"
+    ],
+    "tags": [
+      "code",
+      "search",
+      "regex",
+      "repositories"
+    ],
+    "lastReviewed": "2026-10-04",
+    "description": {
+      "zh-CN": "面向大型代码库的高级代码搜索与导航平台，支持正则、布尔查询和跨仓库检索。",
+      "en": "Advanced code search and navigation platform with regex, boolean queries and cross-repository search."
+    }
+  },
+  {
+    "id": "ahmia",
+    "name": "Ahmia",
+    "category": "dark-web-indexes",
+    "type": "external",
+    "interaction": "external",
+    "url": "https://ahmia.fi/",
+    "cost": "free",
+    "accountRequired": false,
+    "platform": [
+      "web",
+      "tor"
+    ],
+    "tags": [
+      "tor",
+      "onion",
+      "search",
+      "index"
+    ],
+    "lastReviewed": "2026-10-04",
+    "description": {
+      "zh-CN": "公开的 Tor/onion 服务搜索索引，适合研究公开可索引的 onion 服务；结果可能包含不安全或违法内容，应谨慎使用。",
+      "en": "Public search index for discoverable Tor/onion services; results may contain unsafe or illegal material, so use cautiously."
+    }
+  },
+  {
+    "id": "hunter-domain-search",
+    "name": "Hunter Domain Search",
+    "category": "contact-public-info",
+    "type": "external",
+    "interaction": "external",
+    "url": "https://hunter.io/domain-search",
+    "cost": "partially-free",
+    "accountRequired": true,
+    "platform": [
+      "web",
+      "api"
+    ],
+    "tags": [
+      "email",
+      "company",
+      "domain",
+      "professional"
+    ],
+    "lastReviewed": "2026-10-04",
+    "description": {
+      "zh-CN": "从公开网页来源查找与企业域名关联的专业邮箱，并显示来源、发现日期和置信度等信息。",
+      "en": "Finds professional email addresses associated with company domains using public web sources, with source and confidence context."
+    }
+  },
+  {
+    "id": "have-i-been-pwned",
+    "name": "Have I Been Pwned",
+    "category": "contact-public-info",
+    "type": "external",
+    "interaction": "external",
+    "url": "https://haveibeenpwned.com/",
+    "cost": "free",
+    "accountRequired": false,
+    "platform": [
+      "web",
+      "api"
+    ],
+    "tags": [
+      "email",
+      "breach",
+      "security",
+      "self-audit"
+    ],
+    "lastReviewed": "2026-10-04",
+    "description": {
+      "zh-CN": "检查邮箱地址是否出现在已知数据泄露事件中，适合个人或授权账户的安全自查。",
+      "en": "Checks whether an email address appears in known data breaches, useful for personal or authorized security awareness."
+    }
+  },
+  {
+    "id": "perplexity",
+    "name": "Perplexity",
+    "category": "ai-research",
+    "type": "external",
+    "interaction": "external",
+    "url": "https://www.perplexity.ai/",
+    "cost": "partially-free",
+    "accountRequired": true,
+    "platform": [
+      "web",
+      "mobile"
+    ],
+    "tags": [
+      "ai",
+      "research",
+      "search",
+      "citations"
+    ],
+    "lastReviewed": "2026-10-04",
+    "description": {
+      "zh-CN": "AI 辅助搜索与研究工具，可汇总公开网页信息并给出来源链接，仍需人工核对原始来源。",
+      "en": "AI-assisted search and research that summarizes public web information with source links; original sources still require manual verification."
+    }
+  },
+  {
+    "id": "elicit",
+    "name": "Elicit",
+    "category": "ai-research",
+    "type": "external",
+    "interaction": "external",
+    "url": "https://elicit.com/",
+    "cost": "partially-free",
+    "accountRequired": true,
+    "platform": [
+      "web"
+    ],
+    "tags": [
+      "ai",
+      "papers",
+      "literature-review",
+      "research"
+    ],
+    "lastReviewed": "2026-10-04",
+    "description": {
+      "zh-CN": "面向学术研究的 AI 助手，可帮助检索论文、提取研究信息和整理文献证据。",
+      "en": "AI research assistant for finding papers, extracting study information and organizing literature evidence."
+    }
+  },
+  {
+    "id": "consensus",
+    "name": "Consensus",
+    "category": "ai-research",
+    "type": "external",
+    "interaction": "external",
+    "url": "https://consensus.app/",
+    "cost": "partially-free",
+    "accountRequired": true,
+    "platform": [
+      "web"
+    ],
+    "tags": [
+      "ai",
+      "academic",
+      "papers",
+      "evidence"
+    ],
+    "lastReviewed": "2026-10-04",
+    "description": {
+      "zh-CN": "基于学术论文的 AI 搜索与证据摘要工具，适合快速了解研究共识和相关文献。",
+      "en": "AI search and evidence summarization over academic papers for quickly exploring research findings and relevant literature."
+    }
+  },
+  {
+    "id": "scite",
+    "name": "Scite",
+    "category": "ai-research",
+    "type": "external",
+    "interaction": "external",
+    "url": "https://scite.ai/",
+    "cost": "partially-free",
+    "accountRequired": true,
+    "platform": [
+      "web",
+      "api"
+    ],
+    "tags": [
+      "citations",
+      "papers",
+      "ai",
+      "evidence"
+    ],
+    "lastReviewed": "2026-10-04",
+    "description": {
+      "zh-CN": "学术研究与引文分析平台，可查看论文被后续研究支持、质疑或讨论的上下文。",
+      "en": "Research and citation-analysis platform for seeing how later literature supports, challenges or discusses scholarly work."
+    }
+  },
+  {
+    "id": "libphonenumber",
+    "name": "Google libphonenumber",
+    "category": "contact-public-info",
+    "type": "external",
+    "interaction": "external",
+    "url": "https://github.com/google/libphonenumber",
+    "cost": "free",
+    "accountRequired": false,
+    "platform": [
+      "java",
+      "javascript",
+      "cpp"
+    ],
+    "tags": [
+      "phone",
+      "validation",
+      "metadata",
+      "open-source"
+    ],
+    "lastReviewed": "2026-10-04",
+    "description": {
+      "zh-CN": "Google 开源电话号码库，用于解析、格式化和验证国际号码，并提供号码类型、地区、原始运营商等有限离线元数据。",
+      "en": "Open-source library for parsing, formatting and validating international phone numbers, including number type and limited offline metadata."
     }
   }
 ];

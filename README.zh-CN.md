@@ -78,21 +78,33 @@ TAO OSINT
 - 少量 TAO 内置工具直接打开
 - 桌面与移动端适配
 
-## 第一批工具
+## 工具目录覆盖
 
-当前目录已经包含：
+当前目录已经扩展到 **51 个精选工具**，覆盖：
 
-- Bellingcat Online Investigations Toolkit
-- TinEye
-- ExifTool
-- OpenStreetMap
-- SunCalc
-- Internet Archive / Wayback Machine
-- urlscan.io
-- VirusTotal
-- Photo Stargazing Positioning
+- 搜索引擎与高级搜索
+- 用户名 / 社交平台
+- 图片与视频
+- 视频验证
+- 地理定位与地图
+- 卫星影像
+- 元数据与文件
+- OCR / 翻译
+- 网页存档
+- 域名 / DNS / WHOIS
+- URL / 安全分析
+- 企业与组织
+- 公开数据集
+- 航班 / 船舶
+- GitHub / 代码搜索
+- 暗网公开索引
+- 电话 / 邮箱公开信息
+- AI 辅助研究
+- 验证资源
+- 研究资源
+- TAO 项目
 
-其中绝大多数是**外部工具收藏项**。
+绝大多数仍然是**外部工具收藏项**，点击后进入官方入口；直接内置使用只保留少量精选 TAO 工具。
 
 ### Photo Stargazing Positioning
 
