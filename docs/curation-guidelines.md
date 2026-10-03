@@ -2,50 +2,72 @@
 
 ## Goal
 
-TAO OSINT should be a useful toolbox, not an uncontrolled link dump.
+TAO OSINT should be a high-quality **collection and bookmark library**, not an uncontrolled link dump.
 
-A tool belongs in the catalog when it has a clear OSINT/research use case and its inclusion helps a user make a better tool choice.
+The main work of the project is:
+
+- discover useful tools
+- verify the official source
+- categorize them
+- describe them clearly
+- record practical requirements
+- keep links maintained
+- make good tools easy to find again
+
+## Inclusion Rule
+
+A tool belongs in the catalog when:
+
+- it has a clear OSINT / public-research use case
+- its official source can be identified
+- its inclusion helps the user choose or rediscover a tool
+- its limitations can be described honestly
+
+A tool does **not** need to be directly integrated to be valuable.
 
 ## Prefer
 
-- official tool URLs
 - maintained tools
-- transparent pricing/account requirements
+- official websites or repositories
+- transparent pricing
+- clear account requirements
 - clear descriptions
-- known limitations
-- privacy information
-- tools that solve a distinct research task
-- high-quality open-source utilities
-- well-documented public services
+- distinct use cases
+- documented limitations
+- useful privacy notes
+- strong open-source projects
+- reliable public services
 
 ## Avoid
 
-- duplicate entries with no meaningful difference
+- duplicate entries without meaningful difference
 - abandoned tools without a warning
-- links copied from old lists without verification
+- copied links that were never checked
+- entries without an official source
+- misleading one-click claims
 - tools whose main purpose is unauthorized access
-- tools centered on stalking, doxxing or invasive personal targeting
-- misleading "one click" claims
-- entries without an identifiable official source
+- tools centered on stalking, doxxing or invasive targeting
 
 ## Review Checklist
 
 Before adding a tool:
 
-1. Open the official site.
-2. Confirm the service/tool still exists.
-3. Identify the real use case.
+1. Open the official site or repository.
+2. Confirm the project/service still exists.
+3. Identify its primary use case.
 4. Record whether an account is required.
-5. Record free/paid status.
-6. Record important limitations.
-7. Note privacy implications when users upload files or submit URLs.
-8. Add the review date.
-9. Add tags that help search.
-10. Avoid implying that tool output is automatically verified fact.
+5. Record free / partially free / paid status.
+6. Record supported platforms.
+7. Record important limitations.
+8. Add privacy notes when files, URLs or queries are uploaded.
+9. Add useful search tags.
+10. Record the review date.
+11. Mark whether the tool is External, TAO Optimized or TAO Built.
+12. Mark whether it is External-link or Integrated.
 
 ## Categories
 
-A tool should have one primary category and may have multiple tags.
+Each tool should have one primary category and multiple tags when useful.
 
 Initial categories:
 
@@ -60,14 +82,24 @@ Initial categories:
 - Research Resources
 - TAO Projects
 
-## Internal Projects
+## Bookmarks & Collections
 
-TAO-built tools should be rare.
+Favorites and collections are a core product feature.
+
+They should help users build their own OSINT toolbox without duplicating the underlying tool.
+
+Early implementation should prefer local browser storage.
+
+## Internal Tools
+
+TAO-built or TAO-optimized tools should remain rare.
 
 Before creating one, ask:
 
-- Does a mature external tool already solve this?
-- Is there a unique TAO workflow or interface benefit?
-- Can the result be tested?
-- Can uncertainty be displayed honestly?
-- Is long-term maintenance realistic?
+- Does a mature external tool already solve this well?
+- Does direct integration add meaningful value?
+- Is the workflow useful enough to maintain?
+- Can results be tested?
+- Can uncertainty and limitations be shown clearly?
+
+If the answer is mostly no, add the external tool to the catalog instead of building another implementation.
