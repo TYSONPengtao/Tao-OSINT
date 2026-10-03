@@ -426,6 +426,11 @@ function applyLanguage() {
     button.classList.toggle("active", active);
     button.setAttribute("aria-pressed", active ? "true" : "false");
   });
+
+  const readmeLink = $("readme-link");
+  const roadmapLink = $("roadmap-link");
+  if (readmeLink) readmeLink.href = language === "zh-CN" ? "../README.zh-CN.md" : "../README.md";
+  if (roadmapLink) roadmapLink.href = language === "zh-CN" ? "../docs/roadmap.zh-CN.md" : "../docs/roadmap.md";
 }
 
 function render() {
