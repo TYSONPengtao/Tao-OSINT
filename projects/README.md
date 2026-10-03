@@ -8,4 +8,19 @@ Internal projects should exist only when they provide a clear capability that is
 
 ## Current
 
-- [Photo Stargazing Positioning](photo-stargazing-positioning/README.md) — existing local prototype awaiting import and optimization.
+### Photo Stargazing Positioning
+
+[Open project](photo-stargazing-positioning/README.md)
+
+Status: **TAO Optimized prototype**
+
+Migrated from the historical local learning project and refactored into:
+
+- reusable Python core
+- reproducible sample configuration
+- unit tests
+- JSON / CSV result export
+- geographic candidate clustering
+- browser-only Web MVP
+
+The original historical executable is not used as source-of-truth.
