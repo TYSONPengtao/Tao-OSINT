@@ -1,115 +1,117 @@
 # TAO OSINT Roadmap
 
-## v0.1 — Research Foundation
+## v0.1 — Catalog Foundation
 
-Goal: establish the canonical model and project workflow.
+Goal: establish TAO OSINT as a maintained tool directory.
 
 Planned:
 
-- architecture
-- canonical data model
-- case model
-- source ledger
-- claim/evidence model
-- entity/event model
-- manual import
-- JSON import/export
-- methodology
-- responsible-use policy
-- basic tests
+- category taxonomy
+- tool metadata schema
+- seed catalog
+- YAML validation
+- curation guidelines
+- responsible-use guidelines
+- external / TAO-built / TAO-optimized classification
+- initial Photo Stargazing Positioning project placeholder
 
 Exit criteria:
 
-- one research case can be represented end to end
-- conclusions can be traced to evidence and sources
-- no visualization owns separate truth
+- tools can be added through one consistent schema
+- categories are stable enough for the first UI
+- every tool has an official URL and purpose
+- limitations and cost/account requirements are visible
 
-## v0.2 — Evidence Workbench
+## v0.2 — Searchable Web Launchpad
 
-Goal: usable local research interface.
-
-Planned:
-
-- case dashboard
-- source entry/editing
-- claim/evidence ledger
-- filters and search
-- source-type classification
-- notes
-- basic capture metadata
-- local persistence
-
-## v0.3 — Timeline & Entity Graph
-
-Goal: understand sequence and relationships.
+Goal: make the catalog pleasant to use.
 
 Planned:
 
-- event timeline
-- entity normalization
-- typed relationships
-- evidence-backed graph edges
-- contradiction view
-- source dependency view
+- responsive homepage
+- category browser
+- global search
+- tags
+- free / paid filters
+- login-required filter
+- tool detail drawer/page
+- launch external tool action
+- recently reviewed status
 
-## v0.4 — Geospatial Analysis
+## v0.3 — Workflow Collections
 
-Goal: add map-based context.
+Goal: organize tools by task, not only category.
 
-Planned:
+Initial workflows:
 
-- locations
-- location precision
-- event map
-- source-linked geographic observations
-- time + map filtering
+- reverse image verification
+- photo metadata inspection
+- basic geolocation
+- sun/shadow analysis
+- web archive research
+- website / URL inspection
 
-No covert location tracking features are planned.
+A workflow should explain which tool to use at each stage without pretending that one tool produces definitive truth.
 
-## v0.5 — Public-Source Connectors
+## v0.4 — Photo Stargazing Positioning
 
-Goal: reduce repetitive manual import.
-
-Candidate categories:
-
-- official public APIs
-- RSS/Atom
-- public web archives
-- user-supplied documents
-- standards-compliant metadata extraction
-
-Every connector must preserve provenance and respect access controls.
-
-## v0.6 — Reporting & Reproducibility
+Goal: import and optimize the existing local prototype.
 
 Planned:
 
-- case reports
-- citation export
-- research bundles
-- machine-readable export
-- provenance appendix
-- change history
+- inspect and clean existing code
+- define inputs and outputs
+- isolate astronomical calculations
+- improve star/constellation matching workflow
+- integrate map and sky references
+- add confidence/uncertainty presentation
+- mobile-friendly interface
+- reproducible result export
+- add to catalog as a TAO-built/optimized tool
 
-## v1.0 — Integrated Research Platform
+## v0.5 — Selected TAO Utilities
 
-A stable platform should provide:
+Only add tools that solve a real gap.
 
-- case management
-- evidence-centric research
-- provenance
-- timeline
-- graph
-- map
-- reporting
-- extensible connectors
-- documented methodology
-- responsible-use controls
+Potential directions:
+
+- metadata viewer
+- source comparison helper
+- coordinate/time conversion helpers
+- image-analysis utilities
+- map/astronomy utilities
+
+Avoid duplicating mature external tools without a clear benefit.
+
+## v0.6 — Maintenance & Contributions
+
+Planned:
+
+- contribution template
+- tool review dates
+- broken-link checks
+- catalog validation CI
+- change log
+- tool deprecation status
+- community suggestions
+
+## v1.0 — Stable OSINT Toolbox Platform
+
+A stable release should provide:
+
+- maintained tool catalog
+- fast search/filtering
+- task-oriented workflows
+- clear limitations
+- selected integrated TAO projects
+- mobile usability
+- documented contribution process
+- responsible-use boundaries
 
 ## Not a Current Priority
 
-- mass scraping
-- hidden/private-data discovery
-- intrusive personal-data aggregation
-- premature AI summarization without provenance
-- complex infrastructure before the core research model is stable
+- mass scraping infrastructure
+- giant intelligence databases
+- storing large amounts of personal data
+- replacing every external tool with a TAO clone
+- complex accounts/cloud infrastructure before it is needed
