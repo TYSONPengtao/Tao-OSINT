@@ -14,6 +14,7 @@ type:
 interaction:
 url:
 description:
+description_zh:
 use_cases:
 cost:
 account_required:
@@ -33,6 +34,7 @@ privacy_notes:
 official_docs:
 source_repository:
 languages:
+name_zh:
 tao_project_path:
 ```
 
@@ -138,3 +140,17 @@ Allowed initial values:
 The catalog should describe what a tool is useful for without overstating what its output proves.
 
 Collection is the default. Direct integration is the exception.
+
+
+## Bilingual Metadata
+
+The catalog remains English-first for stable identifiers and interoperability, while user-facing entries may include:
+
+```yaml
+name: Official Tool Name
+name_zh: 可选中文显示名
+description: English description
+description_zh: 中文说明
+```
+
+The frontend must provide both Chinese and English descriptions for every displayed tool.
