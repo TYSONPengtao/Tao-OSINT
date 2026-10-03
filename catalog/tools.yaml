@@ -3,6 +3,7 @@ tools:
     name: Bellingcat Online Investigations Toolkit
     category: research-resources
     type: external
+    interaction: external
     url: https://bellingcat.gitbook.io/toolkit/
     description: Curated open-source research toolkit with categories, requirements, limitations and guides.
     use_cases:
@@ -19,6 +20,7 @@ tools:
     name: TinEye
     category: image-video
     type: external
+    interaction: external
     url: https://tineye.com/
     description: Reverse image search service for finding matching and modified images.
     use_cases:
@@ -36,6 +38,7 @@ tools:
     name: ExifTool
     category: metadata-files
     type: external
+    interaction: external
     url: https://exiftool.org/
     official_docs: https://exiftool.org/exiftool_pod.html
     description: Command-line and library tooling for reading and writing metadata across many file formats.
@@ -54,6 +57,7 @@ tools:
     name: OpenStreetMap
     category: geolocation-maps
     type: external
+    interaction: external
     url: https://www.openstreetmap.org/
     description: Openly licensed collaborative map of the world.
     use_cases:
@@ -71,6 +75,7 @@ tools:
     name: SunCalc
     category: geolocation-maps
     type: external
+    interaction: external
     url: https://www.suncalc.org/
     description: Sun position, altitude, azimuth and shadow calculations for a selected place and time.
     use_cases:
@@ -87,6 +92,7 @@ tools:
     name: Internet Archive Wayback Machine
     category: archives
     type: external
+    interaction: external
     url: https://web.archive.org/
     description: Public web archive for viewing historical captures of web pages.
     use_cases:
@@ -103,6 +109,7 @@ tools:
     name: urlscan.io
     category: cyber-url-analysis
     type: external
+    interaction: external
     url: https://urlscan.io/
     official_docs: https://docs.urlscan.io/
     description: Public service for scanning and analyzing website behavior, resources and screenshots.
@@ -123,6 +130,7 @@ tools:
     name: VirusTotal
     category: cyber-url-analysis
     type: external
+    interaction: external
     url: https://www.virustotal.com/
     official_docs: https://docs.virustotal.com/
     description: Service for analyzing files, URLs, domains and related threat-intelligence context.
@@ -140,6 +148,7 @@ tools:
     name: Photo Stargazing Positioning
     category: tao-projects
     type: tao-optimized
+    interaction: integrated
     url: ./projects/photo-stargazing-positioning/
     description: TAO project for using stars and sky geometry as clues for photo positioning and contextual verification.
     use_cases:
