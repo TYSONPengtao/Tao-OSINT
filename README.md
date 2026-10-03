@@ -108,7 +108,7 @@ See [docs/tool-schema.md](docs/tool-schema.md).
 
 ## Catalog Coverage
 
-The curated catalog now contains **50 tools** across the following areas:
+The curated catalog now contains **51 tools** across the following areas:
 
 - Search & advanced search
 - Username & social platforms
