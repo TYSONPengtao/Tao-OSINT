@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="color-scheme" content="dark" />
+  <title>TAO OSINT · Photo Stargazing Positioning</title>
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+  <main class="shell">
+    <header class="topbar">
+      <div>
+        <p class="eyebrow">TAO OSINT / TAO OPTIMIZED</p>
+        <h1>Photo Stargazing Positioning</h1>
+      </div>
+      <span class="version">v0.1 web</span>
+    </header>
+
+    <section class="hero">
+      <div>
+        <p class="kicker">夜空照片定位辅助工具</p>
+        <h2>用恒星几何关系<br><span>缩小位置候选范围。</span></h2>
+      </div>
+      <p class="lede">
+        输入已识别恒星的时角、赤纬、图像坐标与天顶坐标。
+        工具会复现旧项目的几何公式，计算焦距一致性、位置候选与主聚类。
+        结果仅作为 OSINT 线索，需要独立证据交叉验证。
+      </p>
+    </section>
+
+    <section class="workspace">
+      <aside class="input-panel">
+        <div class="section-title">
+          <span>01</span>
+          <div>
+            <p>OBSERVATION</p>
+            <h3>观测数据</h3>
+          </div>
+        </div>
+
+        <div class="actions">
+          <button id="load-sample" class="secondary">载入示例</button>
+          <button id="run-analysis" class="primary">开始计算</button>
+        </div>
+
+        <label for="observation-json">Observation JSON</label>
+        <textarea id="observation-json" spellcheck="false" aria-label="Observation JSON"></textarea>
+
+        <div class="hint">
+          <strong>坐标约定</strong>
+          <p>恒星与天顶必须使用同一个图像坐标系。旧项目的 y 方向约定与 GeoGebra 默认坐标方向不同。</p>
+        </div>
+      </aside>
+
+      <section class="results-panel">
+        <div class="section-title">
+          <span>02</span>
+          <div>
+            <p>RESULT</p>
+            <h3>计算结果</h3>
+          </div>
+        </div>
+
+        <div id="status" class="status idle">载入示例或输入观测数据后开始计算。</div>
+
+        <div class="metrics">
+          <article>
+            <span>FOCAL LENGTH</span>
+            <strong id="metric-focal">—</strong>
+            <small>px</small>
+          </article>
+          <article>
+            <span>CANDIDATES</span>
+            <strong id="metric-candidates">—</strong>
+            <small>数学候选</small>
+          </article>
+          <article>
+            <span>CLUSTER</span>
+            <strong id="metric-cluster">—</strong>
+            <small>候选数</small>
+          </article>
+          <article>
+            <span>MAX RADIUS</span>
+            <strong id="metric-radius">—</strong>
+            <small>km</small>
+          </article>
+        </div>
+
+        <div class="cluster-card">
+          <div>
+            <p>PRIMARY CLUSTER</p>
+            <h4 id="cluster-coordinate">尚未计算</h4>
+          </div>
+          <a id="map-link" class="map-link disabled" href="#" target="_blank" rel="noreferrer">OpenStreetMap ↗</a>
+        </div>
+
+        <div class="map-card">
+          <div class="map-head">
+            <div>
+              <p>CANDIDATE OVERVIEW</p>
+              <h4>全球候选分布</h4>
+            </div>
+            <span>经纬度等距投影</span>
+          </div>
+          <svg id="candidate-map" viewBox="0 0 1000 500" role="img" aria-label="Candidate location overview">
+            <rect width="1000" height="500" class="map-bg"></rect>
+            <g id="grid"></g>
+            <g id="candidate-points"></g>
+          </svg>
+        </div>
+
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Pair</th>
+                <th>Branch</th>
+                <th>Latitude</th>
+                <th>Longitude</th>
+                <th>Cluster</th>
+              </tr>
+            </thead>
+            <tbody id="candidate-table">
+              <tr><td colspan="5" class="empty">暂无候选点</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="export-actions">
+          <button id="export-json" class="secondary" disabled>导出 JSON</button>
+          <button id="export-csv" class="secondary" disabled>导出 CSV</button>
+        </div>
+      </section>
+    </section>
+
+    <section class="method">
+      <div class="section-title">
+        <span>03</span>
+        <div>
+          <p>METHOD</p>
+          <h3>方法与限制</h3>
+        </div>
+      </div>
+
+      <div class="method-grid">
+        <article><span>A</span><h4>恒星参考</h4><p>使用已识别恒星的时角与赤纬建立天球方向向量。</p></article>
+        <article><span>B</span><h4>焦距一致性</h4><p>根据恒星对的天球夹角与图像平面距离反推等效焦距。</p></article>
+        <article><span>C</span><h4>候选求解</h4><p>由恒星仰角约束求得多个数学经纬度根，不假定单根就是答案。</p></article>
+        <article><span>D</span><h4>候选聚类</h4><p>寻找多个星对共同支持的地理聚类，并展示离散程度。</p></article>
+      </div>
+
+      <div class="warning">
+        <strong>重要：</strong>
+        该方法对星体识别、时角、图像坐标、天顶估计、镜头畸变与相机投影都敏感。
+        聚类中心不是“精确定位真值”，应与地形、地标、时间、天气、Stellarium/星图等证据交叉验证。
+      </div>
+    </section>
+
+    <footer>
+      <span>TAO OSINT</span>
+      <span>LOCAL-FIRST · NO SERVER UPLOAD</span>
+    </footer>
+  </main>
+
+  <script src="./app.js"></script>
+</body>
+</html>
