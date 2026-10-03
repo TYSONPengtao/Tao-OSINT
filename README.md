@@ -1,205 +1,184 @@
 # TAO OSINT
 
-**Open-source intelligence research platform for collecting, verifying, correlating and visualizing publicly available information.**
+**An OSINT tool aggregation and experimental toolkit platform.**
 
-TAO OSINT is a first-class project in the TAO technology portfolio, at the same level as **TAO Digital Twin**.
+TAO OSINT is a first-class TAO project, parallel to **TAO Digital Twin**.
 
-Its purpose is to turn public information into structured, traceable research:
+Its main purpose is simple:
 
-```text
-Public Sources
-      ↓
-Collection
-      ↓
-Normalization
-      ↓
-Sources / Claims / Evidence / Entities / Events
-      ↓
-Verification & Corroboration
-      ↓
-Timeline / Graph / Map
-      ↓
-Analysis
-      ↓
-Report / Export
-```
+> Put useful OSINT tools in one organized place, explain what each tool is good for, and gradually add a small number of TAO-built or TAO-optimized utilities.
 
-## Vision
+## Positioning
 
-TAO OSINT is not intended to be a "search everything" tool.
-
-The platform should help a researcher answer four questions:
-
-1. **Where did this information come from?**
-2. **What exactly does the source support?**
-3. **How strongly is the claim corroborated?**
-4. **How are people, organizations, places and events related over time?**
-
-The long-term goal is an evidence-centric research environment that keeps provenance, uncertainty and alternative explanations visible.
-
-## Core Objects
-
-The platform is organized around a small canonical research model:
-
-- **Research Case** — one investigation or research topic
-- **Source** — a public information source and its provenance
-- **Capture** — a preserved observation or snapshot of source material
-- **Claim** — a concrete statement that can be supported or challenged
-- **Evidence** — source material linked to a claim
-- **Entity** — person, organization, place, asset, publication or other named object
-- **Event** — something that happened at a time or within a time interval
-- **Relationship** — a typed connection between entities, claims or events
-- **Location** — geospatial context
-- **Assessment** — analyst judgment with confidence and rationale
-
-See [docs/data-model.md](docs/data-model.md).
-
-## Research Workflow
+TAO OSINT is primarily a **curated OSINT launchpad**, not a monolithic investigation-management system.
 
 ```text
-DISCOVER
-   ↓
-CAPTURE
-   ↓
-NORMALIZE
-   ↓
-VERIFY
-   ↓
-CORRELATE
-   ↓
-ANALYZE
-   ↓
-REPORT
+TAO OSINT
+│
+├── Tool Catalog
+│   ├── Image & Video
+│   ├── Geolocation & Maps
+│   ├── Metadata & Files
+│   ├── Archives
+│   ├── Web & Domains
+│   ├── Verification
+│   ├── Search & Discovery
+│   └── Research Resources
+│
+├── TAO Projects
+│   ├── Photo Stargazing Positioning
+│   └── Future focused utilities
+│
+└── Guides
+    ├── Tool selection
+    ├── Workflows
+    └── Responsible use
 ```
 
-### Discover
-Find relevant, lawfully accessible public sources.
+## Core Product
 
-### Capture
-Record URL, source type, publication date, event date and important excerpts or observations.
+The first real product should be a clean web interface where a user can:
 
-### Normalize
-Convert heterogeneous information into the canonical TAO OSINT data model.
+- browse OSINT tools by category
+- search tools by name, purpose or input type
+- see whether a tool is free, partially free or paid
+- see platform requirements and limitations
+- open the official tool quickly
+- read concise use cases
+- mark TAO-built / TAO-optimized tools
+- discover workflows such as image verification or geolocation
+- launch selected internal TAO utilities directly
 
-### Verify
-Separate direct evidence, secondary reporting, inference and unverified claims.
+The model is closer to a personal, curated **OSINT toolbox / launchpad** than to a giant intelligence database.
 
-### Correlate
-Compare independent sources and identify agreement, contradiction or dependency.
+## Tool Catalog
 
-### Analyze
-Use timelines, entity graphs and geospatial views to understand structure and sequence.
+Each catalog entry should describe:
 
-### Report
-Produce a traceable result where important conclusions remain connected to their sources.
+- name
+- category
+- official URL
+- short description
+- common use cases
+- cost model
+- account requirement
+- platform
+- input types
+- limitations
+- privacy / ethical notes
+- maintenance status
+- tags
+- whether it is external, TAO-built or TAO-optimized
 
-## Planned Platform Architecture
+See [docs/tool-schema.md](docs/tool-schema.md).
+
+## Initial Categories
 
 ```text
-Web Workbench
-     |
-     v
-TAO OSINT API
-     |
-     +---------------------------+
-     |             |             |
-Research Core   Analysis      Connectors
-     |             |             |
-     v             v             v
-Case/Source    Timeline       Public APIs
-Claim/Evidence Graph          Archives
-Entity/Event   Map            User imports
-     |
-     v
-Persistence / Search / Export
+Image & Video
+Geolocation & Maps
+Metadata & Files
+Archives
+Web & Domains
+Verification
+Search & Discovery
+Cyber / URL Analysis
+Research Resources
+TAO Projects
 ```
+
+## Seed Tools
+
+The first catalog can include well-established public tools such as:
+
+- Bellingcat Online Investigations Toolkit
+- TinEye
+- ExifTool
+- OpenStreetMap
+- SunCalc
+- Internet Archive / Wayback Machine
+- urlscan.io
+- VirusTotal
+
+These are references to external tools, not bundled copies.
+
+## TAO Projects
+
+TAO OSINT will contain only a **small number of focused internal projects**.
+
+The first planned project is:
+
+### Photo Stargazing Positioning
+
+An existing local prototype for inferring photo location/direction/time context from stars and sky geometry.
+
+Planned optimization areas:
+
+- clearer workflow
+- better input/output design
+- astronomical calculation separation
+- map integration
+- star/constellation reference workflow
+- reproducible result report
+- mobile-friendly UI
+- integration into the TAO OSINT catalog as a first-class internal tool
+
+Source import is pending from the existing local prototype.
+
+See [projects/photo-stargazing-positioning/README.md](projects/photo-stargazing-positioning/README.md).
 
 ## Repository Structure
 
 ```text
 Tao-OSINT/
-├── frontend/                 # Future web research workbench
-├── backend/                  # Future API and research services
-├── modules/
-│   ├── collection/           # Source ingestion and capture
-│   ├── verification/         # Evidence and claim assessment
-│   ├── entities/             # Entity normalization
-│   ├── timeline/             # Event sequencing
-│   ├── graph/                # Relationship analysis
-│   ├── geospatial/           # Map-oriented analysis
-│   └── reporting/            # Research outputs
+├── catalog/
+│   ├── categories.yaml
+│   └── tools.yaml
+├── frontend/                  # OSINT tool portal / launchpad
+├── backend/                   # Optional catalog/search/API services
+├── projects/
+│   ├── README.md
+│   └── photo-stargazing-positioning/
+├── modules/                   # Shared components for TAO-built tools
+├── docs/
+│   ├── architecture.md
+│   ├── tool-schema.md
+│   ├── curation-guidelines.md
+│   ├── ethics.md
+│   └── roadmap.md
 ├── config/
-├── tests/
-└── docs/
-    ├── architecture.md
-    ├── data-model.md
-    ├── methodology.md
-    ├── ethics.md
-    └── roadmap.md
+└── tests/
 ```
 
-## v0.1 Foundation
+## Product Principles
 
-The first milestone is deliberately small:
-
-- canonical research data model
-- research case and source management
-- manual public-source entry/import
-- claim and evidence ledger
-- provenance tracking
-- event timeline
-- basic entity relationships
-- JSON import/export
-- clear methodology and responsible-use boundaries
-
-Automation comes **after** the data model and evidence workflow are stable.
-
-## Research Boundaries
-
-TAO OSINT is designed for lawful public-information research.
-
-It should not be used to:
-
-- bypass authentication, paywalls or access controls
-- obtain data from private systems without authorization
-- stalk, doxx or harass individuals
-- aggregate sensitive personal information for targeting
-- disguise inference as verified fact
-
-The platform should preserve source provenance, uncertainty and analyst reasoning.
-
-See [docs/ethics.md](docs/ethics.md).
-
-## Project Principles
-
-1. **Evidence before automation.**
-2. **Provenance is part of the data model.**
-3. **Claims and evidence are separate objects.**
-4. **Independent corroboration matters.**
-5. **Event time and publication time are not the same thing.**
-6. **Fact, inference and assessment must remain distinguishable.**
-7. **Public-source research still requires responsible handling.**
-8. **The platform should be useful offline/local-first where practical.**
+1. **Aggregation first.**
+2. **Curate before automating.**
+3. **Link to official tools instead of copying them.**
+4. **Make tool purpose and limitations obvious.**
+5. **Keep internal TAO tools few and high quality.**
+6. **Prefer useful workflows over giant unstructured link lists.**
+7. **Keep the portal fast, searchable and mobile-friendly.**
+8. **Document privacy, account and cost requirements.**
+9. **Do not design for stalking, doxxing or unauthorized access.**
 
 ## Roadmap
 
-See [docs/roadmap.md](docs/roadmap.md).
-
-High-level direction:
-
 ```text
-v0.1  Research foundation
+v0.1  Tool catalog foundation
   ↓
-v0.2  Evidence workbench
+v0.2  Searchable web launchpad
   ↓
-v0.3  Timeline + entity graph
+v0.3  Workflows + collections
   ↓
-v0.4  Geospatial analysis
+v0.4  Photo Stargazing Positioning integration
   ↓
-v0.5  Public-source connectors
+v0.5  More selected TAO utilities
   ↓
-v1.0  Integrated research platform
+v1.0  Stable OSINT toolbox platform
 ```
+
+See [docs/roadmap.md](docs/roadmap.md).
 
 ## Related TAO Projects
 
@@ -208,6 +187,6 @@ v1.0  Integrated research platform
 
 ## Status
 
-**Architecture foundation in progress.**
+**Tool-platform foundation in progress.**
 
 No stable release has been tagged yet.
