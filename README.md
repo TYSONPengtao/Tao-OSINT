@@ -1,59 +1,83 @@
 # TAO OSINT
 
-**An OSINT tool aggregation and experimental toolkit platform.**
+**A curated OSINT tool collection, showcase and bookmark platform — with only a small number of directly usable TAO tools.**
 
 TAO OSINT is a first-class TAO project, parallel to **TAO Digital Twin**.
 
-Its main purpose is simple:
+Its core purpose is:
 
-> Put useful OSINT tools in one organized place, explain what each tool is good for, and gradually add a small number of TAO-built or TAO-optimized utilities.
+> **Collect useful OSINT tools, organize them well, display them clearly, and make them easy to save and reopen. Build only a few internal tools when there is a real reason to do so.**
 
 ## Positioning
 
-TAO OSINT is primarily a **curated OSINT launchpad**, not a monolithic investigation-management system.
+TAO OSINT is primarily a **collection / showcase / bookmark platform**.
+
+It is **not** intended to replace mature OSINT tools, and it is not meant to become a giant all-in-one investigation suite.
+
+Most entries are:
+
+- collected
+- categorized
+- described
+- tagged
+- bookmarked
+- linked to their official website or repository
+
+Only a small number are directly usable inside TAO OSINT.
 
 ```text
 TAO OSINT
 │
-├── Tool Catalog
+├── COLLECTION — the main product
+│   ├── Search & Discovery
 │   ├── Image & Video
 │   ├── Geolocation & Maps
 │   ├── Metadata & Files
 │   ├── Archives
 │   ├── Web & Domains
 │   ├── Verification
-│   ├── Search & Discovery
+│   ├── Cyber / URL Analysis
 │   └── Research Resources
 │
-├── TAO Projects
-│   ├── Photo Stargazing Positioning
-│   └── Future focused utilities
+├── BOOKMARKS
+│   ├── Favorites
+│   ├── Collections
+│   └── Recently used / reviewed
 │
-└── Guides
-    ├── Tool selection
-    ├── Workflows
-    └── Responsible use
+├── SHOWCASE
+│   ├── Tool cards
+│   ├── Purpose
+│   ├── Cost / login requirements
+│   ├── Platform
+│   ├── Limitations
+│   └── Official links
+│
+└── TAO TOOLS — intentionally small
+    ├── Photo Stargazing Positioning
+    └── Future selected utilities
 ```
 
 ## Core Product
 
-The first real product should be a clean web interface where a user can:
+The main product should be a clean OSINT tool library where a user can:
 
-- browse OSINT tools by category
-- search tools by name, purpose or input type
-- see whether a tool is free, partially free or paid
-- see platform requirements and limitations
-- open the official tool quickly
-- read concise use cases
-- mark TAO-built / TAO-optimized tools
-- discover workflows such as image verification or geolocation
-- launch selected internal TAO utilities directly
+- browse tools by category
+- search by name, use case or tag
+- quickly understand what each tool is for
+- see whether it is free, partially free or paid
+- see whether an account is required
+- see platform and input requirements
+- read concise limitations and privacy notes
+- save tools to favorites or custom collections
+- quickly reopen the official website/repository
+- distinguish **External**, **TAO Optimized** and **TAO Built** entries
+- directly launch the small number of integrated TAO tools
 
-The model is closer to a personal, curated **OSINT toolbox / launchpad** than to a giant intelligence database.
+The primary value is **organization and curation**, not replacing the original tools.
 
-## Tool Catalog
+## Tool Entry Model
 
-Each catalog entry should describe:
+Each tool entry should describe:
 
 - name
 - category
@@ -68,28 +92,36 @@ Each catalog entry should describe:
 - privacy / ethical notes
 - maintenance status
 - tags
-- whether it is external, TAO-built or TAO-optimized
+- last reviewed date
+- interaction mode:
+  - **external** — open the official tool
+  - **bookmark** — save / organize / revisit
+  - **integrated** — directly usable inside TAO OSINT
+- origin:
+  - **external**
+  - **tao-optimized**
+  - **tao-built**
 
 See [docs/tool-schema.md](docs/tool-schema.md).
 
 ## Initial Categories
 
 ```text
+Search & Discovery
 Image & Video
 Geolocation & Maps
 Metadata & Files
 Archives
 Web & Domains
-Verification
-Search & Discovery
 Cyber / URL Analysis
+Verification
 Research Resources
 TAO Projects
 ```
 
 ## Seed Tools
 
-The first catalog can include well-established public tools such as:
+Initial external entries include:
 
 - Bellingcat Online Investigations Toolkit
 - TinEye
@@ -100,30 +132,32 @@ The first catalog can include well-established public tools such as:
 - urlscan.io
 - VirusTotal
 
-These are references to external tools, not bundled copies.
+These are **collected references**. TAO OSINT links users to the official source instead of copying the tool.
 
-## TAO Projects
+## TAO Tools
 
-TAO OSINT will contain only a **small number of focused internal projects**.
+Directly usable tools should remain a minority.
 
-The first planned project is:
+A TAO tool should only exist when:
+
+- there is a useful capability gap
+- the local workflow benefits from integration
+- the tool can be maintained
+- the result can be tested and explained
 
 ### Photo Stargazing Positioning
 
-An existing local prototype for inferring photo location/direction/time context from stars and sky geometry.
+The first TAO Optimized tool.
 
-Planned optimization areas:
+It migrated from an existing local prototype and now has:
 
-- clearer workflow
-- better input/output design
-- astronomical calculation separation
-- map integration
-- star/constellation reference workflow
-- reproducible result report
-- mobile-friendly UI
-- integration into the TAO OSINT catalog as a first-class internal tool
-
-Source import is pending from the existing local prototype.
+- a refactored Python core
+- reproducible sample data
+- tests
+- JSON / CSV export
+- geographic candidate clustering
+- a local-first Web MVP
+- Chinese / English interface switching
 
 See [projects/photo-stargazing-positioning/README.md](projects/photo-stargazing-positioning/README.md).
 
@@ -134,12 +168,12 @@ Tao-OSINT/
 ├── catalog/
 │   ├── categories.yaml
 │   └── tools.yaml
-├── frontend/                  # OSINT tool portal / launchpad
-├── backend/                   # Optional catalog/search/API services
-├── projects/
+├── frontend/                  # collection / showcase / bookmark UI
+├── backend/                   # optional services only when needed
+├── projects/                  # small number of usable TAO tools
 │   ├── README.md
 │   └── photo-stargazing-positioning/
-├── modules/                   # Shared components for TAO-built tools
+├── modules/
 ├── docs/
 │   ├── architecture.md
 │   ├── tool-schema.md
@@ -152,30 +186,31 @@ Tao-OSINT/
 
 ## Product Principles
 
-1. **Aggregation first.**
-2. **Curate before automating.**
-3. **Link to official tools instead of copying them.**
-4. **Make tool purpose and limitations obvious.**
-5. **Keep internal TAO tools few and high quality.**
-6. **Prefer useful workflows over giant unstructured link lists.**
-7. **Keep the portal fast, searchable and mobile-friendly.**
-8. **Document privacy, account and cost requirements.**
-9. **Do not design for stalking, doxxing or unauthorized access.**
+1. **Collection first.**
+2. **Showcase clearly.**
+3. **Bookmark and organize.**
+4. **Link to official tools instead of copying them.**
+5. **Do not rebuild mature external tools without a clear reason.**
+6. **Keep directly usable TAO tools few and high quality.**
+7. **Fast search and filtering matter more than feature overload.**
+8. **Document cost, account, platform, privacy and limitations.**
+9. **Keep the platform useful on desktop and mobile.**
+10. **Do not design for stalking, doxxing or unauthorized access.**
 
 ## Roadmap
 
 ```text
-v0.1  Tool catalog foundation
+v0.1  Catalog foundation
   ↓
-v0.2  Searchable web launchpad
+v0.2  Search + categories + tool showcase
   ↓
-v0.3  Workflows + collections
+v0.3  Favorites + collections + bookmarks
   ↓
-v0.4  Photo Stargazing Positioning integration
+v0.4  Selected integrated TAO tools
   ↓
-v0.5  More selected TAO utilities
+v0.5  Maintenance + contribution workflow
   ↓
-v1.0  Stable OSINT toolbox platform
+v1.0  Stable OSINT tool collection platform
 ```
 
 See [docs/roadmap.md](docs/roadmap.md).
@@ -187,6 +222,6 @@ See [docs/roadmap.md](docs/roadmap.md).
 
 ## Status
 
-**Tool-platform foundation in progress.**
+**Collection-platform foundation in progress.**
 
 No stable release has been tagged yet.
