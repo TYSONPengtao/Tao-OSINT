@@ -2,7 +2,6 @@
 
 [English](README.md) · **简体中文**
 
-[**打开 TAO OSINT 在线工具库 →**](https://tysonpengtao.github.io/Tao-OSINT/)
 
 **一个以 OSINT 工具收集、陈列、收藏和快速访问为核心的平台，只有少数 TAO 精选工具直接内置使用。**
 
@@ -156,6 +155,10 @@ v1.0  稳定 OSINT 工具收藏平台
 
 - [TAO Digital Twin](https://github.com/TYSONPengtao/Tao-Digital-Twin)
 - [TAO Personal Technology Lab](https://tysonpengtao.github.io)
+
+## 在线界面
+
+静态网页已经准备好 GitHub Pages 部署。首次发布前需要在仓库里手动启用一次 Pages，步骤见 [docs/pages-setup.md](docs/pages-setup.md)。
 
 ## 当前状态
 
