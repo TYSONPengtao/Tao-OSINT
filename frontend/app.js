@@ -1649,8 +1649,16 @@ function applyLanguage() {
   $("view-grid").title = t("view.grid");
   const readmeLink = $("readme-link");
   const roadmapLink = $("roadmap-link");
-  if (readmeLink) readmeLink.href = language === "zh-CN" ? "../README.zh-CN.md" : "../README.md";
-  if (roadmapLink) roadmapLink.href = language === "zh-CN" ? "../docs/roadmap.zh-CN.md" : "../docs/roadmap.md";
+  if (readmeLink) {
+    readmeLink.href = language === "zh-CN"
+      ? "https://github.com/TYSONPengtao/Tao-OSINT/blob/main/README.zh-CN.md"
+      : "https://github.com/TYSONPengtao/Tao-OSINT#readme";
+  }
+  if (roadmapLink) {
+    roadmapLink.href = language === "zh-CN"
+      ? "https://github.com/TYSONPengtao/Tao-OSINT/blob/main/docs/roadmap.zh-CN.md"
+      : "https://github.com/TYSONPengtao/Tao-OSINT/blob/main/docs/roadmap.md";
+  }
 }
 
 function renderViewSwitch() {
