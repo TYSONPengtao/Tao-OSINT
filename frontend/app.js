@@ -114,6 +114,37 @@ const CATEGORIES = [
   ]
 ];
 
+
+const CATEGORY_ICONS = {
+  "all": '<rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/>',
+  "search-discovery": '<circle cx="11" cy="11" r="6"/><path d="m16 16 4 4"/>',
+  "username-social": '<circle cx="12" cy="8" r="3.5"/><path d="M5 20c.8-4 3.1-6 7-6s6.2 2 7 6"/>',
+  "image-video": '<rect x="3" y="4" width="18" height="16" rx="2"/><path d="m6 16 4-4 3 3 2-2 3 3"/><circle cx="9" cy="9" r="1.5"/>',
+  "video-verification": '<rect x="3" y="5" width="18" height="14" rx="2"/><path d="m10 9 5 3-5 3Z"/><path d="m16.5 17 1.5 1.5 3-3"/>',
+  "geolocation-maps": '<path d="M12 21s6-5.1 6-11a6 6 0 1 0-12 0c0 5.9 6 11 6 11Z"/><circle cx="12" cy="10" r="2"/>',
+  "satellite-imagery": '<path d="M5 19 19 5"/><rect x="8" y="8" width="8" height="8" rx="2" transform="rotate(-45 12 12)"/><path d="m4 8 3 1m9 8 1 3m3-4-3-1M8 4 9 7"/>',
+  "metadata-files": '<path d="M7 3h7l4 4v14H7Z"/><path d="M14 3v5h5M10 12h5m-5 4h5"/>',
+  "ocr-translation": '<path d="M4 8V4h4M16 4h4v4M20 16v4h-4M8 20H4v-4"/><path d="M8 10h8m-8 4h5"/>',
+  "archives": '<path d="M4 7h16v13H4Z"/><path d="M3 4h18v4H3Z"/><path d="M9 12h6"/>',
+  "web-domains": '<circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.6 3.8 5.6 3.8 9S14.5 18.4 12 21M12 3C9.5 5.6 8.2 8.6 8.2 12S9.5 18.4 12 21"/>',
+  "cyber-url-analysis": '<path d="M12 3 19 6v5c0 4.7-2.8 7.8-7 10-4.2-2.2-7-5.3-7-10V6Z"/><path d="m9 12 2 2 4-4"/>',
+  "companies-organizations": '<path d="M5 21V7l7-4 7 4v14M9 10h2m2 0h2m-6 4h2m2 0h2m-6 4h6"/>',
+  "public-datasets": '<ellipse cx="12" cy="5" rx="7" ry="3"/><path d="M5 5v6c0 1.7 3.1 3 7 3s7-1.3 7-3V5M5 11v6c0 1.7 3.1 3 7 3s7-1.3 7-3v-6"/>',
+  "transport-tracking": '<path d="m3 13 7-2 3-7 2 1-1 6 5 1 2 2-7 1-3 5-2-1 1-4-6 1Z"/>',
+  "code-search": '<path d="m9 7-5 5 5 5M15 7l5 5-5 5M13 5l-2 14"/>',
+  "dark-web-indexes": '<path d="M12 3c4 2.2 7 5 7 9s-3 6.8-7 9c-4-2.2-7-5-7-9s3-6.8 7-9Z"/><path d="M9 12h6M12 8v8"/>',
+  "contact-public-info": '<circle cx="12" cy="12" r="9"/><path d="M16 12a4 4 0 1 1-1.2-2.8V15c0 1.1 1.8 1.1 2.5.2"/>',
+  "ai-research": '<path d="m12 3 1.3 4.2L17 9l-3.7 1.8L12 15l-1.3-4.2L7 9l3.7-1.8ZM18 14l.8 2.2L21 17l-2.2.8L18 20l-.8-2.2L15 17l2.2-.8Z"/>',
+  "verification": '<circle cx="12" cy="12" r="9"/><path d="m8 12 2.5 2.5L16 9"/>',
+  "research-resources": '<path d="M4 5.5A3.5 3.5 0 0 1 7.5 2H11v17H7.5A3.5 3.5 0 0 0 4 22ZM20 5.5A3.5 3.5 0 0 0 16.5 2H13v17h3.5A3.5 3.5 0 0 1 20 22Z"/>',
+  "tao-projects": '<path d="M9 3h6M10 3v5l-5 9a3 3 0 0 0 2.6 4.5h8.8A3 3 0 0 0 19 17l-5-9V3"/><path d="M8 14h8"/>'
+};
+
+function categoryIcon(id, extraClass = "") {
+  const body = CATEGORY_ICONS[id] || CATEGORY_ICONS.all;
+  return `<span class="category-icon ${extraClass}" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.65" stroke-linecap="round" stroke-linejoin="round">${body}</svg></span>`;
+}
+
 const TOOLS = [
   {
     id: "bellingcat-toolkit",
@@ -1347,6 +1378,7 @@ const I18N = {
 
 
 Object.assign(I18N["zh-CN"], {
+  "hero.explore": "热门分类",
   "nav.tools": "工具",
   "nav.favorites": "收藏",
   "nav.about": "关于",
@@ -1369,6 +1401,7 @@ Object.assign(I18N["zh-CN"], {
   "view.grid": "网格视图"
 });
 Object.assign(I18N.en, {
+  "hero.explore": "Explore categories",
   "nav.tools": "Tools",
   "nav.favorites": "Favorites",
   "nav.about": "About",
@@ -1482,6 +1515,33 @@ function filteredTools() {
   });
 }
 
+
+function renderHeroCategories() {
+  const target = $("hero-category-cloud");
+  if (!target) return;
+  const ranked = CATEGORIES
+    .filter(([id]) => id !== "all")
+    .map(([id]) => ({id, count: TOOLS.filter((tool) => tool.category === id).length}))
+    .filter((item) => item.count > 0)
+    .sort((a,b) => b.count - a.count || categoryLabel(a.id).localeCompare(categoryLabel(b.id), language))
+    .slice(0, 7);
+
+  target.innerHTML = "";
+  for (const item of ranked) {
+    const button = document.createElement("button");
+    button.type = "button";
+    button.className = "hero-category-pill";
+    button.innerHTML = `${categoryIcon(item.id)}<span>${categoryLabel(item.id)}</span><small>${item.count}</small>`;
+    button.addEventListener("click", () => {
+      selectedCategory = item.id;
+      resetPagination();
+      render();
+      $("catalog").scrollIntoView({behavior:"smooth"});
+    });
+    target.appendChild(button);
+  }
+}
+
 function renderCategories() {
   const target = $("category-list");
   target.innerHTML = "";
@@ -1490,7 +1550,7 @@ function renderCategories() {
     const button = document.createElement("button");
     button.type = "button";
     button.className = "category-button" + (selectedCategory === id ? " active" : "");
-    button.innerHTML = `<span>${categoryLabel(id)}</span><small>${count}</small>`;
+    button.innerHTML = `<span class="category-button-main">${categoryIcon(id)}<span>${categoryLabel(id)}</span></span><small>${count}</small>`;
     button.addEventListener("click", () => {
       selectedCategory = id;
       resetPagination();
@@ -1535,7 +1595,7 @@ function toolCard(tool) {
 
   card.innerHTML = `
     <div class="tool-main">
-      <div class="tool-card-top"><span class="tool-category">${categoryLabel(tool.category)}</span></div>
+      <div class="tool-card-top"><span class="category-mark">${categoryIcon(tool.category)}<span class="tool-category">${categoryLabel(tool.category)}</span></span></div>
       <button class="tool-name" type="button">${tool.name}</button>
       <p class="tool-description">${tool.description[language]}</p>
       <div class="tool-tags">
@@ -1630,7 +1690,7 @@ function renderRecent() {
     const button = document.createElement("button");
     button.type = "button";
     button.className = "recent-item";
-    button.innerHTML = `<span>${categoryLabel(tool.category)}</span><strong>${tool.name}</strong>`;
+    button.innerHTML = `<span class="recent-icon">${categoryIcon(tool.category)}</span><span class="recent-copy"><small>${categoryLabel(tool.category)}</small><strong>${tool.name}</strong></span>`;
     button.addEventListener("click", () => openDialog(tool));
     list.appendChild(button);
   }
@@ -1668,6 +1728,7 @@ function renderViewSwitch() {
 
 function render() {
   applyLanguage();
+  renderHeroCategories();
   renderCategories();
   renderPlatforms();
   renderStats();
@@ -1705,6 +1766,7 @@ function closeSidebar() {
 
 function fillDialog(tool) {
   activeDialogTool = tool;
+  $("dialog-icon").innerHTML = categoryIcon(tool.category, "dialog-category-icon");
   $("dialog-category").textContent = categoryLabel(tool.category);
   $("dialog-title").textContent = tool.name;
   $("dialog-description").textContent = tool.description[language];
