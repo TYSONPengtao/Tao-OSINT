@@ -1,5 +1,7 @@
 # TAO Photo Stargazing Positioning — Optimized Prototype
 
+[简体中文](README.zh-CN.md) | **English**
+
 This folder contains a safe refactor of the original learning prototype.
 
 The original files are preserved unchanged.
@@ -104,30 +106,3 @@ Map + sky visualization
    ↓
 Export reproducible report
 ```
-
-## Web MVP
-
-A browser-only MVP is available in [web/](web/).
-
-It runs locally in the browser and does not upload observation data to a server.
-
-Open:
-
-```text
-web/index.html
-```
-
-or serve the folder with any simple static server.
-
-Current Web MVP supports:
-
-- load the reproducible v0.2 sample
-- paste/edit observation JSON
-- calculate focal consistency
-- generate all mathematical location candidates
-- identify the strongest geographic cluster
-- show candidates on a simple global overview
-- open the cluster center in OpenStreetMap
-- export JSON and CSV
-
-The next UI milestone is interactive photo annotation: upload a night-sky image, click identified stars and the zenith, then feed those image coordinates directly into the calculation.
