@@ -871,3 +871,22 @@ tools:
     tags: ["citations", "papers", "ai", "evidence"]
     status: active
     last_reviewed: 2026-10-04
+
+- id: libphonenumber
+    name: "Google libphonenumber"
+    category: contact-public-info
+    type: external
+    interaction: external
+    url: "https://github.com/google/libphonenumber"
+    description: "Open-source library for parsing, formatting and validating international phone numbers, including number type and limited offline metadata."
+    description_zh: "Google 开源电话号码库，用于解析、格式化和验证国际号码，并提供号码类型、地区、原始运营商等有限离线元数据。"
+    use_cases:
+      - "Parse, normalize and validate phone-number formats without reverse-identifying a person."
+    cost: free
+    account_required: false
+    platform: ["java", "javascript", "cpp"]
+    privacy_notes:
+      - "The library does not determine whether a number is currently assigned to a specific person; do not present metadata as identity proof."
+    tags: ["phone", "validation", "metadata", "open-source"]
+    status: active
+    last_reviewed: 2026-10-04
