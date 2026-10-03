@@ -151,6 +151,10 @@ v1.0  稳定 OSINT 工具收藏平台
 
 详细内容见 [docs/roadmap.md](docs/roadmap.md)。
 
+## 视觉语言
+
+分类图标体系、卡片层级和中英文排版规则见 [docs/visual-language.zh-CN.md](docs/visual-language.zh-CN.md)。
+
 ## 相关项目
 
 - [TAO Digital Twin](https://github.com/TYSONPengtao/Tao-Digital-Twin)
