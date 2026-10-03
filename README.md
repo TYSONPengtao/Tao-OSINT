@@ -106,35 +106,33 @@ Each tool entry should describe:
 
 See [docs/tool-schema.md](docs/tool-schema.md).
 
-## Initial Categories
+## Catalog Coverage
 
-```text
-Search & Discovery
-Image & Video
-Geolocation & Maps
-Metadata & Files
-Archives
-Web & Domains
-Cyber / URL Analysis
-Verification
-Research Resources
-TAO Projects
-```
+The curated catalog now contains **50 tools** across the following areas:
 
-## Seed Tools
+- Search & advanced search
+- Username & social platforms
+- Image & video
+- Video verification
+- Geolocation & maps
+- Satellite imagery
+- Metadata & files
+- OCR & translation
+- Archives
+- Domains / DNS / WHOIS
+- Cyber / URL analysis
+- Companies & organizations
+- Public datasets
+- Flights & vessels
+- GitHub / code search
+- Public dark-web indexes
+- Public contact information
+- AI-assisted research
+- Verification resources
+- Research resources
+- TAO projects
 
-Initial external entries include:
-
-- Bellingcat Online Investigations Toolkit
-- TinEye
-- ExifTool
-- OpenStreetMap
-- SunCalc
-- Internet Archive / Wayback Machine
-- urlscan.io
-- VirusTotal
-
-These are **collected references**. TAO OSINT links users to the official source instead of copying the tool.
+Most entries are **collected references** that open the official source. Direct integration remains the exception.
 
 ## TAO Tools
 
