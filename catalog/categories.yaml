@@ -1,0 +1,40 @@
+categories:
+  - id: search-discovery
+    name: Search & Discovery
+    description: General discovery and research starting points.
+
+  - id: image-video
+    name: Image & Video
+    description: Reverse search, media verification and visual analysis.
+
+  - id: geolocation-maps
+    name: Geolocation & Maps
+    description: Maps, terrain, sun position and geographic context.
+
+  - id: metadata-files
+    name: Metadata & Files
+    description: Metadata extraction and file inspection.
+
+  - id: archives
+    name: Archives
+    description: Historical web content and archived public material.
+
+  - id: web-domains
+    name: Web & Domains
+    description: Public website, domain and infrastructure context.
+
+  - id: cyber-url-analysis
+    name: Cyber / URL Analysis
+    description: Public URL and website analysis services.
+
+  - id: verification
+    name: Verification
+    description: Tools used to cross-check or validate public material.
+
+  - id: research-resources
+    name: Research Resources
+    description: Tool directories, guides and learning resources.
+
+  - id: tao-projects
+    name: TAO Projects
+    description: TAO-built or TAO-optimized utilities.
