@@ -24,6 +24,7 @@ const TOOLS = [
     accountRequired: false,
     platform: ["web"],
     tags: ["tool-directory", "research", "learning"],
+    lastReviewed: "2026-10-04",
     description: {
       "zh-CN": "分类整理大量开放来源调查工具、要求、局限与使用指南的研究工具箱。",
       en: "A curated open-source research toolkit covering tools, requirements, limitations and guides."
@@ -40,6 +41,7 @@ const TOOLS = [
     accountRequired: false,
     platform: ["web"],
     tags: ["reverse-image", "verification"],
+    lastReviewed: "2026-10-04",
     description: {
       "zh-CN": "反向图片搜索服务，用于寻找图片的早期版本、相似版本和修改版本。",
       en: "Reverse image search for finding earlier, matching or modified versions of an image."
@@ -56,6 +58,7 @@ const TOOLS = [
     accountRequired: false,
     platform: ["windows", "macos", "linux"],
     tags: ["metadata", "exif", "files"],
+    lastReviewed: "2026-10-04",
     description: {
       "zh-CN": "强大的文件元数据读取与处理工具，支持大量图片、文档和媒体格式。",
       en: "Powerful metadata reading and processing across a large range of image, document and media formats."
@@ -72,6 +75,7 @@ const TOOLS = [
     accountRequired: false,
     platform: ["web"],
     tags: ["maps", "geolocation", "open-data"],
+    lastReviewed: "2026-10-04",
     description: {
       "zh-CN": "开放地图数据平台，可用于道路、地点、地理环境和基础空间信息对照。",
       en: "Open map data for roads, places, geographic context and spatial comparison."
@@ -88,6 +92,7 @@ const TOOLS = [
     accountRequired: false,
     platform: ["web"],
     tags: ["sun", "shadow", "geolocation", "astronomy"],
+    lastReviewed: "2026-10-04",
     description: {
       "zh-CN": "根据地点和时间查看太阳方位、高度与阴影信息，适合做时间/地点一致性分析。",
       en: "Explore solar azimuth, altitude and shadow context for a place and time."
@@ -104,6 +109,7 @@ const TOOLS = [
     accountRequired: false,
     platform: ["web"],
     tags: ["archive", "history", "websites"],
+    lastReviewed: "2026-10-04",
     description: {
       "zh-CN": "查看网页历史快照，适合追踪网站内容变化和过去公开页面。",
       en: "View historical web captures to research past public pages and website changes."
@@ -120,6 +126,7 @@ const TOOLS = [
     accountRequired: false,
     platform: ["web", "api"],
     tags: ["url", "website", "screenshot", "infrastructure"],
+    lastReviewed: "2026-10-04",
     description: {
       "zh-CN": "分析网站加载行为、资源、截图和相关公开基础设施信息。",
       en: "Inspect website behavior, resources, screenshots and related public infrastructure context."
@@ -136,6 +143,7 @@ const TOOLS = [
     accountRequired: false,
     platform: ["web", "api"],
     tags: ["url", "files", "domains", "security"],
+    lastReviewed: "2026-10-04",
     description: {
       "zh-CN": "针对文件、URL、域名等对象提供多源安全检测与公开威胁情报上下文。",
       en: "Multi-source analysis and public threat-intelligence context for files, URLs and domains."
@@ -152,6 +160,7 @@ const TOOLS = [
     accountRequired: false,
     platform: ["web", "python"],
     tags: ["astronomy", "image", "geolocation", "stars", "tao"],
+    lastReviewed: "2026-10-04",
     description: {
       "zh-CN": "TAO 优化的星空照片定位辅助工具，通过恒星几何关系生成候选位置并进行聚类。",
       en: "TAO-optimized night-sky photo positioning aid using stellar geometry and candidate clustering."
@@ -166,15 +175,15 @@ const I18N = {
     "hero.line2": "放在一个地方。",
     "hero.description": "以收藏、分类、搜索和快速跳转为主。大多数工具链接到官方入口，只有少量 TAO 精选项目可直接使用。",
     "stats.collected": "已收录", "stats.tools": "工具", "stats.categories": "分类", "stats.groups": "类别", "stats.integrated": "可直接使用", "stats.taoTools": "TAO 工具",
-    "filters.category": "分类", "filters.mode": "使用方式", "filters.cost": "费用", "filters.reset": "重置",
+    "filters.category": "分类", "filters.mode": "使用方式", "filters.cost": "费用", "filters.platform": "平台", "filters.reset": "重置",
     "interaction.external": "外部工具", "interaction.integrated": "内置工具",
     "cost.free": "免费", "cost.partiallyFree": "部分免费", "cost.paid": "付费",
+    "platform.all": "全部平台",
     "search.placeholder": "搜索工具、用途、标签…",
     "favorites.title": "收藏",
-    "catalog.kicker": "精选工具集合",
-    "catalog.title": "工具库",
-    "empty.title": "没有找到匹配工具",
-    "empty.text": "尝试更换关键词、分类或筛选条件。",
+    "sort.label": "排序", "sort.featured": "精选优先", "sort.name": "名称", "sort.category": "分类", "sort.reviewed": "最近审阅",
+    "catalog.kicker": "精选工具集合", "catalog.title": "工具库",
+    "empty.title": "没有找到匹配工具", "empty.text": "尝试更换关键词、分类或筛选条件。",
     "principles.collect.title": "收藏优先", "principles.collect.text": "成熟工具优先收录和跳转，不重复造轮子。",
     "principles.organize.title": "组织清晰", "principles.organize.text": "分类、标签、费用、平台和限制一眼可见。",
     "principles.integrate.title": "少量内置", "principles.integrate.text": "只有真正值得维护的 TAO 工具才直接集成。",
@@ -182,7 +191,9 @@ const I18N = {
     "count.one": "显示 {shown} / {total} 个工具",
     "launch.external": "打开官方工具 ↗", "launch.integrated": "直接使用 →",
     "badge.external": "外部", "badge.integrated": "内置", "badge.taoOptimized": "TAO 优化",
-    "account.no": "无需账号", "account.yes": "需要账号"
+    "account.no": "无需账号", "account.yes": "需要账号",
+    "reviewed": "审阅于",
+    "filter.category": "分类：", "filter.platform": "平台：", "filter.favorites": "仅收藏", "filter.search": "搜索："
   },
   en: {
     "hero.eyebrow": "OSINT COLLECTION · SHOWCASE · BOOKMARKS",
@@ -190,15 +201,15 @@ const I18N = {
     "hero.line2": "all in one place.",
     "hero.description": "Built around collection, categorization, search and fast access. Most entries open the official tool; only a small number of selected TAO projects run directly inside the platform.",
     "stats.collected": "Collected", "stats.tools": "tools", "stats.categories": "Categories", "stats.groups": "groups", "stats.integrated": "Direct use", "stats.taoTools": "TAO tools",
-    "filters.category": "Category", "filters.mode": "Interaction", "filters.cost": "Cost", "filters.reset": "Reset",
+    "filters.category": "Category", "filters.mode": "Interaction", "filters.cost": "Cost", "filters.platform": "Platform", "filters.reset": "Reset",
     "interaction.external": "External tools", "interaction.integrated": "Integrated tools",
     "cost.free": "Free", "cost.partiallyFree": "Partially free", "cost.paid": "Paid",
+    "platform.all": "All platforms",
     "search.placeholder": "Search tools, use cases or tags…",
     "favorites.title": "Favorites",
-    "catalog.kicker": "CURATED COLLECTION",
-    "catalog.title": "Tool library",
-    "empty.title": "No matching tools",
-    "empty.text": "Try another keyword, category or filter.",
+    "sort.label": "Sort", "sort.featured": "Featured", "sort.name": "Name", "sort.category": "Category", "sort.reviewed": "Recently reviewed",
+    "catalog.kicker": "CURATED COLLECTION", "catalog.title": "Tool library",
+    "empty.title": "No matching tools", "empty.text": "Try another keyword, category or filter.",
     "principles.collect.title": "Collect first", "principles.collect.text": "Prefer collecting and linking mature tools instead of rebuilding them.",
     "principles.organize.title": "Clear structure", "principles.organize.text": "Category, tags, cost, platform and limitations should be easy to scan.",
     "principles.integrate.title": "Integrate selectively", "principles.integrate.text": "Only TAO tools worth maintaining should run directly inside the platform.",
@@ -206,7 +217,9 @@ const I18N = {
     "count.one": "Showing {shown} of {total} tools",
     "launch.external": "Open official tool ↗", "launch.integrated": "Use directly →",
     "badge.external": "External", "badge.integrated": "Integrated", "badge.taoOptimized": "TAO Optimized",
-    "account.no": "No account", "account.yes": "Account required"
+    "account.no": "No account", "account.yes": "Account required",
+    "reviewed": "Reviewed",
+    "filter.category": "Category:", "filter.platform": "Platform:", "filter.favorites": "Favorites only", "filter.search": "Search:"
   }
 };
 
@@ -214,9 +227,11 @@ const $ = (id) => document.getElementById(id);
 let language = loadSetting(LANGUAGE_KEY, "zh-CN");
 if (!I18N[language]) language = "zh-CN";
 let selectedCategory = "all";
+let selectedPlatform = "all";
 let favoritesOnly = false;
 let favorites = new Set(loadJSON(FAVORITES_KEY, []));
 let searchTerm = "";
+let sortMode = "featured";
 
 function loadSetting(key, fallback) {
   try { return localStorage.getItem(key) || fallback; } catch { return fallback; }
@@ -238,9 +253,11 @@ function categoryLabel(id) {
 function costLabel(cost) {
   return cost === "free" ? t("cost.free") : cost === "partially-free" ? t("cost.partiallyFree") : t("cost.paid");
 }
-
 function activeFilterValues(type) {
   return [...document.querySelectorAll(`[data-filter="${type}"]:checked`)].map((node) => node.value);
+}
+function allPlatforms() {
+  return ["all", ...new Set(TOOLS.flatMap((tool) => tool.platform))];
 }
 
 function filteredTools() {
@@ -248,8 +265,9 @@ function filteredTools() {
   const costs = activeFilterValues("cost");
   const query = searchTerm.trim().toLowerCase();
 
-  return TOOLS.filter((tool) => {
+  const items = TOOLS.filter((tool) => {
     if (selectedCategory !== "all" && tool.category !== selectedCategory) return false;
+    if (selectedPlatform !== "all" && !tool.platform.includes(selectedPlatform)) return false;
     if (!interaction.includes(tool.interaction)) return false;
     if (!costs.includes(tool.cost)) return false;
     if (favoritesOnly && !favorites.has(tool.id)) return false;
@@ -264,6 +282,15 @@ function filteredTools() {
       ...tool.platform
     ].join(" ").toLowerCase();
     return haystack.includes(query);
+  });
+
+  return items.sort((a, b) => {
+    if (sortMode === "name") return a.name.localeCompare(b.name);
+    if (sortMode === "category") return categoryLabel(a.category).localeCompare(categoryLabel(b.category), language);
+    if (sortMode === "reviewed") return b.lastReviewed.localeCompare(a.lastReviewed) || a.name.localeCompare(b.name);
+    const featuredA = a.interaction === "integrated" ? 0 : a.type === "tao-optimized" ? 1 : 2;
+    const featuredB = b.interaction === "integrated" ? 0 : b.type === "tao-optimized" ? 1 : 2;
+    return featuredA - featuredB || a.name.localeCompare(b.name);
   });
 }
 
@@ -284,6 +311,23 @@ function renderCategories() {
   }
 }
 
+function renderPlatforms() {
+  const target = $("platform-list");
+  target.innerHTML = "";
+  for (const platform of allPlatforms()) {
+    const count = platform === "all" ? TOOLS.length : TOOLS.filter((tool) => tool.platform.includes(platform)).length;
+    const button = document.createElement("button");
+    button.type = "button";
+    button.className = "platform-button" + (selectedPlatform === platform ? " active" : "");
+    button.innerHTML = `<span>${platform === "all" ? t("platform.all") : platform}</span><small>${count}</small>`;
+    button.addEventListener("click", () => {
+      selectedPlatform = platform;
+      render();
+    });
+    target.appendChild(button);
+  }
+}
+
 function toolCard(tool) {
   const card = document.createElement("article");
   card.className = "tool-card";
@@ -292,21 +336,33 @@ function toolCard(tool) {
   const launchText = tool.interaction === "integrated" ? t("launch.integrated") : t("launch.external");
 
   card.innerHTML = `
-    <div class="tool-card-top">
-      <span class="tool-category">${categoryLabel(tool.category)}</span>
-      <button class="favorite-button ${favorite ? "active" : ""}" type="button" aria-label="${t("favorites.title")}">${favorite ? "★" : "☆"}</button>
+    <div class="tool-main">
+      <div class="tool-card-top">
+        <span class="tool-category">${categoryLabel(tool.category)}</span>
+      </div>
+      <h3 class="tool-name">${tool.name}</h3>
+      <p class="tool-description">${tool.description[language]}</p>
+      <div class="tool-tags">
+        ${tool.tags.slice(0, 6).map((tag) => `<button type="button" class="tag-button" data-tag="${tag}">#${tag}</button>`).join("")}
+      </div>
     </div>
-    <h3>${tool.name}</h3>
-    <p class="tool-description">${tool.description[language]}</p>
-    <div class="tool-badges">
-      <span class="tool-badge ${tool.interaction === "integrated" ? "integrated" : ""}">${tool.interaction === "integrated" ? t("badge.integrated") : t("badge.external")}</span>
-      ${tool.type === "tao-optimized" ? `<span class="tool-badge integrated">${t("badge.taoOptimized")}</span>` : ""}
-      <span class="tool-badge">${costLabel(tool.cost)}</span>
+
+    <div class="tool-side">
+      <div class="tool-actions">
+        <button class="favorite-button ${favorite ? "active" : ""}" type="button" aria-label="${t("favorites.title")}">${favorite ? "★" : "☆"}</button>
+        <a class="launch-link" href="${tool.url}" ${tool.interaction === "external" ? 'target="_blank" rel="noreferrer"' : ""}>${launchText}</a>
+      </div>
+      <div class="tool-badges">
+        <span class="tool-badge ${tool.interaction === "integrated" ? "integrated" : ""}">${tool.interaction === "integrated" ? t("badge.integrated") : t("badge.external")}</span>
+        ${tool.type === "tao-optimized" ? `<span class="tool-badge integrated">${t("badge.taoOptimized")}</span>` : ""}
+        <span class="tool-badge">${costLabel(tool.cost)}</span>
+      </div>
     </div>
-    <div class="tool-tags">${tool.tags.slice(0, 4).map((tag) => `<span>#${tag}</span>`).join("")}</div>
-    <div class="tool-card-footer">
-      <div class="tool-meta">${tool.platform.join(" · ")} · ${tool.accountRequired ? t("account.yes") : t("account.no")}</div>
-      <a class="launch-link" href="${tool.url}" ${tool.interaction === "external" ? 'target="_blank" rel="noreferrer"' : ""}>${launchText}</a>
+
+    <div class="tool-footer">
+      <span>${tool.platform.join(" · ")}</span>
+      <span class="meta-dot">${tool.accountRequired ? t("account.yes") : t("account.no")}</span>
+      <span class="meta-dot review-meta">${t("reviewed")} ${tool.lastReviewed}</span>
     </div>
   `;
 
@@ -317,19 +373,37 @@ function toolCard(tool) {
     render();
   });
 
+  card.querySelectorAll(".tag-button").forEach((button) => {
+    button.addEventListener("click", () => {
+      searchTerm = button.dataset.tag;
+      $("search-input").value = searchTerm;
+      render();
+    });
+  });
+
   return card;
 }
 
 function renderTools() {
-  const grid = $("tool-grid");
+  const target = $("tool-grid");
   const items = filteredTools();
-  grid.innerHTML = "";
-  items.forEach((tool) => grid.appendChild(toolCard(tool)));
+  target.innerHTML = "";
+  items.forEach((tool) => target.appendChild(toolCard(tool)));
 
   $("empty-state").hidden = items.length !== 0;
   $("result-count").textContent = t("count.one")
     .replace("{shown}", items.length)
     .replace("{total}", TOOLS.length);
+}
+
+function renderActiveFilters() {
+  const chips = [];
+  if (selectedCategory !== "all") chips.push(t("filter.category") + " " + categoryLabel(selectedCategory));
+  if (selectedPlatform !== "all") chips.push(t("filter.platform") + " " + selectedPlatform);
+  if (favoritesOnly) chips.push(t("filter.favorites"));
+  if (searchTerm.trim()) chips.push(t("filter.search") + " " + searchTerm.trim());
+
+  $("active-filter-bar").innerHTML = chips.map((chip) => `<span class="active-filter-chip">${chip}</span>`).join("");
 }
 
 function renderStats() {
@@ -357,9 +431,12 @@ function applyLanguage() {
 function render() {
   applyLanguage();
   renderCategories();
+  renderPlatforms();
   renderStats();
+  renderActiveFilters();
   renderTools();
   $("favorites-toggle").classList.toggle("active", favoritesOnly);
+  $("sort-select").value = sortMode;
 }
 
 document.querySelectorAll("[data-language]").forEach((button) => {
@@ -372,11 +449,20 @@ document.querySelectorAll("[data-language]").forEach((button) => {
 
 $("search-input").addEventListener("input", (event) => {
   searchTerm = event.target.value;
+  renderActiveFilters();
   renderTools();
 });
 
 document.querySelectorAll("[data-filter]").forEach((input) => {
-  input.addEventListener("change", renderTools);
+  input.addEventListener("change", () => {
+    renderActiveFilters();
+    renderTools();
+  });
+});
+
+$("sort-select").addEventListener("change", (event) => {
+  sortMode = event.target.value;
+  renderTools();
 });
 
 $("favorites-toggle").addEventListener("click", () => {
@@ -386,8 +472,10 @@ $("favorites-toggle").addEventListener("click", () => {
 
 $("clear-filters").addEventListener("click", () => {
   selectedCategory = "all";
+  selectedPlatform = "all";
   favoritesOnly = false;
   searchTerm = "";
+  sortMode = "featured";
   $("search-input").value = "";
   document.querySelectorAll("[data-filter]").forEach((input) => { input.checked = true; });
   render();
