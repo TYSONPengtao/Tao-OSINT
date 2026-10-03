@@ -216,6 +216,10 @@ v1.0  Stable OSINT tool collection platform
 
 See [docs/roadmap.md](docs/roadmap.md).
 
+## Visual Language
+
+The category icon system, card hierarchy and bilingual layout rules are documented in [docs/visual-language.md](docs/visual-language.md).
+
 ## Related TAO Projects
 
 - [TAO Digital Twin](https://github.com/TYSONPengtao/Tao-Digital-Twin)
