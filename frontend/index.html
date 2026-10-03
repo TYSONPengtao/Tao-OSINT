@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="color-scheme" content="dark" />
+  <meta name="description" content="TAO OSINT — curated OSINT tool collection, showcase and bookmark platform." />
+  <title>TAO OSINT — Tool Collection</title>
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+  <main class="page-shell">
+    <header class="topbar">
+      <a class="brand" href="../" aria-label="TAO OSINT">
+        <span class="brand-mark">TAO</span>
+        <span class="brand-name">OSINT</span>
+      </a>
+
+      <div class="top-actions">
+        <nav class="language-switch" aria-label="Language">
+          <button class="language-button" type="button" data-language="zh-CN">中文</button>
+          <span>/</span>
+          <button class="language-button" type="button" data-language="en">English</button>
+        </nav>
+        <a class="github-link" href="https://github.com/TYSONPengtao/Tao-OSINT" target="_blank" rel="noreferrer">GitHub ↗</a>
+      </div>
+    </header>
+
+    <section class="hero">
+      <div class="hero-copy">
+        <p class="eyebrow" data-i18n="hero.eyebrow">OSINT 工具聚合 · 陈列 · 收藏</p>
+        <h1>
+          <span data-i18n="hero.line1">把有用的 OSINT 工具</span>
+          <span class="accent" data-i18n="hero.line2">放在一个地方。</span>
+        </h1>
+        <p class="hero-description" data-i18n="hero.description">
+          以收藏、分类、搜索和快速跳转为主。大多数工具链接到官方入口，只有少量 TAO 精选项目可直接使用。
+        </p>
+      </div>
+
+      <div class="hero-stats">
+        <article>
+          <span data-i18n="stats.collected">已收录</span>
+          <strong id="stat-tools">0</strong>
+          <small data-i18n="stats.tools">工具</small>
+        </article>
+        <article>
+          <span data-i18n="stats.categories">分类</span>
+          <strong id="stat-categories">0</strong>
+          <small data-i18n="stats.groups">类别</small>
+        </article>
+        <article>
+          <span data-i18n="stats.integrated">可直接使用</span>
+          <strong id="stat-integrated">0</strong>
+          <small data-i18n="stats.taoTools">TAO 工具</small>
+        </article>
+      </div>
+    </section>
+
+    <section class="catalog-shell">
+      <aside class="sidebar">
+        <div class="sidebar-block">
+          <span class="sidebar-label" data-i18n="filters.category">分类</span>
+          <div id="category-list" class="category-list"></div>
+        </div>
+
+        <div class="sidebar-block">
+          <span class="sidebar-label" data-i18n="filters.mode">使用方式</span>
+          <div class="filter-stack">
+            <label><input type="checkbox" value="external" data-filter="interaction" checked /> <span data-i18n="interaction.external">外部工具</span></label>
+            <label><input type="checkbox" value="integrated" data-filter="interaction" checked /> <span data-i18n="interaction.integrated">内置工具</span></label>
+          </div>
+        </div>
+
+        <div class="sidebar-block">
+          <span class="sidebar-label" data-i18n="filters.cost">费用</span>
+          <div class="filter-stack">
+            <label><input type="checkbox" value="free" data-filter="cost" checked /> <span data-i18n="cost.free">免费</span></label>
+            <label><input type="checkbox" value="partially-free" data-filter="cost" checked /> <span data-i18n="cost.partiallyFree">部分免费</span></label>
+            <label><input type="checkbox" value="paid" data-filter="cost" checked /> <span data-i18n="cost.paid">付费</span></label>
+          </div>
+        </div>
+      </aside>
+
+      <section class="catalog-main">
+        <div class="catalog-toolbar">
+          <div class="search-box">
+            <span>⌕</span>
+            <input id="search-input" type="search" autocomplete="off" data-i18n-placeholder="search.placeholder" placeholder="搜索工具、用途、标签…" />
+          </div>
+
+          <div class="toolbar-meta">
+            <button id="favorites-toggle" class="toolbar-button" type="button">
+              <span>☆</span>
+              <span data-i18n="favorites.title">收藏</span>
+              <strong id="favorite-count">0</strong>
+            </button>
+            <button id="clear-filters" class="toolbar-button subtle" type="button" data-i18n="filters.reset">重置</button>
+          </div>
+        </div>
+
+        <div class="section-heading">
+          <div>
+            <p class="section-kicker" data-i18n="catalog.kicker">CURATED COLLECTION</p>
+            <h2 data-i18n="catalog.title">工具库</h2>
+          </div>
+          <p id="result-count" class="result-count"></p>
+        </div>
+
+        <div id="tool-grid" class="tool-grid"></div>
+
+        <div id="empty-state" class="empty-state" hidden>
+          <span>⌕</span>
+          <h3 data-i18n="empty.title">没有找到匹配工具</h3>
+          <p data-i18n="empty.text">尝试更换关键词、分类或筛选条件。</p>
+        </div>
+      </section>
+    </section>
+
+    <section class="principle-strip">
+      <article>
+        <span>01</span>
+        <strong data-i18n="principles.collect.title">收藏优先</strong>
+        <p data-i18n="principles.collect.text">成熟工具优先收录和跳转，不重复造轮子。</p>
+      </article>
+      <article>
+        <span>02</span>
+        <strong data-i18n="principles.organize.title">组织清晰</strong>
+        <p data-i18n="principles.organize.text">分类、标签、费用、平台和限制一眼可见。</p>
+      </article>
+      <article>
+        <span>03</span>
+        <strong data-i18n="principles.integrate.title">少量内置</strong>
+        <p data-i18n="principles.integrate.text">只有真正值得维护的 TAO 工具才直接集成。</p>
+      </article>
+    </section>
+
+    <footer class="footer">
+      <div>
+        <strong>TAO OSINT</strong>
+        <p data-i18n="footer.tagline">Curated tools. Clear context. Fast access.</p>
+      </div>
+      <div class="footer-links">
+        <a href="../README.md">README</a>
+        <a href="../docs/roadmap.md">Roadmap</a>
+        <a href="https://github.com/TYSONPengtao" target="_blank" rel="noreferrer">TYSONPengtao ↗</a>
+      </div>
+    </footer>
+  </main>
+
+  <script src="./app.js"></script>
+</body>
+</html>
