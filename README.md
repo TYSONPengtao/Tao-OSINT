@@ -2,7 +2,6 @@
 
 **English** · [简体中文](README.zh-CN.md)
 
-[**Open TAO OSINT Web →**](https://tysonpengtao.github.io/Tao-OSINT/)
 
 **A curated OSINT tool collection, showcase and bookmark platform — with only a small number of directly usable TAO tools.**
 
@@ -221,6 +220,10 @@ See [docs/roadmap.md](docs/roadmap.md).
 
 - [TAO Digital Twin](https://github.com/TYSONPengtao/Tao-Digital-Twin)
 - [TAO Personal Technology Lab](https://tysonpengtao.github.io)
+
+## Web Preview
+
+The static interface is ready for GitHub Pages. See [docs/pages-setup.md](docs/pages-setup.md) for the one-time repository setting required before deployment.
 
 ## Status
 
