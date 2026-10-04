@@ -229,8 +229,15 @@ The category icon system, card hierarchy and bilingual layout rules are document
 
 The static interface is ready for GitHub Pages. See [docs/pages-setup.md](docs/pages-setup.md) for the one-time repository setting required before deployment.
 
+## Release Candidate
+
+**v0.1.0** — 51 curated tools, 21 categories, bilingual interface, favorites, search/filtering, unified visual language, and the first integrated TAO tool.
+
+- [v0.1.0 Release Notes](docs/releases/v0.1.0.md)
+- [Changelog](CHANGELOG.md)
+
 ## Status
 
-**Collection-platform foundation in progress.**
+**v0.1.0 release candidate — launch checklist in progress.**
 
 No stable release has been tagged yet.

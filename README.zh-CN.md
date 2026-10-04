@@ -164,6 +164,13 @@ v1.0  稳定 OSINT 工具收藏平台
 
 静态网页已经准备好 GitHub Pages 部署。首次发布前需要在仓库里手动启用一次 Pages，步骤见 [docs/pages-setup.md](docs/pages-setup.md)。
 
+## 发布候选版
+
+**v0.1.0** — 51 个精选工具、21 个分类、中英文界面、收藏、搜索/筛选、统一视觉语言，以及第一个 TAO 内置工具。
+
+- [v0.1.0 中文发布说明](docs/releases/v0.1.0.zh-CN.md)
+- [Changelog](CHANGELOG.md)
+
 ## 当前状态
 
-**工具收藏平台基础建设中。**
+**v0.1.0 发布候选版 — 正在完成上线检查。**
