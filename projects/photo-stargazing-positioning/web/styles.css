@@ -60,7 +60,7 @@ button { cursor: pointer; }
   grid-template-columns: minmax(340px, .85fr) minmax(0, 1.65fr);
   border-bottom: 1px solid var(--line);
 }
-.input-panel, .results-panel { padding: 46px 0; }
+.input-panel, .results-panel { padding: 46px 0; min-width: 0; }
 .input-panel { padding-right: 34px; border-right: 1px solid var(--line); }
 .results-panel { padding-left: 34px; }
 .section-title { display: flex; gap: 14px; align-items: flex-start; margin-bottom: 28px; }
