@@ -510,7 +510,7 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
   background-size: 34px 34px;
   mask-image: linear-gradient(90deg, transparent, black 25%, transparent 92%);
 }
-.topic-copy, .topic-summary { position: relative; z-index: 1; }
+.topic-copy, .topic-summary { position: relative; z-index: 1; min-width: 0; }
 
 .topic-chip {
   box-shadow: inset 0 0 0 1px rgba(200,255,0,.03), 0 0 26px rgba(200,255,0,.03);
