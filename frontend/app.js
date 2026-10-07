@@ -1675,7 +1675,7 @@ function renderActiveFilters() {
 
 function renderStats() {
   $("stat-tools").textContent = TOOLS.length;
-  $("stat-categories").textContent = new Set(TOOLS.map((tool) => tool.category)).size;
+  $("stat-categories").textContent = CATEGORIES.filter(([id]) => id !== "all").length;
   $("stat-integrated").textContent = TOOLS.filter((tool) => tool.interaction === "integrated").length;
   for (const id of ["favorite-count","toolbar-favorite-count","hero-favorite-count"]) $(id).textContent = favorites.size;
 }

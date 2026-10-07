@@ -23,7 +23,13 @@ The original files are preserved unchanged.
 From this directory:
 
 ```powershell
-python .\tao_star_positioning.py .\sample_observation.json --output .\output\sample
+python .\core\tao_star_positioning.py .\samples\sample_observation.json --output .\output\sample
+```
+
+Run the tests from this directory:
+
+```powershell
+python -m unittest discover -s tests -v
 ```
 
 Expected sample characteristics:
@@ -37,7 +43,7 @@ The sample reproduces the v0.2 packaged project's stored focal-length value (abo
 
 ## Input
 
-Edit a copy of `sample_observation.json`.
+Edit a copy of `samples/sample_observation.json`.
 
 For each star provide:
 
